@@ -13,7 +13,7 @@ trait ApiResponses
         ], fn ($x) => isset($x)))->setStatusCode($code);
     }
 
-    public static function success(array | object $response)
+    public static function success(array | object | null $response = null)
     {
         return self::response(200, true, $response);
     }
@@ -26,5 +26,10 @@ trait ApiResponses
     public static function notFound(string $message = 'Not Found')
     {
         return self::response(404, false, null, $message);
+    }
+
+    public static function unauthorised(string $message = 'Unauthorised')
+    {
+        return self::response(401, false, null, $message);
     }
 }
