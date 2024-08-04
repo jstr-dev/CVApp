@@ -26,10 +26,10 @@ function Login() {
     let [password, setPassword] = useState('');
 
     return (
-        <div className='mainForm'>
+        <div>
             <h3>Please login</h3>
 
-            <div className='loginForm'>
+            <div className='loginForm flex flex-col center'>
                 <input name="email" type="text" onChange={(e) => setEmail(e.target.value)}></input>
                 <input name="password" type="text" onChange={(e) => setPassword(e.target.value)}></input>
                <Button onClick={postLogin}>Login</Button> 

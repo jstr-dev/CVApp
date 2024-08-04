@@ -7,8 +7,6 @@ interface ButtonProps {
 
 export default function Button(ButtonProps: ButtonProps) {
     return (
-        <div>
-            <button onClick={ButtonProps.onClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{ButtonProps.children}</button>
-        </div>
+        <button onClick={ButtonProps.onClick} className="primary container mx-auto">{ButtonProps.children}</button>
     );
 }

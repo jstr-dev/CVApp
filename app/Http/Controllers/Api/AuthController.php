@@ -28,4 +28,13 @@ class AuthController extends Controller
         $request->session()->regenerate();
         return self::success();
     }
+
+    public function user()
+    {
+        if (!auth()->check()) {
+            return self::unauthorised();
+        }
+
+        return self::success(auth()->user());
+    }
 }

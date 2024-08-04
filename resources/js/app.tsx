@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import React from 'react';
+import React, { useState } from 'react';
 import Main from "./Main";
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Login from './pages/Login';
@@ -17,6 +17,10 @@ const App = () => {
 			console.log(error);
 		});
 	}, []);
+
+	const [theme, setTheme] = useState('light');
+	const body = document.getElementsByTagName('body')[0];
+	body.classList.add('theme-' + theme);
 
 	return (
 		<Router>
