@@ -26,7 +26,7 @@ class AuthController extends Controller
         }        
 
         $request->session()->regenerate();
-        return self::success();
+        return self::success($request->user());
     }
 
     public function logout()

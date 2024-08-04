@@ -1,12 +1,16 @@
 import React from 'react';
-import { useUser } from './contexts/UserContext';
+import { getUserContext } from './contexts/UserContext';
 import Button from './components/Button';
 import { logout } from './services/UserService';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Main() {
-    const user = useUser();
-    const navigate = useNavigate();
+    const { user, setUser } = getUserContext();
+
+    const Logout = async () => {
+        await logout();
+        setUser(null);
+    }
 
     return (
         <div>
@@ -14,7 +18,7 @@ function Main() {
             {user !== null ?
             <>
                 <p>Your current user is: {user.first_name}</p>
-                <Button onClick={() => logout()}>Logout</Button>
+                <Button onClick={Logout}>Logout</Button>
             </>
             :
                 <>

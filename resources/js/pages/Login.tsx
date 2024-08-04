@@ -2,12 +2,16 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import { login } from '../services/UserService';
+import { getUserContext } from '../contexts/UserContext';
 
 function Login() {
     const navigate = useNavigate();
+    const { setUser } = getUserContext();
+    
     const postLogin = async () => {
         try {
-            await login(email, password);
+            const user = await login(email, password);
+            setUser(user);
             navigate('/');
         } catch (error) {
             // setError('Failed to login. Please check your credentials and try again.');

@@ -1,10 +1,10 @@
 // src/contexts/UserContext.tsx
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { getCurrentUser } from '../services/UserService';
-import axiosInstance from '../services/AxiosInstance';
 
 interface UserContextType {
     user: User | null;
+    setUser : (user: User | null) => void;
 }
 
 const UserContext = createContext<UserContextType | null>(null);
@@ -28,18 +28,18 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
 
     return (
-        <UserContext.Provider value={{ user }}>
+        <UserContext.Provider value={{ user, setUser }}>
             {children}
         </UserContext.Provider>
     );
 };
 
-export const useUser = (): User | null => {
+export const getUserContext = (): UserContextType => {
     const context = React.useContext(UserContext);
 
     if (context === null) {
         throw new Error('useUser must be used within a UserProvider');
     }
 
-    return context.user;
+    return context;
 };
