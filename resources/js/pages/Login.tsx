@@ -19,18 +19,30 @@ function Login() {
     const postLogin = async (event) => {
         event.preventDefault();
 
+        setLoading(true);
         try {
             const user = await login(email, password);
             setUser(user);
             navigate('/');
         } catch (error) {
-            setErrors(error.response.data.data); // error.response.data.error;
+            console.log('Error response:', error.response);
+            if (error.response && error.response.data && error.response.data.data) {
+                setErrors(error.response.data.data);
+            } else {
+                setErrors({ email: 'An error occurred. Please try again.', password: '' });
+            }
+        }  finally{
+            setLoading(false);
         }
     }
 
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
-    let [errors, setErrors] = useState({} as LoginError);
+    let [errors, setErrors] = useState<LoginError>({
+        email: '',
+        password: '',
+    });
+    let [loading, setLoading] = useState(false);
 
     return (
         <LoginLayout>
@@ -39,9 +51,15 @@ function Login() {
 
                 <form className='loginForm flex flex-col center' onSubmit={postLogin}>
                     <Input type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Email' className='mb-2'></Input>
-                    <Input type='password' onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='mb-5'></Input>
 
-                    <Button type='submit'>Login</Button> 
+                    <Input type='password'
+                        onChange={(e) => setPassword(e.target.value)} 
+                        placeholder='Password' 
+                        className={'mb-5' + (errors.password ? 'mb-0 border-red-500' : '')}/>
+
+                    {errors.password && <span className='text-red-500 mb-5 italic text-xs'>{errors.password}</span>}
+
+                    <Button type='submit' isLoading={loading}>{loading ? 'Logging in..' : 'Login'}</Button> 
                 </form>
             </Panel>
         </LoginLayout>

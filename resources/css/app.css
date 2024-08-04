@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat, sans-serif;
+}
+
 .theme-light {
     --primary-color: #ea580c;
     --background-color: 230, 230, 230;
@@ -20,11 +27,9 @@ body, html {
     background-color: rgb(var(--background-color));
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 .ContentPanel {
     background-color: rgb(var(--content-panel-color));
-    padding: 20px;
+    padding: 30px;
 }
