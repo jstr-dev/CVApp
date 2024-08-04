@@ -1,13 +1,27 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import axios from './config/AxiosConfig';
+import { useUser } from './contexts/UserContext';
+import Button from './components/Button';
+import { logout } from './services/UserService';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Main() {
+    const user = useUser();
+    const navigate = useNavigate();
+
     return (
         <div>
             <h2>HELLLOOO</h2>
-            <Link to="/login">Login</Link>
-            <button onClick={() => axios.get('test')}>Test</button>
+            {user !== null ?
+            <>
+                <p>Your current user is: {user.first_name}</p>
+                <Button onClick={() => logout()}>Logout</Button>
+            </>
+            :
+                <>
+                    <p>You are not logged in!</p>
+                    <Link to="/login">Login</Link>
+                </>
+            }
         </div>
     );
 }

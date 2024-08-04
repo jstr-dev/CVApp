@@ -1,25 +1,17 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+import { login } from '../services/UserService';
 
 function Login() {
     const navigate = useNavigate();
     const postLogin = async () => {
-        console.log('sanem\'s booty is nice to touch');
-
-        await axios.get('/sanctum/csrf-cookie').catch((error) => {
-            console.log(error);
-        });
-
-        await axios.post('/login', {
-            email: email,
-            password: password
-        }).then((response) => {
+        try {
+            await login(email, password);
             navigate('/');
-        }).catch((response) => {
-            console.log('Cant login');
-        });
+        } catch (error) {
+            // setError('Failed to login. Please check your credentials and try again.');
+        }
     }
 
     let [email, setEmail] = useState('');

@@ -29,12 +29,9 @@ class AuthController extends Controller
         return self::success();
     }
 
-    public function user()
+    public function logout()
     {
-        if (!auth()->check()) {
-            return self::unauthorised();
-        }
-
-        return self::success(auth()->user());
+        auth()->logout();
+        return self::success();
     }
 }
