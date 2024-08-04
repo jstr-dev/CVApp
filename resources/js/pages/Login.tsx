@@ -15,11 +15,11 @@ interface LoginError {
 function Login() {
     const navigate = useNavigate();
     const { setUser } = getUserContext();
-    
+
     const postLogin = async (event) => {
         event.preventDefault();
-
         setLoading(true);
+
         try {
             const user = await login(email, password);
             setUser(user);
@@ -31,7 +31,7 @@ function Login() {
             } else {
                 setErrors({ email: 'An error occurred. Please try again.', password: '' });
             }
-        }  finally{
+        } finally {
             setLoading(false);
         }
     }
@@ -53,13 +53,13 @@ function Login() {
                     <Input type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Email' className='mb-2'></Input>
 
                     <Input type='password'
-                        onChange={(e) => setPassword(e.target.value)} 
-                        placeholder='Password' 
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder='Password'
                         className={'mb-5' + (errors.password ? 'mb-0 border-red-500' : '')}/>
 
                     {errors.password && <span className='text-red-500 mb-5 italic text-xs'>{errors.password}</span>}
 
-                    <Button type='submit' isLoading={loading}>{loading ? 'Logging in..' : 'Login'}</Button> 
+                    <Button type='submit' isLoading={loading}>{loading ? 'Logging in..' : 'Login'}</Button>
                 </form>
             </Panel>
         </LoginLayout>
