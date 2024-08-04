@@ -4,7 +4,8 @@
 
 .theme-light {
     --primary-color: #ea580c;
-    --background-color: 242, 240, 240;
+    --background-color: 230, 230, 230;
+    --content-panel-color: 248, 246, 246;
 }
 
 .theme-dark {
@@ -17,5 +18,13 @@
 
 body, html {
     background-color: rgb(var(--background-color));
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
+.ContentPanel {
+    background-color: rgb(var(--content-panel-color));
+    padding: 20px;
+}

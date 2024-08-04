@@ -22,7 +22,7 @@ class AuthController extends Controller
         }
 
         if (!auth()->attempt(['email' => $email, 'password' => $password], $rememberMe)) {
-            return self::unauthorised('Incorrect password, please try again.');
+            return self::unauthorised(data:['password', 'Incorrect password! Please try again.']);
         }        
 
         $request->session()->regenerate();

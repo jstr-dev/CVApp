@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="container px-0 max-w-7xl">
+        <div className="flex min-h-screen justify-center items-center container mx-auto w-full h-full">
             {children}
         </div>
     );

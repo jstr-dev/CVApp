@@ -28,8 +28,8 @@ trait ApiResponses
         return self::response(404, false, null, $message);
     }
 
-    public static function unauthorised(string $message = 'Unauthorised')
+    public static function unauthorised(string $message = 'Unauthorised', array | object | null $data = null)
     {
-        return self::response(401, false, null, $message);
+        return self::response(401, false, $data, $message);
     }
 }
