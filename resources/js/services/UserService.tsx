@@ -14,6 +14,11 @@ export const logout = async (): Promise<boolean> => {
 }
 
 export const getCurrentUser = async (): Promise<User | null> => {
-    const response = await axiosInstance.get('/user').then((response) => response.data.data).catch((error) => null);
-    return response;
+    try {
+        const response = await axiosInstance.get('/user');
+        return response.data;
+    } catch (error) {
+        console.error('Failed to fetch current user:', error);
+        return null;
+    }
 };

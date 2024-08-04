@@ -13,8 +13,6 @@ if (!rootElement) {
 	throw new Error('Could not find root element');
 }
 
-
-
 const App = () => {
 	const [theme, setTheme] = useState('light');
 	const body = document.getElementsByTagName('body')[0];

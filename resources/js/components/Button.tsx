@@ -7,6 +7,6 @@ interface ButtonProps {
 
 export default function Button(ButtonProps: ButtonProps) {
     return (
-        <button onClick={ButtonProps.onClick} className="primary container mx-auto">{ButtonProps.children}</button>
+        <button onClick={ButtonProps.onClick} className="primary">{ButtonProps.children}</button>
     );
 }

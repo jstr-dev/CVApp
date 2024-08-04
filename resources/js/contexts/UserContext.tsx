@@ -16,6 +16,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     useEffect(() => {
         const fetchUser = async () => {
             const fetchedUser = await getCurrentUser();
+            console.log('feteched', fetchedUser);
             setUser(fetchedUser);
             setLoading(false);
         };

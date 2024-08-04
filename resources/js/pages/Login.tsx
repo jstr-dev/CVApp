@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import { login } from '../services/UserService';
 import { getUserContext } from '../contexts/UserContext';
+import LoginLayout from '../layouts/LoginLayout';
 
 function Login() {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ function Login() {
     let [password, setPassword] = useState('');
 
     return (
-        <div>
+        <LoginLayout>
             <h3>Please login</h3>
 
             <div className='loginForm flex flex-col center'>
@@ -30,7 +31,7 @@ function Login() {
                 <input name="password" type="text" onChange={(e) => setPassword(e.target.value)}></input>
                <Button onClick={postLogin}>Login</Button> 
             </div>
-        </div>
+        </LoginLayout>
     );
 }
 
