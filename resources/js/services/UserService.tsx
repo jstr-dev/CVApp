@@ -7,6 +7,12 @@ export const login = async (email: string, password: string): Promise<User> => {
     return response.data.data;
 };
 
+export const signup = async (email: string, password: string): Promise<User> => {
+    await axiosInstance.get('/sanctum/csrf-cookie');
+    const response = await axiosInstance.post('/signup', { email, password });
+    return response.data.data;
+};
+
 export const logout = async (): Promise<boolean> => {
     await axiosInstance.post('/logout');
     Cookies.remove('XSRF-TOKEN');

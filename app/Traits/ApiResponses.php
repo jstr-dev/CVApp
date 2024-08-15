@@ -23,9 +23,9 @@ trait ApiResponses
         return self::response(400, false, $data, $message);
     }
 
-    public static function notFound(string $message = 'Not Found')
+    public static function notFound(string $message = 'Not Found', array | object | null $data = null)
     {
-        return self::response(404, false, null, $message);
+        return self::response(404, false, $data, $message);
     }
 
     public static function unauthorised(string $message = 'Unauthorised', array | object | null $data = null)

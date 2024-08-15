@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Main from "./Main";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import '../css/app.css';
 import './types/global.d.ts';
 import { UserProvider } from './contexts/UserContext';
@@ -25,6 +26,7 @@ const App = () => {
 					<Routes>
 						<Route path="/" Component={Main} />
 						<Route path="/login" Component={Login} />
+						<Route path="/signup" Component={Signup} />
 					</Routes>
 				</div>
 			</Router>
