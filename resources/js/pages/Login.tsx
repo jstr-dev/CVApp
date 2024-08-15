@@ -15,11 +15,11 @@ interface LoginError {
 function Login() {
     const navigate = useNavigate();
     const { setUser } = getUserContext();
-    
+
     const postLogin = async (event) => {
         event.preventDefault();
-
         setLoading(true);
+
         try {
             const user = await login(email, password);
             setUser(user);
@@ -30,7 +30,7 @@ function Login() {
             } else {
                 setErrors({ email: 'An error occurred. Please try again.', password: '' });
             }
-        }  finally{
+        } finally {
             setLoading(false);
         }
     }
