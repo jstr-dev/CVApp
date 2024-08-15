@@ -15,5 +15,6 @@ Route::controller(UserController::class)->prefix('user')->group(function () {
 
 Route::middleware(['web'])->controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
+    Route::post('signup', 'signup');
     Route::post('logout', 'logout');
 });

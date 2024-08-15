@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
-import { login } from '../services/UserService';
+import { signup } from '../services/UserService';
 import { getUserContext } from '../contexts/UserContext';
 import LoginLayout from '../layouts/LoginLayout';
 import Panel from '../components/Panel';
 import Input from '../components/Input';
 
-interface LoginError {
+interface SignupError {
     email?: string;
     password?: string;
 }
 
-function Login() {
+function Signup() {
     const navigate = useNavigate();
     const { setUser } = getUserContext();
     
@@ -21,9 +21,9 @@ function Login() {
 
         setLoading(true);
         try {
-            const user = await login(email, password);
+            const user = await signup(email, password);
             setUser(user);
-            navigate('/');
+            navigate('/details');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.data) {
                 setErrors(error.response.data.data);
@@ -37,7 +37,7 @@ function Login() {
 
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
-    let [errors, setErrors] = useState<LoginError>({
+    let [errors, setErrors] = useState<SignupError>({
         email: '',
         password: '',
     });
@@ -46,7 +46,7 @@ function Login() {
     return (
         <LoginLayout>
             <Panel className='min-w-[500px]'>
-                <span className='text-center mb-6 text-xl'>Login</span>
+                <span className='text-center mb-6 text-xl'>SignUp</span>
 
                 <form className='loginForm flex flex-col center' onSubmit={postLogin}>
                     <Input type='email' 
@@ -63,12 +63,12 @@ function Login() {
                         className={errors.password ? 'mb-0' : 'mb-5'}
                         errorMessage={errors.password}/>
 
-                    <Button type='submit' isLoading={loading}>{loading ? 'Logging in..' : 'Login'}</Button>         
-                    <span className='text-center text-sm mt-2'>Don't have an account? <Link className='text-violet-600' to='/signup'>Signup</Link></span>
+                    <Button type='submit' isLoading={loading}>{loading ? 'Signing in..' : 'Signup'}</Button>         
+                    <span className='text-center text-sm mt-2'>Already have an account? <Link className='text-violet-600' to='/login'>Login</Link></span>
                 </form>
             </Panel>
         </LoginLayout>
     );
 }
 
-export default Login;
+export default Signup

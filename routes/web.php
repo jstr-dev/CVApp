@@ -9,3 +9,7 @@ Route::get('/{any}', function () {
 Route::get('login', function () {
     return view('index');
 })->name('login');
+
+Route::get('signup', function () {
+    return view('index');
+})->name('signup');

@@ -18,7 +18,7 @@ class AuthController extends Controller
             ->first();
 
         if (!$user) {
-            return self::notFound('No user found with that email, please try again.');
+            return self::notFound(data:['email' => 'No user found with that email, please try again.']);
         }
 
         if (!auth()->attempt(['email' => $email, 'password' => $password], $rememberMe)) {
@@ -26,6 +26,21 @@ class AuthController extends Controller
         }        
 
         $request->session()->regenerate();
+        return self::success($request->user());
+    }
+
+    public function signup(Request $request)
+    {
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $user = User::query()
+        ->where('email', '=', $email)
+        ->first();
+
+        if ($user) {
+            return self::badrequest(data:['email'=> 'An account exists with that email']);
+        }
+        
         return self::success($request->user());
     }
 
