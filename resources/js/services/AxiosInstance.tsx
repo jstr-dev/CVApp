@@ -7,14 +7,4 @@ export const axiosInstance = axios.create({
     withXSRFToken: true,
 });
 
-const onRequest = async (config) => {
-    if (!Cookies.get('XSRF-TOKEN')) {
-        await axios.get('/sanctum/csrf-cookie');
-    }
-
-    return config; 
-}
-
-axiosInstance.interceptors.request.use(onRequest, null);
-
 export default axiosInstance;
