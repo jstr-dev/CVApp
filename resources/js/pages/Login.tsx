@@ -51,17 +51,19 @@ function Login() {
                 <form className='loginForm flex flex-col center' onSubmit={postLogin}>
                     <Input type='email' 
                         onChange={(e) => setEmail(e.target.value)} 
-                        placeholder='Email'
+                        label='Email'
                         error={errors.email ? true : false}
                         className={errors.email ? 'mb-0' : 'mb-2'}
-                        errorMessage={errors.email}/>
+                        errorMessage={errors.email}
+                        id='email'/>
 
                     <Input type='password'
                         onChange={(e) => setPassword(e.target.value)} 
-                        placeholder='Password'
+                        label='Password'
                         error={errors.password ? true : false}
-                        className={errors.password ? 'mb-0' : 'mb-5'}
-                        errorMessage={errors.password}/>
+                        className={errors.password ? 'mb-0' : 'mb-2'}
+                        errorMessage={errors.password}
+                        id='password'/>
 
                     <Button type='submit' isLoading={loading}>{loading ? 'Logging in..' : 'Login'}</Button>         
                     <span className='text-center text-sm mt-2'>Don't have an account? <Link className='text-violet-600' to='/signup'>Signup</Link></span>
