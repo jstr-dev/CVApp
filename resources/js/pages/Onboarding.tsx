@@ -18,7 +18,8 @@ function Onboarding() {
 
     return (
         <OnboardingLayout>
-            <p>User State: {user?.onboarding_stage}</p>
+            <p>User: {user?.first_name}</p>
+            <p>Stage: {user?.onboarding_stage}</p>
 
             {user?.onboarding_stage === 'address' ? <AddressStep /> : <MobileStep />}
 

@@ -1,3 +1,4 @@
+import { getUserContext } from '../contexts/UserContext';
 import axiosInstance from './AxiosInstance';
 import Cookies from 'js-cookie';
 
