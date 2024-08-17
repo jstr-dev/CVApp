@@ -20,9 +20,15 @@ class UserTest extends TestCase
 
         $response = $this->post('/login', [
             'email' => $user->email,
-            'password'=> $user->password,
+            'password' => "test",
         ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(200); 
+        $this->assertAuthenticatedAs($user);
+    }
+
+    public function test_invalid_credentials()
+    {
+
     }
 }
