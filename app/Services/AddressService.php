@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class AddressService {
-    public function create(User $user, string $first_line, ?string $second_line, string $code, string $city, string $county, string $country): Address
+    public function create(User $user, string $first_line, ?string $second_line, string $code, string $city, ?string $county, string $country): Address
     {
         $address = $user->address ?? new Address();
         $address->first_line = $first_line;

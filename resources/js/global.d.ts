@@ -6,7 +6,9 @@ interface User
     middle_name: string | null,
     email: string,
     onboarding_stage: OnboardingStage;
-    address?: Address
+    address?: Address,
+    mobile_number?: string,
+    mobile_country_code?: number
 }
 
 interface Address {
@@ -28,4 +30,9 @@ interface AddressErrors {
     city?: FormError,
     county?: FormError,
     country?: FormError
+}
+
+interface MobileErrors {
+    mobile_number?: FormError
+    mobile_country_code?: FormError
 }

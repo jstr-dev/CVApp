@@ -11,10 +11,10 @@ export default function AddressStep() {
         event.preventDefault();
 
         const firstLine = event.target.first_line.value;
-        const secondLine = event.target.second_line.value;
+        const secondLine = event.target.second_line.value || undefined;
         const code = event.target.code.value;
         const city = event.target.city.value;
-        const county = event.target.county.value;
+        const county = event.target.county.value || undefined;
         const country = event.target.country.value;
 
         await axiosInstance.post('/onboarding/address', {

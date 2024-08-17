@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\UserExistsException;
+use App\Models\MobileExtension;
 use App\Models\User;
 use Hash;
 use Illuminate\Support\Facades\Validator;
@@ -47,7 +48,7 @@ class UserService
             'last_name' => 'required|string|min:2|max:255',
             'middle_name' => 'string|min:2|max:255',
             'password' => 'required|string|min:8|max:16',
-            'mobile_number' => 'digit',
+            'mobile_number' => 'int',
             'address' => 'array',
         ];
 
@@ -57,6 +58,21 @@ class UserService
 
         return Validator::make($attributes, $validationArray, [
             'password_confirmation.same' => 'The password confirmation does not match.',
+        ]);
+    }
+
+    public function setMobileNumber(User $user, int $countryCode, string $number): void
+    {
+        $user->mobile_country_code = $countryCode;
+        $user->mobile_number = $number;
+        $user->save();
+    }
+
+    public function validateNumber(array $attributes): \Illuminate\Validation\Validator
+    {
+        return Validator::make($attributes, [
+            'mobile_country_code' => ['required', 'integer', 'regex:/^\d{1,3}$/'],
+            'mobile_number' => 'required|string|max:15|min:6',
         ]);
     }
 

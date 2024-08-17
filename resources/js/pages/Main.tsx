@@ -14,9 +14,11 @@ function Main() {
 
     return (
         <div>
-            <h2>HELLLOOO</h2>
+            <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
             <p>Your current user is: {user?.first_name}</p>
-            <Button onClick={Logout}>Logout</Button>
+            <p>Your current number is +{user?.mobile_country_code} {user?.mobile_number}</p>
+            <p>Your current address is: {user?.address?.first_line}</p>
+            <Button onClick={Logout} className='mt-6'>Logout</Button>
         </div>
     );
 }

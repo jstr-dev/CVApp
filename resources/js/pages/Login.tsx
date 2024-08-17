@@ -15,7 +15,7 @@ function Login() {
     const navigate = useNavigate();
     const { setUser } = getUserContext();
 
-    const postLogin = async (event) => {
+    const postLogin = async (event: any) => {
         event.preventDefault();
         setLoading(true);
 
@@ -26,7 +26,7 @@ function Login() {
             const user = await login(email, password);
             setUser(user);
             navigate('/');
-        } catch (error) {
+        } catch (error: any) {
             if (error.response && error.response.data && error.response.data.data) {
                 setErrors(error.response.data.data);
             } else {

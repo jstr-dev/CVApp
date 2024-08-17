@@ -41,8 +41,20 @@ class OnboardingController extends Controller
         return self::success(['next_stage' => $request->user('sanctum')->onboarding_stage]);
     }
 
-    public function postMobile()
+    public function postMobile(Request $request, UserService $userService)
     {
+        if (($validator = $userService->validateNumber($request->all())) && $validator->fails()) {
+            return self::badRequest(data: $validator->errors()->toArray());
+        }
 
+        $userService->setMobileNumber(
+            user: $request->user('sanctum'),
+            countryCode: $request->mobile_country_code,
+            number: $request->mobile_number
+        );
+
+        $userService->iterateOnboardingStage($request->user('sanctum'));
+
+        return self::success(['next_stage' => $request->user('sanctum')->onboarding_stage]);
     }
 }
