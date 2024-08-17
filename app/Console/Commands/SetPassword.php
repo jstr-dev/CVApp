@@ -29,8 +29,9 @@ class SetPassword extends Command
     {
         $email = $this->option('email');
         $password = $this->option('password');
-        
+
         $user = User::where('email', '=', $email)->first();
+
         if (!$user) {
             $this->error('No user found with that email, please try again.');
             return;

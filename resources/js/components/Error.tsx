@@ -1,7 +1,16 @@
 import React from 'react';
 
-export default function Error({ errorMessage }: { errorMessage?: string}) {
+interface ErrorProps extends React.HTMLAttributes<HTMLSpanElement> {
+    errorMessage: string
+}
+
+export default function Error(props: ErrorProps) {
     return (
-        <span className='text-red-500 mb-2 italic text-xs'>{errorMessage}</span>
+        <span
+            {...props}
+            className={'text-xs text-red-600' + " " + props.className}
+        >
+            {props.errorMessage}
+        </span>
     );
 }

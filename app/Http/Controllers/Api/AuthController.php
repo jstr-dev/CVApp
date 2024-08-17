@@ -23,24 +23,9 @@ class AuthController extends Controller
 
         if (!auth()->attempt(['email' => $email, 'password' => $password], $rememberMe)) {
             return self::unauthorised(data:['password' => 'Incorrect password! Please try again.']);
-        }        
+        }
 
         $request->session()->regenerate();
-        return self::success($request->user());
-    }
-
-    public function signup(Request $request)
-    {
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $user = User::query()
-        ->where('email', '=', $email)
-        ->first();
-
-        if ($user) {
-            return self::badrequest(data:['email'=> 'An account exists with that email']);
-        }
-        
         return self::success($request->user());
     }
 
