@@ -2,22 +2,22 @@ import React from 'react';
 import Loader from './Loader';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    isLoading?: boolean;
+    loading?: boolean;
 }
 
-export default function Button(ButtonProps: ButtonProps) {
+export default function Button({ loading, className, children, ...defaultProps }: ButtonProps) {
     let ButtonStyles =
-        "min-w-[100px] text-white bg-gray-800 hover:bg-gray-900 " +
+        "text-white bg-gray-800 hover:bg-gray-900 " +
         "focus:outline-none focus:ring-0.5 focus:ring-gray-300 "+
-        "font-medium rounded-lg text-sm py-2 flex flex-row justify-center items-center";
+        "font-medium rounded-lg text-sm py-2.5 flex flex-row justify-center items-center";
 
     return (
-        <button {...ButtonProps} className={ButtonStyles + " " + ButtonProps.className}>
-            {ButtonProps.isLoading &&
+        <button {...defaultProps} className={ButtonStyles + " " + className}>
+            {loading &&
                 <Loader />
             }
 
-            {ButtonProps.children}
+            {children}
         </button>
     );
 }

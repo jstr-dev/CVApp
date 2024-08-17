@@ -43,12 +43,12 @@ function Login() {
         password: '',
     });
 
-    let [loading, setLoading] = useState(false);
+    let [loading, setLoading] = useState<boolean>(false);
 
     return (
         <LoginLayout>
-            <Panel className='min-w-[500px]'>
-                <span className='text-center mb-6 text-xl'>Login</span>
+            <div className="min-w-[400px] flex flex-col">
+                <span className='mb-8 text-2xl font-semibold'>Welcome back!</span>
 
                 <form className='loginForm flex flex-col center' onSubmit={postLogin}>
                     <Input type='email'
@@ -62,15 +62,17 @@ function Login() {
                     <Input type='password'
                         label='Password'
                         id='password'
-                        className='mb-3'
+                        className='mb-8'
                         error={errors.password}
                         required={true} />
 
-                    <Button type='submit' isLoading={loading}>{loading ? 'Logging in..' : 'Login'}</Button>
+                    <Button type='submit' loading={loading}>
+                        {loading ? 'Logging in...' : 'Login'}
+                    </Button>
 
-                    <span className='text-center text-sm mt-6'>Don't have an account? <Link className='text-violet-600' to='/signup'>Signup</Link></span>
+                    <span className='text-center text-sm mt-6 hint-col'>Don't have an account? <Link className='text-violet-600' to='/signup'>Sign up</Link></span>
                 </form>
-            </Panel>
+            </div>
         </LoginLayout>
     );
 }
