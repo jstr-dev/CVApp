@@ -5,12 +5,10 @@ import React, { useState } from 'react';
 
 export default function AddressStep() {
     const [errors, setErrors] = useState<AddressErrors>();
-    const { setUserProperty } = getUserContext();
+    const { user, setUserProperty } = getUserContext();
 
     const AddressStepAction = async (event: any) => {
         event.preventDefault();
-        console.log('yep!');
-        console.log(event);
 
         const firstLine = event.target.first_line.value;
         const secondLine = event.target.second_line.value;
@@ -28,6 +26,14 @@ export default function AddressStep() {
             country: country
         }).then((response) => {
             setUserProperty('onboarding_stage', response.data.data.next_stage);
+            setUserProperty('address', {
+                first_line: firstLine,
+                second_line: secondLine,
+                code: code,
+                city: city,
+                county: county,
+                country: country
+            });
         }).catch((error) => {
             setErrors(error.response.data.data);
         });
