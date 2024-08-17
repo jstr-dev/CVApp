@@ -19,7 +19,7 @@ function Signup() {
     const navigate = useNavigate();
     const { setUser } = getUserContext();
 
-    const postSignup = async (event) => {
+    const postSignup = async (event: any) => {
         event.preventDefault();
         setLoading(true);
 

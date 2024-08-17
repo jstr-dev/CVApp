@@ -33,8 +33,9 @@ class UserController extends Controller
 
             auth()->login($user);
             $request->session()->regenerate();
+            $request->user('sanctum')->refresh();
 
-            return self::success($user);
+            return self::success($request->user('sanctum'));
         } catch (UserExistsException $exception) {
             return self::badRequest(data: ['email' => 'A user with that email already exists.']);
         }
