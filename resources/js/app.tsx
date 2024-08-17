@@ -1,13 +1,11 @@
 import ReactDOM from 'react-dom/client';
-import React, { useState } from 'react';
-import Main from "./Main";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import React from 'react';
+import { RouterProvider } from 'react-router-dom';
 import '../css/app.css';
 import './types/global.d.ts';
 import { UserProvider } from './contexts/UserContext';
 import axiosInstance from './services/AxiosInstance.tsx';
+import router from './routes/router.tsx';
 
 const rootElement = document.getElementById('app') as HTMLElement;
 
@@ -27,13 +25,7 @@ const App = () => {
 
 	return (
 		<UserProvider>
-            <Router>
-                <Routes>
-                    <Route path="/" Component={Main} />
-                    <Route path="/login" Component={Login} />
-                    <Route path="/signup" Component={Signup} />
-                </Routes>
-			</Router>
+            <RouterProvider router={router} />
 		</UserProvider>
 	);
 }
