@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import OnboardingLayout from '../layouts/OnboardingLayout';
 import { getUserContext } from '../contexts/UserContext';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Onboarding() {
     const { user } = getUserContext();
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         if (user?.onboarding_stage === 'finished') {
-            <Navigate to="/" />
+            navigate('/')
         }
     }, [user?.onboarding_stage]);
 

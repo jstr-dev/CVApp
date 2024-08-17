@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('onboarding_stage', self::STAGES)->default('address');
+            $table->enum('onboarding_stage', self::STAGES)->default('address')->after('email_verified_at');
         });
     }
 
