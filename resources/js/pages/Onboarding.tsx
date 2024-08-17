@@ -12,6 +12,8 @@ const STAGE_MAP: Map<OnboardingStage, JSX.Element> = new Map([
     ['mobile', <MobileStep />]
 ]);
 
+const StageLength = STAGE_MAP.size;
+
 const getIndexByKey = (map: Map<OnboardingStage, JSX.Element>, key: OnboardingStage): number => {
     const entries = Array.from(map.entries());
     return entries.findIndex(([mapKey]) => mapKey === key);
@@ -47,7 +49,7 @@ function Onboarding() {
                         <Button onClick={goBack}>Previous Stage</Button>
                     }
 
-                    <Button type='submit' form='onboardingForm'>Next Stage</Button>
+                    <Button type='submit' form='onboardingForm'>{getIndexByKey(STAGE_MAP, user.onboarding_stage) === StageLength - 1 ? "Complete" : "Next Stage"}</Button>
                 </div>
             </div>
         </OnboardingLayout>
