@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": "resources", // Set baseUrl to resources
+        "paths": {
+            "@/*": [
+                "js/*"
+            ] // Adjust paths according to your folder structure
+        }
+    },
+    "include": [
+        "resources/**/*",
+        "resources/js/global.d.ts" // Ensure global types are included
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

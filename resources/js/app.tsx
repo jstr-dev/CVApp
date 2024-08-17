@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom/client';
 import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import '../css/app.css';
-import './types/global.d.ts';
 import { UserProvider } from './contexts/UserContext';
 import axiosInstance from './services/AxiosInstance.tsx';
 import router from './routes/router.tsx';
