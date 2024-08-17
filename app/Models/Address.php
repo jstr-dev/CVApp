@@ -15,17 +15,4 @@ class Address extends Model
     {
         return $this->belongsTo(User::class, 'address_id', 'id');
     }
-
-    // TODO: move to service
-    public static function validateInput(array $attributes)
-    {
-        return Validator::make($attributes, [
-            'first_line' => 'required|string',
-            'second_line' => 'string',
-            'code' => 'required|string|max:10',
-            'county' => 'string',
-            'city' => 'required|string',
-            'country' => 'required|string',
-        ]);
-    }
 }
