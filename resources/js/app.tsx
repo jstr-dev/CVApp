@@ -3,8 +3,8 @@ import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import '../css/app.css';
 import { UserProvider } from './contexts/UserContext';
-import axiosInstance from './services/AxiosInstance.tsx';
-import router from './routes/router.tsx';
+import axiosInstance from './services/AxiosInstance';
+import router from './routes/router';
 
 const rootElement = document.getElementById('app') as HTMLElement;
 
