@@ -20,6 +20,8 @@ Route::middleware(['web'])->controller(UserController::class)->group(function ()
 });
 
 Route::middleware('auth:sanctum')->controller(OnboardingController::class)->prefix('/onboarding')->group(function () {
-   Route::post('/address', 'postAddress')->middleware('verifyOnboardingStage:address');
-   Route::post('/mobile', 'postMobile')->middleware('verifyOnboardingStage:mobile');
+    Route::post('/back', 'postBack');
+
+    Route::post('/address', 'postAddress')->middleware('verify.onboarding:address');
+    Route::post('/mobile', 'postMobile')->middleware('verify.onboarding:mobile');
 });

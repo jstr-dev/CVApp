@@ -60,12 +60,29 @@ class UserService
         ]);
     }
 
-    public function iterateOnboardingStage(User $user)
+    public function iterateOnboardingStage(User $user): void
     {
         $currentStageIndex = array_search($user->onboarding_stage, self::ONBOARDING_STAGES);
+
+        if ($currentStageIndex === count(self::ONBOARDING_STAGES) - 1) {
+            return;
+        }
+
         $user->onboarding_stage = self::ONBOARDING_STAGES[$currentStageIndex + 1];
         $user->save();
 
-        return $user->onboarding_stage;
+        return;
+    }
+
+    public function decreaseOnboardingStage(User $user): void
+    {
+        $currentStageIndex = array_search($user->onboarding_stage, self::ONBOARDING_STAGES);
+
+        if ($currentStageIndex === 0) {
+            return;
+        }
+
+        $user->onboarding_stage = self::ONBOARDING_STAGES[$currentStageIndex - 1];
+        $user->save();
     }
 }
