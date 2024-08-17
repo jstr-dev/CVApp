@@ -18,12 +18,12 @@ class UserTest extends TestCase
             "password" => Hash::make("test"),
         ]);
 
-        $response = $this->post('/login', [
+        $response = $this->post('/api/login', [
             'email' => $user->email,
             'password' => "test",
         ]);
 
-        $response->assertStatus(200); 
+        $response->assertStatus(200);
         $this->assertAuthenticatedAs($user);
     }
 
