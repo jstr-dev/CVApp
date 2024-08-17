@@ -26,12 +26,16 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, []);
 
     const setUserProperty = (key: keyof User, value: any) => {
-        if (user) {
-            setUser({
-                ...user,
+        setUser((prevUser) => {
+            if (prevUser === null) {
+                return null;
+            }
+
+            return {
+                ...prevUser,
                 [key]: value,
-            });
-        }
+            };
+        });
     };
 
     if (isLoading) {
