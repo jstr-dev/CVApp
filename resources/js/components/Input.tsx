@@ -35,7 +35,7 @@ export default function Input(props: InputProps) {
                 />
 
                 {props.label &&
-                    <label htmlFor={props.id} className={labelStyles}>{props.label}</label>
+                    <label htmlFor={props.name} className={labelStyles}>{props.label}</label>
                 }
             </div>
 

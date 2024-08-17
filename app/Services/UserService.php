@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 
 class UserService
 {
+    private const ONBOARDING_STAGES = ['address', 'mobile', 'finished'];
+
     public function create(string $email, string $password, string $firstName, string $lastName, ?array $attributes = null): User
     {
         if ($this->exists($email)) {
@@ -56,5 +58,14 @@ class UserService
         return Validator::make($attributes, $validationArray, [
             'password_confirmation.same' => 'The password confirmation does not match.',
         ]);
+    }
+
+    public function iterateOnboardingStage(User $user)
+    {
+        $currentStageIndex = array_search($user->onboarding_stage, self::ONBOARDING_STAGES);
+        $user->onboarding_stage = self::ONBOARDING_STAGES[$currentStageIndex + 1];
+        $user->save();
+
+        return $user->onboarding_stage;
     }
 }

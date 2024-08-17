@@ -6,6 +6,11 @@ import Button from '../components/Button';
 import MobileStep from './partials/onboarding/MobileStep';
 import AddressStep from './partials/onboarding/AddressStep';
 
+const STAGE_MAP: Map<OnboardingStage, JSX.Element> = new Map([
+    ['mobile', <MobileStep />],
+    ['address', <AddressStep />]
+]);
+
 function Onboarding() {
     const { user, setUserProperty } = getUserContext();
     const navigate = useNavigate();
@@ -21,7 +26,9 @@ function Onboarding() {
             <p>User: {user?.first_name}</p>
             <p>Stage: {user?.onboarding_stage}</p>
 
-            {user?.onboarding_stage === 'address' ? <AddressStep /> : <MobileStep />}
+            <div className="w-[500px]">
+                {STAGE_MAP.get(user?.onboarding_stage || 'address')}
+            </div>
 
             <Button onClick={() => {
                 setUserProperty('onboarding_stage', user?.onboarding_stage === 'address' ? 'mobile' : 'address');

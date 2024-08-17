@@ -4,25 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Exceptions\UserExistsException;
 use App\Http\Controllers\Controller;
-use App\Models\Address;
 use App\Models\User;
 use App\Services\UserService;
-use Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function getUser(int $userId)
-    {
-        $user = User::find($userId);
-
-        if (!$user) {
-            return self::notFound('User not found');
-        }
-
-        return self::success($user);
-    }
-
     public function signup(UserService $userService, Request $request)
     {
         if (auth()->check()) {
