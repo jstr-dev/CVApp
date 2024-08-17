@@ -1,6 +1,7 @@
 // src/contexts/UserContext.tsx
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { getCurrentUser } from '../services/UserService';
+import Loader from '../components/Loader';
 
 interface UserContextType {
     user: User | null;
@@ -16,7 +17,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     useEffect(() => {
         const fetchUser = async () => {
             const fetchedUser = await getCurrentUser();
-            console.log('feteched', fetchedUser);
             setUser(fetchedUser);
             setLoading(false);
         };
@@ -25,7 +25,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, []);
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return (
+            <div className="h-full w-full flex justify-center items-center">
+                <Loader />
+            </div>
+        );
     }
 
     return (
