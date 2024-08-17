@@ -20,6 +20,9 @@ function Login() {
         event.preventDefault();
         setLoading(true);
 
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
         try {
             const user = await login(email, password);
             setUser(user);
@@ -35,12 +38,11 @@ function Login() {
         }
     }
 
-    let [email, setEmail] = useState('');
-    let [password, setPassword] = useState('');
     let [errors, setErrors] = useState<LoginError>({
         email: '',
         password: '',
     });
+
     let [loading, setLoading] = useState(false);
 
     return (
@@ -49,24 +51,24 @@ function Login() {
                 <span className='text-center mb-6 text-xl'>Login</span>
 
                 <form className='loginForm flex flex-col center' onSubmit={postLogin}>
-                    <Input type='email' 
-                        onChange={(e) => setEmail(e.target.value)} 
+                    <Input type='email'
+                        id='email'
                         label='Email'
-                        error={errors.email ? true : false}
-                        className={errors.email ? 'mb-0' : 'mb-2'}
-                        errorMessage={errors.email}
-                        id='email'/>
+                        className='mb-3'
+                        error={errors.email}
+                        required={true}
+                    />
 
                     <Input type='password'
-                        onChange={(e) => setPassword(e.target.value)} 
                         label='Password'
-                        error={errors.password ? true : false}
-                        className={errors.password ? 'mb-0' : 'mb-2'}
-                        errorMessage={errors.password}
-                        id='password'/>
+                        id='password'
+                        className='mb-3'
+                        error={errors.password}
+                        required={true} />
 
-                    <Button type='submit' isLoading={loading}>{loading ? 'Logging in..' : 'Login'}</Button>         
-                    <span className='text-center text-sm mt-2'>Don't have an account? <Link className='text-violet-600' to='/signup'>Signup</Link></span>
+                    <Button type='submit' isLoading={loading}>{loading ? 'Logging in..' : 'Login'}</Button>
+
+                    <span className='text-center text-sm mt-6'>Don't have an account? <Link className='text-violet-600' to='/signup'>Signup</Link></span>
                 </form>
             </Panel>
         </LoginLayout>

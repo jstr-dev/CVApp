@@ -16,6 +16,7 @@ class Address extends Model
         return $this->belongsTo(User::class, 'address_id', 'id');
     }
 
+    // TODO: move to service
     public static function validateInput(array $attributes)
     {
         return Validator::make($attributes, [

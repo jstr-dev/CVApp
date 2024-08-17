@@ -56,17 +56,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class, 'id', 'address_id');
     }
-
-    public static function validateInput(array $attributes)
-    {
-        return Validator::make($attributes, [
-            'email' => 'required|email',
-            'first_name' => 'required|string|min:2|max:255',
-            'last_name' => 'required|string|min:2|max:255',
-            'middle_name' => 'string|min:2|max:255',
-            'password' => 'required|string|min:8|max:32',
-            'mobile_number' => 'digit',
-            'address' => 'array',
-        ]);
-    }
 }

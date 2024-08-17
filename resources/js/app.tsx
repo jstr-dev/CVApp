@@ -16,10 +16,6 @@ if (!rootElement) {
 }
 
 const App = () => {
-	const [theme, setTheme] = useState('light');
-	const body = document.getElementsByTagName('body')[0];
-	body.classList.add('theme-' + theme);
-
     // Request new XSRF Cookie every 5 minutes
     React.useEffect(() => {
         let interval = setInterval(() => {

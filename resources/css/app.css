@@ -2,25 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Montserrat, sans-serif;
-}
-
-.theme-light {
+ * {
     --primary-color: #ea580c;
     --background-color: 230, 230, 230;
     --content-panel-color: 248, 246, 246;
 }
 
-.theme-dark {
-    --primary-color: 0, 0, 0;
-}
-
 .primary {
     background-color: var(--primary-color);
+}
+
+.background-col {
+    background-color: rgb(var(--background-color));
+}
+
+.content-col {
+    background-color: rgb(var(--content-panel-color));
 }
 
 body, html {
