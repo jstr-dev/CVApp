@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
- * {
+* {
     --primary-color: #ea580c;
     --background-color: 230, 230, 230;
     --content-panel-color: 248, 246, 246;
@@ -29,4 +29,16 @@ body, html {
 .ContentPanel {
     background-color: rgb(var(--content-panel-color));
     padding: 30px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(var(--content-panel-color)) inset !important;
 }
