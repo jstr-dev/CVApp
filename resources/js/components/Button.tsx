@@ -12,7 +12,7 @@ export default function Button(ButtonProps: ButtonProps) {
         "font-medium rounded-lg text-sm py-2 flex flex-row justify-center items-center";
 
     return (
-        <button onClick={ButtonProps.onClick} className={ ButtonStyles + " " + ButtonProps.className} type={ButtonProps.type}>
+        <button {...ButtonProps} className={ButtonStyles + " " + ButtonProps.className}>
             {ButtonProps.isLoading &&
                 <Loader />
             }
