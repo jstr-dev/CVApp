@@ -11,24 +11,37 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_user_login_success()
+    protected User $user;
+
+    public function setUp(): void
     {
-        $user = User::factory()->create([
+        parent::setUp();
+
+        $this->user = User::factory()->create([
             "email" => "test@gmail.com",
             "password" => Hash::make("test"),
         ]);
+    }
 
+    public function test_user_login_success()
+    {
         $response = $this->post('/api/login', [
-            'email' => $user->email,
+            'email' => $this->user->email,
             'password' => "test",
         ]);
 
         $response->assertStatus(200);
-        $this->assertAuthenticatedAs($user);
+        $this->assertAuthenticatedAs($this->user);
     }
 
     public function test_invalid_credentials()
     {
+        $response = $this->post('/api/login', [
+            'email' => $this->user->email,
+            'password' => "invalid",
+        ]);
 
+        $response->assertStatus(401);
+        $this->assertGuest();
     }
 }
