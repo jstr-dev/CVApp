@@ -9,6 +9,10 @@ const ProtectedRoute = () => {
         return <Navigate to="/login" />;
     }
 
+    if (user.onboarding_stage !== 'finished') {
+        return <Navigate to="/onboarding" />
+    }
+
     return <Outlet />;
 };
 

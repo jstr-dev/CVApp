@@ -4,7 +4,6 @@ import Button from '../components/Button';
 import { login } from '../services/UserService';
 import { getUserContext } from '../contexts/UserContext';
 import LoginLayout from '../layouts/LoginLayout';
-import Panel from '../components/Panel';
 import Input from '../components/Input';
 
 interface LoginError {
