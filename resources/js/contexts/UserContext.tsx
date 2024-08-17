@@ -5,7 +5,8 @@ import Loader from '../components/Loader';
 
 interface UserContextType {
     user: User | null;
-    setUser : (user: User | null) => void;
+    setUser: (user: User | null) => void;
+    setUserProperty: (key: keyof User, value: any) => void;
 }
 
 const UserContext = createContext<UserContextType | null>(null);
@@ -24,6 +25,15 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         fetchUser();
     }, []);
 
+    const setUserProperty = (key: keyof User, value: any) => {
+        if (user) {
+            setUser({
+                ...user,
+                [key]: value,
+            });
+        }
+    };
+
     if (isLoading) {
         return (
             <div className="h-full w-full flex justify-center items-center">
@@ -33,7 +43,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ user, setUser, setUserProperty }}>
             {children}
         </UserContext.Provider>
     );
