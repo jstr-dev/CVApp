@@ -8,65 +8,106 @@ import Panel from '../components/Panel';
 import Input from '../components/Input';
 
 interface SignupError {
-    email?: string;
-    password?: string;
+    email?: FormError;
+    password?: FormError;
+    first_name?: FormError;
+    last_name?: FormError;
+    middle_name?: FormError;
+    password_confirmation?: FormError;
 }
 
 function Signup() {
     const navigate = useNavigate();
     const { setUser } = getUserContext();
-    
-    const postLogin = async (event) => {
-        event.preventDefault();
 
+    const postSignup = async (event) => {
+        event.preventDefault();
         setLoading(true);
+
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        const passwordConfirmation = event.target.password_confirmation.value;
+        const firstName = event.target.first_name.value;
+        const lastName = event.target.last_name.value;
+        // const middleName = event.target.middle_name.value;
+
         try {
-            const user = await signup(email, password);
+            const user = await signup(email, password, passwordConfirmation, firstName, lastName);
             setUser(user);
-            navigate('/details');
+            navigate('/');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.data) {
                 setErrors(error.response.data.data);
             } else {
-                setErrors({ email: 'An error occurred. Please try again.', password: '' });
+                setErrors({ password_confirmation: 'An error occurred. Please try again.', password: '' });
             }
-        }  finally{
+        } finally {
             setLoading(false);
         }
     }
 
-    let [email, setEmail] = useState('');
-    let [password, setPassword] = useState('');
-    let [errors, setErrors] = useState<SignupError>({
-        email: '',
-        password: '',
-    });
+    let [errors, setErrors] = useState<SignupError>();
     let [loading, setLoading] = useState(false);
 
     return (
         <LoginLayout>
-            <Panel className='min-w-[500px]'>
-                <span className='text-center mb-6 text-xl'>SignUp</span>
+            <div className="min-w-[400px] flex flex-col">
+                <span className='mb-8 text-2xl font-semibold'>Kickstart your career with us</span>
 
-                <form className='loginForm flex flex-col center' onSubmit={postLogin}>
-                    <Input type='email' 
-                        onChange={(e) => setEmail(e.target.value)} 
+                <form className='signupForm flex flex-col center' onSubmit={postSignup}>
+                    <Input type='text'
+                        id='first_name'
+                        label='First Name'
+                        className='mb-3'
+                        error={errors?.first_name}
+                        required={true}
+                    />
+
+                    {/* <Input type='text'
+                        id='middle_name'
+                        label='Middle Names'
+                        className='mb-3'
+                        error={errors?.middle_name}
+                        required={true}
+                    /> */}
+
+                    <Input type='text'
+                        id='last_name'
+                        label='Last Name'
+                        className='mb-3'
+                        error={errors?.last_name}
+                        required={true}
+                    />
+
+                    <Input type='email'
+                        id='email'
                         label='Email'
-                        error={errors.email ? true : false}
-                        className={errors.email ? 'mb-0' : 'mb-2'}
-                        errorMessage={errors.email}/>
+                        className='mb-3'
+                        error={errors?.email}
+                        required={true}
+                    />
 
                     <Input type='password'
-                        onChange={(e) => setPassword(e.target.value)} 
                         label='Password'
-                        error={errors.password ? true : false}
-                        className={errors.password ? 'mb-0' : 'mb-2'}
-                        errorMessage={errors.password}/>
+                        id='password'
+                        className='mb-3'
+                        error={errors?.password}
+                        required={true} />
 
-                    <Button type='submit' isLoading={loading}>{loading ? 'Signing in..' : 'Signup'}</Button>         
-                    <span className='text-center text-sm mt-2'>Already have an account? <Link className='text-violet-600' to='/login'>Login</Link></span>
+                    <Input type='password'
+                        label='Confirm password'
+                        id='password_confirmation'
+                        className='mb-8'
+                        error={errors?.password_confirmation}
+                        required={true} />
+
+                    <Button type='submit' loading={loading}>
+                        {loading ? 'Loading...' : 'Sign up'}
+                    </Button>
+
+                    <span className='text-center text-sm mt-6 hint-col'>Already have an account? <Link className='text-violet-600' to='/login'>Login</Link></span>
                 </form>
-            </Panel>
+            </div>
         </LoginLayout>
     );
 }

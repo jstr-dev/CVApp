@@ -37,16 +37,24 @@ class UserService
             ->exists();
     }
 
-    public function validate(array $attributes): \Illuminate\Validation\Validator
+    public function validate(array $attributes, bool $appendConfirmation = false): \Illuminate\Validation\Validator
     {
-        return Validator::make($attributes, [
+        $validationArray = [
             'email' => 'required|email',
             'first_name' => 'required|string|min:2|max:255',
             'last_name' => 'required|string|min:2|max:255',
             'middle_name' => 'string|min:2|max:255',
-            'password' => 'required|string|min:8|max:32',
+            'password' => 'required|string|min:8|max:16',
             'mobile_number' => 'digit',
             'address' => 'array',
+        ];
+
+        if ($appendConfirmation) {
+            $validationArray['password_confirmation'] = 'same:password';
+        }
+
+        return Validator::make($attributes, $validationArray, [
+            'password_confirmation.same' => 'The password confirmation does not match.',
         ]);
     }
 }

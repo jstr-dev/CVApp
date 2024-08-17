@@ -1,16 +1,18 @@
 import React from 'react';
 
 interface ErrorProps extends React.HTMLAttributes<HTMLSpanElement> {
-    errorMessage: string
+    error: FormError
 }
 
-export default function Error(props: ErrorProps) {
+export default function Error({ error, ...props }: ErrorProps) {
     return (
         <span
             {...props}
             className={'text-xs text-red-600' + " " + props.className}
         >
-            {props.errorMessage}
+            {error && error instanceof Array ?
+                error.map((error, index) => <div className='mt-1'>{error}</div>)
+            : error}
         </span>
     );
 }

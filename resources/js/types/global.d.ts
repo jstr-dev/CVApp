@@ -6,3 +6,5 @@ interface User
     middle_name: string | null,
     email: string
 }
+
+type FormError = string | undefined | Array<string>;

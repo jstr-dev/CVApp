@@ -2,7 +2,7 @@ import React, { ChangeEventHandler } from 'react';
 import Error from './Error';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    error?: string,
+    error?: FormError,
     label?: string,
     buttonClasses?: string
 }
@@ -40,7 +40,7 @@ export default function Input(props: InputProps) {
             </div>
 
             {props.error &&
-                <Error errorMessage={props.error} />
+                <Error error={props.error} />
             }
         </div>
     );

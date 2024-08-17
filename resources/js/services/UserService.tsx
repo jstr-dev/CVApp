@@ -7,9 +7,9 @@ export const login = async (email: string, password: string): Promise<User> => {
     return response.data.data;
 };
 
-export const signup = async (email: string, password: string): Promise<User> => {
+export const signup = async (email: string, password: string, passwordConfirmation: string, firstName: string, lastName: string): Promise<User> => {
     await axiosInstance.get('/sanctum/csrf-cookie');
-    const response = await axiosInstance.post('/signup', { email, password });
+    const response = await axiosInstance.post('/signup', { email, password, password_confirmation: passwordConfirmation, first_name: firstName, last_name: lastName });
     return response.data.data;
 };
 

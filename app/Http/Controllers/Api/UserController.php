@@ -23,12 +23,16 @@ class UserController extends Controller
         return self::success($user);
     }
 
-    public function postUser(UserService $userService, Request $request)
+    public function signup(UserService $userService, Request $request)
     {
-        $validator = $userService->validate($request->all());
+        if (auth()->check()) {
+            return self::forbidden();
+        }
+
+        $validator = $userService->validate($request->all(), true);
 
         if ($validator->fails()) {
-            return self::badRequest('Invalid parameters passed', $validator->errors()->toArray());
+            return self::badRequest(data: $validator->errors()->toArray());
         }
 
         try {
@@ -40,9 +44,12 @@ class UserController extends Controller
                 attributes: $request->all()
             );
 
+            auth()->login($user);
+            $request->session()->regenerate();
+
             return self::success($user);
         } catch (UserExistsException $exception) {
-            return self::badRequest('User already exists');
+            return self::badRequest(data: ['email' => 'A user with that email already exists.']);
         }
 
         // TODO: create service & extract logic into there

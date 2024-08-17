@@ -18,11 +18,11 @@ class AuthController extends Controller
             ->first();
 
         if (!$user) {
-            return self::notFound(data:['email' => 'No user found with that email, please try again.']);
+            return self::notFound(data: ['email' => 'No user found with that email, please try again.']);
         }
 
         if (!auth()->attempt(['email' => $email, 'password' => $password], $rememberMe)) {
-            return self::unauthorised(data:['password' => 'Incorrect password! Please try again.']);
+            return self::unauthorised(data: ['password' => 'Incorrect password! Please try again.']);
         }
 
         $request->session()->regenerate();

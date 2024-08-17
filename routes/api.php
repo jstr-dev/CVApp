@@ -11,6 +11,9 @@ Route::get('/user', function (Request $request) {
 
 Route::middleware(['web'])->controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
-    Route::post('signup', 'signup');
     Route::post('logout', 'logout');
+});
+
+Route::middleware(['web'])->controller(UserController::class)->group(function () {
+    Route::post('signup', 'signup');
 });
