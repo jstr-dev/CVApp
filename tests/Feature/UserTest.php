@@ -34,14 +34,73 @@ class UserTest extends TestCase
         $this->assertAuthenticatedAs($this->user);
     }
 
-    public function test_invalid_credentials()
+    /**
+    * @dataProvider login_invalid_credentials_provider
+    */
+    public function test_login_invalid_credentials($email, $password, $statusCode)
     {
         $response = $this->post('/api/login', [
-            'email' => $this->user->email,
-            'password' => "invalid",
+            'email' => $email,
+            'password' => $password,
         ]);
 
-        $response->assertStatus(401);
+        $response->assertStatus($statusCode);
         $this->assertGuest();
+    }
+
+    public static function login_invalid_credentials_provider()
+    {
+        return [
+            ["wrongemail@gmail.com", "test", 404],
+            ["test@gmail.com", "invalid", 401],
+        ];
+    }
+
+    public function test_user_logout_success()
+    {
+        $response = $this->post('/api/logout');
+        $response->assertStatus(200);
+        $this->assertGuest();
+    }
+
+    public function test_user_signup_success()
+    {
+        $response = $this->post('/api/signup', [
+            'email' => "test2@gmail.com",
+            'password' => "testPassword",
+            'password_confirmation' => "testPassword",
+            'first_name' => "test",
+            'last_name' => "test",
+        ]);
+
+        $response->assertStatus(200);
+    }
+
+    /**
+    * @dataProvider signup_invalid_credentials_provider
+    */
+    public function test_signup_invalid_credentials($email, $password, $password_confirmation, $first_name, $last_name, $statusCode)
+    {
+        $response = $this->post('/api/signup', [
+            'email' => $email, 
+            'password' => $password,
+            'password_confirmation' => $password_confirmation,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+        ]);
+
+        $response->assertStatus($statusCode);
+    }
+
+    public static function signup_invalid_credentials_provider()
+    {
+        return [
+            ["test@gmail.com", "testPassword", "testPassword", "test", "test", 400], // email exists
+            ["test2@gmailcom", "test", "test", "test", "test", 400], // short password
+            ["test2@gmailcom", "invalidLongPassword", "invalidLongPassword", "test", "test", 400], // long password
+            ["test2@gmailcom", "testPassword", "testPassword", "t", "test", 400], // short first name
+            ["test2@gmailcom", "testPassword", "testPassword", "test", "t", 400], // short last name
+            ["test2@gmailcom", "mismatch", "testPassword", "test", "test", 400], //mismatch passwords
+        ];
     }
 }
