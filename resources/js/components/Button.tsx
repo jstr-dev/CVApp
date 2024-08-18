@@ -7,7 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function Button({ loading, className, children, ...defaultProps }: ButtonProps) {
     let ButtonStyles =
-        "text-white bg-gray-800 hover:bg-gray-900 " +
+        "text-white bg-black hover:bg-neutral-950 transition " +
         "focus:outline-none focus:ring-0.5 focus:ring-gray-300 "+
         "font-medium rounded-lg text-sm py-2.5 flex flex-row justify-center items-center px-4";
 
