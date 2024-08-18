@@ -29,9 +29,9 @@ class AddressService {
     {
         return Validator::make($attributes, [
             'first_line' => 'required|string',
-            'second_line' => 'string',
+            'second_line' => 'string|nullable',
             'code' => 'required|string|max:10',
-            'county' => 'string',
+            'county' => 'string|nullable',
             'city' => 'required|string',
             'country' => 'required|string',
         ]);
