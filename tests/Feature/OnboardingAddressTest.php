@@ -46,9 +46,7 @@ class OnboardingAddressTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-                ->assertJson([
-                    "data" => ["next_stage" => "mobile",
-        ]]);
+            ->assertJson(["data" => ["next_stage" => "mobile"]]);
 
         $this->assertDatabaseHas("addresses", [
             "first_line" => $first_line,

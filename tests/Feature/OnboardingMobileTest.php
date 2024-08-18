@@ -43,9 +43,7 @@ class OnboardingMobileTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-                ->assertJson([
-                    "data" => ["next_stage" => "finished",
-        ]]);
+            ->assertJson(["data" => ["next_stage" => "finished"]]);
 
         $this->assertDatabaseHas("users", [
             "mobile_number" => "1234567890",
