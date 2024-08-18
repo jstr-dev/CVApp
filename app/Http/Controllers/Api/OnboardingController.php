@@ -18,6 +18,12 @@ class OnboardingController extends Controller
         return self::success(['previous_stage' => $request->user('sanctum')->onboarding_stage]);
     }
 
+    public function postSkip(Request $request, UserService $userService)
+    {
+        $userService->iterateOnboardingStage($request->user('sanctum'));
+        return self::success(['next_stage' => $request->user('sanctum')->onboarding_stage]);
+    }
+
     public function postAddress(Request $request, AddressService $addressService, UserService $userService)
     {
         $validator = $addressService->validateInput($request->all());

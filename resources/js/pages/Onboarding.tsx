@@ -29,6 +29,18 @@ function Onboarding() {
         });
     }
 
+    const skip = async () => {
+        await axiosInstance.post('/onboarding/skip', {}).then((response) => {
+            setUserProperty('onboarding_stage', response.data.data.next_stage);
+        });
+    }
+
+    const skipAll = async () => {
+        await axiosInstance.post('/onboarding/skip', {}).then((response) => {
+            setUserProperty('onboarding_stage', 'finished');
+        });
+    }
+
     useEffect(() => {
         if (user?.onboarding_stage === 'finished') {
             navigate('/')
@@ -50,6 +62,8 @@ function Onboarding() {
                     }
 
                     <Button type='submit' form='onboardingForm'>{getIndexByKey(STAGE_MAP, user.onboarding_stage) === StageLength - 1 ? "Complete" : "Next Stage"}</Button>
+                    <Button type='button' onClick={skip}>Skip Stage</Button>
+                    <Button type='button' onClick={skipAll}>Skip All</Button>
                 </div>
             </div>
         </OnboardingLayout>

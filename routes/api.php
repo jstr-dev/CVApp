@@ -21,6 +21,7 @@ Route::middleware(['web'])->controller(UserController::class)->group(function ()
 
 Route::middleware('auth:sanctum')->controller(OnboardingController::class)->prefix('/onboarding')->group(function () {
     Route::post('/back', 'postBack');
+    Route::post('/skip', 'postSkip');
 
     Route::post('/address', 'postAddress')->middleware('verify.onboarding:address');
     Route::post('/mobile', 'postMobile')->middleware('verify.onboarding:mobile');
