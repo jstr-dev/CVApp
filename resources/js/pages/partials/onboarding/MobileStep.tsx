@@ -4,7 +4,7 @@ import axiosInstance from '@/services/AxiosInstance';
 import React, { useState } from 'react';
 
 export default function MobileStep() {
-    const [errors, setErrors] = useState<AddressErrors>();
+    const [errors, setErrors] = useState<MobileErrors>();
     const { user, setUserProperty } = getUserContext();
 
     const MobileStepAction = async (event: any) => {
@@ -17,11 +17,9 @@ export default function MobileStep() {
             mobile_number: mobileNumber,
             mobile_country_code: mobileCountryCode,
         }).then((response) => {
+            setUserProperty('mobile_number', mobileNumber);
+            setUserProperty('mobile_country_code', mobileCountryCode);
             setUserProperty('onboarding_stage', response.data.data.next_stage);
-            setUserProperty('address', {
-                mobile_number: mobileNumber,
-                mobile_country_code: mobileCountryCode,
-            });
         }).catch((error) => {
             setErrors(error.response.data.data);
         });
