@@ -24,6 +24,9 @@
     color: theme('colors.gray.500');
 }
 
+.link-col {
+    color: theme('colors.blue.600')
+}
 body,
 html,
 #app {

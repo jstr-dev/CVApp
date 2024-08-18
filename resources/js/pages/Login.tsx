@@ -69,7 +69,7 @@ function Login() {
                         {loading ? 'Logging in...' : 'Login'}
                     </Button>
 
-                    <span className='text-center text-sm mt-6 hint-col'>Don't have an account? <Link className='text-violet-600' to='/signup'>Sign up</Link></span>
+                    <span className='text-center text-sm mt-6 hint-col'>Don't have an account? <Link className='link-col' to='/signup'>Sign up</Link></span>
                 </form>
             </div>
         </LoginLayout>

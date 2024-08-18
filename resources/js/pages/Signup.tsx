@@ -104,7 +104,7 @@ function Signup() {
                         {loading ? 'Loading...' : 'Sign up'}
                     </Button>
 
-                    <span className='text-center text-sm mt-6 hint-col'>Already have an account? <Link className='text-violet-600' to='/login'>Login</Link></span>
+                    <span className='text-center text-sm mt-6 hint-col'>Already have an account? <Link className='link-col' to='/login'>Login</Link></span>
                 </form>
             </div>
         </LoginLayout>
