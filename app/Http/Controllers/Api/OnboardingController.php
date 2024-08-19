@@ -26,9 +26,7 @@ class OnboardingController extends Controller
 
     public function postAddress(Request $request, AddressService $addressService, UserService $userService)
     {
-        $validator = $addressService->validateInput($request->all());
-
-        if ($validator->fails()) {
+        if (($validator = $addressService->validateInput($request->all())) && $validator->fails()) {
             return self::badRequest(data: $validator->errors()->toArray());
         }
 
