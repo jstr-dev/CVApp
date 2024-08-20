@@ -35,12 +35,6 @@ function Onboarding() {
         });
     }
 
-    const skipAll = async () => {
-        await axiosInstance.post('/onboarding/skip', {}).then((response) => {
-            setUserProperty('onboarding_stage', 'finished');
-        });
-    }
-
     useEffect(() => {
         if (user?.onboarding_stage === 'finished') {
             navigate('/')
@@ -60,11 +54,11 @@ function Onboarding() {
                     {getIndexByKey(STAGE_MAP, user.onboarding_stage) > 0 &&
                         <Button onClick={goBack}>Previous Stage</Button>
                     }
-
-                    <Button type='submit' form='onboardingForm'>{getIndexByKey(STAGE_MAP, user.onboarding_stage) === StageLength - 1 ? "Complete" : "Next Stage"}</Button>
-                    <Button type='button' onClick={skip}>Skip Stage</Button>
-                    <Button type='button' onClick={skipAll}>Skip All</Button>
                 </div>
+            </div>
+            <div className="absolute flex flex-row gap-2 bottom-8 right-8">
+                <Button type='submit' form='onboardingForm'>{getIndexByKey(STAGE_MAP, user.onboarding_stage) === StageLength - 1 ? "Complete" : "Next Stage"}</Button>
+                <Button type='button' onClick={skip}>Skip Stage</Button>
             </div>
         </OnboardingLayout>
     );
