@@ -47,6 +47,12 @@ function Onboarding() {
 
     return (
         <OnboardingLayout>
+            <div className='absolute w-full top-8 flex justify-center gap-3'>
+                {Array.from(STAGE_MAP).map((value, key) => (
+                    <div className={'w-20 h-2 rounded-full transition bg-gray-300 ' + (user.onboarding_stage === value[0] ? 'bg-blue-400' : '')}></div>
+                ))}
+            </div>
+
             <div className="w-[500px]">
                 {STAGE_MAP.get(user.onboarding_stage)}
             </div>
