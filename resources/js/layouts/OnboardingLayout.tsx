@@ -29,7 +29,7 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
                 </div>
             </div>
 
-            <div className="content-col flex flex-col justify-center items-center w-3/5 max-lg:w-full">
+            <div className="content-col flex flex-col justify-center items-center w-3/5 max-lg:w-full relative">
                 {children}
             </div>
         </div>

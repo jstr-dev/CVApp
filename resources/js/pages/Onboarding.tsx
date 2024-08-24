@@ -49,16 +49,20 @@ function Onboarding() {
         <OnboardingLayout>
             <div className="w-[500px]">
                 {STAGE_MAP.get(user.onboarding_stage)}
-
-                <div className="flex flex-row justify-end mt-6 gap-4">
-                    {getIndexByKey(STAGE_MAP, user.onboarding_stage) > 0 &&
-                        <Button onClick={goBack}>Previous Stage</Button>
-                    }
-                </div>
             </div>
-            <div className="absolute flex flex-row gap-2 bottom-8 right-8">
-                <Button type='submit' form='onboardingForm'>{getIndexByKey(STAGE_MAP, user.onboarding_stage) === StageLength - 1 ? "Complete" : "Next Stage"}</Button>
-                <Button type='button' onClick={skip}>Skip Stage</Button>
+
+            <div className="absolute flex flex-row justify-between gap-2 bottom-8 w-full px-10">
+                <Button type='button' onClick={skip} buttonStyle='secondary'>Skip Stage</Button>
+
+                <div className="flex flex-row gap-2">
+                    {getIndexByKey(STAGE_MAP, user.onboarding_stage) > 0 &&
+                        <Button onClick={goBack} buttonStyle='secondary'>Previous Stage</Button>
+                    }
+
+                    <Button type='submit' form='onboardingForm' buttonStyle='secondary'>
+                        {getIndexByKey(STAGE_MAP, user.onboarding_stage) === StageLength - 1 ? "Complete" : "Next Stage"}
+                    </Button>
+                </div>
             </div>
         </OnboardingLayout>
     );
