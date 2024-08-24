@@ -1,32 +1,31 @@
 import React from 'react';
 import { getUserContext } from '../contexts/UserContext';
-
-interface StepProps {
-    name: string;
-    description: string;
-    active: boolean;
-}
-
-function Step({ name, description, active }: StepProps) {
-    return (
-        <div className={'mb-2'}>
-            <p>NAME: {name}</p>
-            <p>DESCRIPTION: {description}</p>
-            <p>ACTIVE: {active ? 'TRUE' : 'FALSE'}</p>
-        </div>
-    );
-}
+import {StepperContainer, StepperItem} from '../components/Stepper';
+import Logo from '@/components/Logo';
 
 export default function OnboardingLayout({ children }: { children: React.ReactNode }) {
     const { user } = getUserContext();
 
     return (
         <div className="flex w-full h-full">
-            <div className="h-full flex flex-col justify-center items-center max-lg:hidden w-2/5">
-                <div className='steps'>
-                    <Step name="Address" description="Enter your address" active={user?.onboarding_stage === 'address'} />
-                    <Step name="Mobile" description="Enter your mobile number" active={user?.onboarding_stage === 'mobile'} />
-                </div>
+            <div className="h-full flex flex-col gap-10 py-20 px-20 max-lg:hidden w-2/5">
+                <Logo />
+
+                <StepperContainer>
+                    <StepperItem 
+                        title="Enter your address" 
+                        description="Give us your address to start" 
+                        active={user?.onboarding_stage === 'address'} 
+                        hasChild={true}
+                    />
+
+                    <StepperItem 
+                        title="Enter your phone number" 
+                        description="Give us your phone number to start" 
+                        active={user?.onboarding_stage === 'mobile'} 
+                        hasParent={true}
+                    />
+                </StepperContainer>
             </div>
 
             <div className="content-col flex flex-col justify-center items-center w-3/5 max-lg:w-full relative">
