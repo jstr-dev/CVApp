@@ -12,6 +12,24 @@
     background-color: rgba(0, 0, 0, 0) !important;
 }
 
+.text-xxs {
+    font-size: 10px !important;
+}
+
+.text-xxxs {
+    font-size: 8px !important;
+}
+
+.nav-active
+{
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.nav-item:hover
+{
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
 .primary {
     background-color: var(--primary-color);
 }
