@@ -33,7 +33,7 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
                     </StepperContainer>
                 </div>
                 <div className='px-10'>
-                    <Button onClick={() => window.location.href = '/logout'} buttonStyle='secondary'>Logout</Button>
+                    <Button onClick={() => window.location.href = '/logout'} buttonStyle='secondary' className="nobg">Logout</Button>
                 </div>
             </div>
 

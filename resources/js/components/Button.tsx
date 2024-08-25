@@ -14,11 +14,11 @@ const styles = {
 export default function Button({ loading, className, children, buttonStyle = 'default', ...defaultProps }: ButtonProps) {
     let ButtonStyles =
         styles[buttonStyle] +
-        "transition focus:outline-none focus:ring-0.5 " +
+        " transition focus:outline-none focus:ring-0.5 " +
         "font-medium rounded-lg text-sm py-2.5 flex flex-row justify-center items-center px-4";
 
     return (
-        <button {...defaultProps} className={ButtonStyles + " " + className}>
+        <button {...defaultProps} className={ButtonStyles + " " + (className ?? '')}>
             {loading &&
                 <Loader />
             }

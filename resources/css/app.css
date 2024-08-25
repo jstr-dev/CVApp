@@ -8,6 +8,10 @@
     --content-panel-color: 248, 246, 246;
 }
 
+.nobg {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
 .primary {
     background-color: var(--primary-color);
 }

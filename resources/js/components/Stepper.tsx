@@ -14,7 +14,7 @@ interface StepperContainerProps extends React.PropsWithChildren<{}> {
 
 function StepperContainer(props : StepperContainerProps) {
     return (
-        <div className='flex flex-col gap-0 w-2/3'>
+        <div className='flex flex-col gap-0'>
             {props.children} 
         </div>
     )
