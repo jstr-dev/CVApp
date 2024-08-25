@@ -49,7 +49,7 @@ function Onboarding() {
         <OnboardingLayout>
             <div className='w-full flex justify-center gap-3 mb-8'>
                 {Array.from(STAGE_MAP).map((value, key) => (
-                    <div className={'w-20 h-2 rounded-full transition bg-gray-300 ' + (user.onboarding_stage === value[0] ? 'bg-blue-400' : '')}></div>
+                    <div className={'w-20 h-2 rounded-full transition ' + (user.onboarding_stage === value[0] ? 'bg-blue-400' : 'bg-gray-300')}></div>
                 ))}
             </div>
 
