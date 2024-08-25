@@ -28,8 +28,8 @@ function StepperLine() {
 
 function IconBox({icon, active} : {icon: string, active: boolean}) {
     return (
-        <div className='w-8 h-8 flex justify-center items-center border-[1px] border-gray-300 rounded-lg content-col'>
-            <i className={"fa-solid " + icon + " text-xs " + (active ? 'text-gray-800' : 'text-gray-500')}></i>
+        <div className={'w-8 h-8 flex justify-center items-center border-[1px] rounded-lg content-col transition ' + (active ? 'border-blue-400' : 'border-gray-300')}>
+            <i className={"transition fa-solid " + icon + " text-xs " + (active ? 'text-blue-400' : 'text-gray-500')}></i>
         </div>
     )
 }
@@ -37,7 +37,7 @@ function IconBox({icon, active} : {icon: string, active: boolean}) {
 function StepperItem(props : StepperItemProps) {
     return (
         <div className='flex flex-row gap-0'>
-            <div className='flex flex-col gap-0 items-center mr-3'>
+            <div className='flex flex-col gap-0 items-center mr-5'>
                 {props.hasParent && <StepperLine />}
                 <IconBox icon={props.icon} active={props.active}/>
                 {props.hasChild && <StepperLine />}
