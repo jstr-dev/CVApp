@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getNavContext } from "../contexts/NavContext";
+import { TAILWIND_BP } from '@/constants';
 
 interface NavItemProps extends React.HTMLAttributes<HTMLDivElement> {
     name: string;
@@ -66,7 +67,7 @@ export default function Navbar() {
     const { expanded, setExpanded } = getNavContext();
 
     const handleResize = () => {
-        if (window.innerWidth < 640) {
+        if (window.innerWidth < TAILWIND_BP.md) {
             setExpanded(false);
         } else {
             setExpanded(true);
@@ -83,13 +84,13 @@ export default function Navbar() {
     }, []);
 
     const mouseEnter = () => {
-        if (window.innerWidth < 640) {
+        if (window.innerWidth < TAILWIND_BP.md) {
             setExpanded(true);
         }
     }
 
     const mouseLeave = () => {
-        if (window.innerWidth < 640) {
+        if (window.innerWidth < TAILWIND_BP.md) {
             setExpanded(false);
         }
     }
@@ -99,7 +100,7 @@ export default function Navbar() {
     }
 
     return (
-        <div className={`max-sm:absolute nav-size flex-shrink-0 flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[60px]'} content-col border-r-[1px] border-grey-400 px-4 py-4`}
+        <div className={`max-md:absolute nav-size flex-shrink-0 flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[60px]'} content-col border-r-[1px] border-grey-400 px-4 py-4`}
             onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} /*onTouchStart={mouseEnter} onTouchEnd={mouseLeave}*/>
            <div>
                 <div className={`w-full flex justify-between items-center flex-col mb-6`}>

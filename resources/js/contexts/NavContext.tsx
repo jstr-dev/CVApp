@@ -1,4 +1,5 @@
 import React from 'react';
+import { TAILWIND_BP } from '@/constants';
 
 interface Expandable {
     expanded: boolean,
@@ -8,7 +9,7 @@ interface Expandable {
 const NavbarContext = React.createContext<Expandable | undefined>(undefined);
 
 const NavbarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [expanded, setExpanded] = React.useState(window.innerWidth > 640);
+    const [expanded, setExpanded] = React.useState(window.innerWidth > TAILWIND_BP.md);
 
     return (
         <NavbarContext.Provider value={{ expanded, setExpanded }}>
