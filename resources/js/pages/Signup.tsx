@@ -50,8 +50,8 @@ function Signup() {
 
     return (
         <LoginLayout>
-            <div className="min-w-[400px] flex flex-col">
-                <span className='mb-8 text-2xl font-semibold'>Kickstart your career with us</span>
+            <div className="w-3/4 sm:min-w-[400px] flex flex-col">
+                <span className='max-sm:text-xl mb-8 text-2xl font-semibold'>Kickstart your career with us</span>
 
                 <form className='signupForm flex flex-col center' onSubmit={postSignup}>
                     <Input type='text'

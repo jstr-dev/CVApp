@@ -8,6 +8,7 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://kit.fontawesome.com/16441c9a9c.js" crossorigin="anonymous"></script>
         @viteReactRefresh
         @vite('resources/js/app.tsx')
     </head>

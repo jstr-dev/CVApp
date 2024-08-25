@@ -13,22 +13,25 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
 
                 <StepperContainer>
                     <StepperItem 
-                        title="Enter your address" 
-                        description="Give us your address to start" 
+                        title="Provide your details" 
+                        description="Enter your address" 
+                        icon="fa-address-book"
                         active={user?.onboarding_stage === 'address'} 
                         hasChild={true}
                     />
 
+                    {/* TODO: This is temporary will merge in to the previous step */}
                     <StepperItem 
                         title="Enter your phone number" 
-                        description="Give us your phone number to start" 
+                        description="Temporary text" 
                         active={user?.onboarding_stage === 'mobile'} 
                         hasParent={true}
+                        icon="fa-phone"
                     />
                 </StepperContainer>
             </div>
 
-            <div className="content-col flex flex-col justify-center items-center w-3/5 max-lg:w-full relative">
+            <div className="content-col flex flex-col justify-between items-center w-3/5 max-lg:w-full relative py-8">
                 {children}
             </div>
         </div>
