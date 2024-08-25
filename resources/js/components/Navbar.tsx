@@ -52,11 +52,11 @@ function NavLogo()
 
     return (
         expanded ? 
-            <div className="logo flex items-center w-full">
+            <div className="logo flex px-2.5 items-center w-full">
                 Logo
             </div>
         : 
-            <div className="logo flex justify-center items-center w-full">
+            <div className="logo flex px-2.5 items-center w-full">
                 L
             </div>
     )
@@ -99,8 +99,8 @@ export default function Navbar() {
     }
 
     return (
-        <div className={`nav-size flex-shrink-0 flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[60px]'} content-col border-r-[1px] border-grey-400 px-4 py-4`}
-            onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onTouchStart={mouseEnter} onTouchEnd={mouseLeave}>
+        <div className={`max-sm:absolute nav-size flex-shrink-0 flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[60px]'} content-col border-r-[1px] border-grey-400 px-4 py-4`}
+            onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} /*onTouchStart={mouseEnter} onTouchEnd={mouseLeave}*/>
            <div>
                 <div className={`w-full flex justify-between items-center flex-col mb-6`}>
                     <NavLogo />
