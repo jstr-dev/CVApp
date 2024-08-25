@@ -5,6 +5,7 @@ import '../css/app.css';
 import { UserProvider } from './contexts/UserContext';
 import axiosInstance from './services/AxiosInstance';
 import router from './routes/router';
+import NavbarProvider from './contexts/NavContext';
 
 const rootElement = document.getElementById('app') as HTMLElement;
 
@@ -23,9 +24,11 @@ const App = () => {
     }, []);
 
 	return (
-		<UserProvider>
-            <RouterProvider router={router} />
-		</UserProvider>
+        <NavbarProvider>
+            <UserProvider>
+                <RouterProvider router={router} />
+            </UserProvider>
+        </NavbarProvider>
 	);
 }
 

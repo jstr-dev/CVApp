@@ -8,6 +8,10 @@
     --content-panel-color: 248, 246, 246;
 }
 
+.nav-size {
+    transition: width 0.5s ease-in-out;
+}
+
 .nobg {
     background-color: rgba(0, 0, 0, 0) !important;
 }
@@ -49,6 +53,7 @@
 .link-col {
     color: theme('colors.blue.600')
 }
+
 body,
 html,
 #app {
