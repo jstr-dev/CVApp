@@ -12,6 +12,18 @@
     transition: width 0.5s ease-in-out;
 }
 
+.nav-grad {
+    transition: opacity 0.5s ease-in-out 0.2s;
+}
+
+.nav-grad.hide {
+    transition: opacity 0.1s ease-in-out;
+}
+
+.hide {
+    opacity: 0;
+}
+
 .nobg {
     background-color: rgba(0, 0, 0, 0) !important;
 }

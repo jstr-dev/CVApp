@@ -25,7 +25,7 @@ function NavItem({ name, icon, href }: { name: string, icon: string, href: strin
                 <i className={"text-sm text-gray-800 fa-solid " + icon}></i>
             </div>
 
-            <div className={`transition text-xs font-semibold text-black leading-3 mb-[1px] ${!expanded && 'hidden'}`}>{name}</div>
+            <div className={`nav-grad flex-shrink-0 text-xs font-semibold text-black leading-3 mb-[1px] ${!expanded && 'hide'}`}>{name}</div>
         </div>
     )
 }
@@ -35,24 +35,8 @@ function NavSection({ title, children } : { title: string, children: React.React
     const { expanded } = getNavContext(); 
     return (
         <div className="w-full">
-            <div className={`${!expanded && 'hidden '} text-xxs text-gray-400 font-semibold mb-1 px-1`}>{title.toUpperCase()}</div>
+            {/* <div className={`text-xxs text-gray-400 font-semibold mb-1 px-1`}>{!expanded ? title[0] : title.toUpperCase()}</div> */}
             <div className="flex flex-col gap-1">{children}</div>
-        </div>
-    )
-}
-
-function ExpandButton()
-{
-    const { expanded, setExpanded, forceExpand, setForceExpand } = getNavContext();
-
-    const click: () => void = () => {
-        setForceExpand(true);
-        setExpanded(!expanded);
-    }
-
-    return (
-        <div className={`h-6 w-8 flex justify-center items-center cursor-pointer nav-item rounded-md`} onClick={click}>
-            <i className={`fa-solid ${expanded ? 'fa-chevron-left' : 'fa-chevron-right'} text-sm text-gray-800`}></i>
         </div>
     )
 }
@@ -67,18 +51,16 @@ function NavLogo()
                 Logo
             </div>
         : 
-            <div className="logo flex justify-center items-center w-full mb-4">
+            <div className="logo flex justify-center items-center w-full">
                 L
             </div>
     )
 }
 
 export default function Navbar() {
-    const { expanded, setExpanded, forceExpand, setForceExpand } = getNavContext();
+    const { expanded, setExpanded } = getNavContext();
 
     const handleResize = () => {
-        if (forceExpand) return;
-
         if (window.innerWidth < 640) {
             setExpanded(false);
         } else {
@@ -93,19 +75,31 @@ export default function Navbar() {
         return () => {
             window.removeEventListener('resize', handleResize);
         }
-    }, [forceExpand]);
+    }, []);
+
+    const mouseEnter = () => {
+        if (window.innerWidth < 640) {
+            setExpanded(true);
+        }
+    }
+
+    const mouseLeave = () => {
+        if (window.innerWidth < 640) {
+            setExpanded(false);
+        }
+    }
 
     return (
-        <div className={`nav-size flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[60px]'} content-col border-r-[1px] border-grey-400 px-4 py-4`}>
+        <div className={`nav-size flex-shrink-0 flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[60px]'} content-col border-r-[1px] border-grey-400 px-4 py-4`}
+            onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
            <div>
-                <div className={`w-full flex justify-between items-center ${expanded ? 'flex-row' : 'flex-col'} mb-6`}>
+                <div className={`w-full flex justify-between items-center flex-col mb-6`}>
                     <NavLogo />
-                    <ExpandButton />
                 </div>
 
                 <Search className="mb-6" />
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-1">
                     <NavSection title="General">
                         <NavItem name="Dashboard" icon="fa-house" href="/" />
                         <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" />
