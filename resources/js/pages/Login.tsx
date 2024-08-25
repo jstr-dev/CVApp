@@ -46,7 +46,7 @@ function Login() {
 
     return (
         <LoginLayout>
-            <div className="min-w-[400px] flex flex-col">
+            <div className="w-3/4 sm:w-[400px] flex flex-col">
                 <span className='mb-8 text-2xl font-semibold'>Welcome back!</span>
 
                 <form className='loginForm flex flex-col center' onSubmit={postLogin}>
