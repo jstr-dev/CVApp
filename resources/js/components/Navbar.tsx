@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
-import Search from "./Search";
 import { useNavigate } from 'react-router-dom';
 import { getNavContext } from "../contexts/NavContext";
 
-function NavItem({ name, icon, href }: { name: string, icon: string, href: string }) {
+interface NavItemProps extends React.HTMLAttributes<HTMLDivElement> {
+    name: string;
+    icon: string;
+    href: string;
+}
+
+function NavItem({ name, icon, href, className,onClick }: NavItemProps) {
     const { expanded } = getNavContext();
     const navigate = useNavigate();
     const isActive: boolean = href === window.location.pathname;
@@ -18,11 +23,11 @@ function NavItem({ name, icon, href }: { name: string, icon: string, href: strin
 
     return (
         <div 
-            className={`w-full h-8 nav-item flex flex-row items-center px-2 rounded-md gap-3 cursor-pointer ${isActive && 'nav-active'}`}
-            onClick={navClick}
+            className={`w-full h-8 nav-item flex flex-row items-center px-2 rounded-md gap-3 cursor-pointer ${isActive && 'nav-active'} ${className}`}
+            onClick={onClick ?? navClick}
         >
             <div className={"h-4 flex justify-center items-center w-3 nav-icon"}>
-                <i className={"text-sm text-gray-800 fa-solid " + icon}></i>
+                <i className={`text-sm text-gray-800 fa-solid ${icon}`}></i>
             </div>
 
             <div className={`nav-grad flex-shrink-0 text-xs font-semibold text-black leading-3 mb-[1px] ${!expanded && 'hide'}`}>{name}</div>
@@ -89,6 +94,10 @@ export default function Navbar() {
         }
     }
 
+    const modalpopup = () => {
+        alert('Coming Soon!')
+    }
+
     return (
         <div className={`nav-size flex-shrink-0 flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[60px]'} content-col border-r-[1px] border-grey-400 px-4 py-4`}
             onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
@@ -97,7 +106,7 @@ export default function Navbar() {
                     <NavLogo />
                 </div>
 
-                <Search className="mb-6" />
+                <NavItem name="Search" className="mb-6" icon="fa-magnifying-glass" href='' onClick={() => modalpopup()}/>
 
                 <div className="flex flex-col gap-1">
                     <NavSection title="General">
