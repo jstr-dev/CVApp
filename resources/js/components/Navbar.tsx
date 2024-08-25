@@ -23,10 +23,10 @@ function NavItem({ name, icon, href, className,onClick }: NavItemProps) {
 
     return (
         <div 
-            className={`w-full h-8 nav-item flex flex-row items-center px-2 rounded-md gap-3 cursor-pointer ${isActive && 'nav-active'} ${className}`}
+            className={`w-full h-8 nav-item flex flex-row items-center px-2 rounded-md gap-3 cursor-pointer ${isActive && 'nav-active'} ${className ?? ''}`}
             onClick={onClick ?? navClick}
         >
-            <div className={"h-4 flex justify-center items-center w-3 nav-icon"}>
+            <div className={"h-4 flex flex-shrink-0 justify-center items-center w-3 nav-icon"}>
                 <i className={`text-sm text-gray-800 fa-solid ${icon}`}></i>
             </div>
 
