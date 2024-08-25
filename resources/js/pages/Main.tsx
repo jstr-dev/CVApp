@@ -10,7 +10,7 @@ function Main() {
 
     return (
         <MainLayout>
-            <Heading headingName='Dashboard'/>
+            <Heading title='Dashboard'/>
             <Panel>this is a panel</Panel>
         </MainLayout>
     );
