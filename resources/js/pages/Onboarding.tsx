@@ -47,26 +47,26 @@ function Onboarding() {
 
     return (
         <OnboardingLayout>
-            <div className='absolute w-full top-8 flex justify-center gap-3'>
+            <div className='w-full flex justify-center gap-3 mb-8'>
                 {Array.from(STAGE_MAP).map((value, key) => (
                     <div className={'w-20 h-2 rounded-full transition bg-gray-300 ' + (user.onboarding_stage === value[0] ? 'bg-blue-400' : '')}></div>
                 ))}
             </div>
 
-            <div className="w-[500px]">
+            <div className="w-4/5 sm:w-[500px]">
                 {STAGE_MAP.get(user.onboarding_stage)}
             </div>
 
-            <div className="absolute flex flex-row justify-between gap-2 bottom-8 w-full px-10">
-                <Button type='button' onClick={skip} buttonStyle='secondary'>Skip Stage</Button>
+            <div className="flex sm:flex-row justify-between gap-2 w-full px-10 mt-8">
+                <Button type='button' onClick={skip} buttonStyle='secondary'>Skip</Button>
 
-                <div className="flex flex-row gap-2">
+                <div className="flex sm:flex-row gap-2">
                     {getIndexByKey(STAGE_MAP, user.onboarding_stage) > 0 &&
-                        <Button onClick={goBack} buttonStyle='secondary'>Previous Stage</Button>
+                        <Button onClick={goBack} buttonStyle='secondary'>Previous</Button>
                     }
 
                     <Button type='submit' form='onboardingForm' buttonStyle='secondary'>
-                        {getIndexByKey(STAGE_MAP, user.onboarding_stage) === StageLength - 1 ? "Complete" : "Next Stage"}
+                        {getIndexByKey(STAGE_MAP, user.onboarding_stage) === StageLength - 1 ? "Complete" : "Next"}
                     </Button>
                 </div>
             </div>

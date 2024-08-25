@@ -31,7 +31,7 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
                 </StepperContainer>
             </div>
 
-            <div className="content-col flex flex-col justify-center items-center w-3/5 max-lg:w-full relative">
+            <div className="content-col flex flex-col justify-between items-center w-3/5 max-lg:w-full relative py-8">
                 {children}
             </div>
         </div>
