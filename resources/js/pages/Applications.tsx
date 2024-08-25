@@ -1,5 +1,6 @@
 import Heading from '@/components/Heading';
 import Panel from '@/components/Panel';
+import PanelCol from '@/components/PanelCol';
 import PanelGrid from '@/components/PanelGrid';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
@@ -10,10 +11,16 @@ function Applications()
         <MainLayout>
             <Heading title="Applications" />
 
-            <PanelGrid>
-                <Panel>test</Panel>
-                <Panel>test</Panel>
-            </PanelGrid>
+            <PanelCol>
+                <PanelGrid>
+                    <Panel className='min-h-[200px]' loading>test</Panel>
+                    <Panel>test</Panel>
+                </PanelGrid>
+
+                <Panel>
+                    bad things
+                </Panel>
+            </PanelCol>
         </MainLayout>
     )
 }
