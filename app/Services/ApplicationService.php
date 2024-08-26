@@ -26,10 +26,10 @@ class ApplicationService
         if ($attributes) {
             $application->fill($attributes);
         }
-        
+
         $application->user_id = $user->id;
         $application->cv_id = $cv->id;
-        $application->cover_id = $cover ? $cover->id : null;
+        $application->cover_id = $cover?->id;
         $application->platform = $platform;
         $application->url = $url;
         $application->job_title = $jobTitle;

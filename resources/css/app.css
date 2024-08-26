@@ -85,6 +85,10 @@ html,
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 0.3px;
 }
 
+.nav {
+    box-shadow: rgba(0, 0, 0, 0.05) 0.3px, 0, 0, 0;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
