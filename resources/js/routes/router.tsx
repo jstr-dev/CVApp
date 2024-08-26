@@ -23,14 +23,20 @@ const router = createBrowserRouter([
                 path: 'applications',
                 element: <Applications />
             },
+        ],
+    },
 
+    {
+        path: '/',
+        element: <ProtectedRoute noLayout />,
+        children: [
             {
                 path: 'onboarding',
                 element: <Onboarding />
             },
-
+        
             {
-                path: "/logout",
+                path: "logout",
                 element: <Logout />
             },
         ],

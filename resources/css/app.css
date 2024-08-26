@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities
+{
+    .background-col {
+        background-color: rgb(var(--background-color));
+    }
+    
+    .content-col {
+        background-color: rgb(var(--content-panel-color));
+    }
+}
+
+@media (min-width: 768px) {
+    .md\\:background-col {
+        @apply background-col;
+    }
+}
+
 * {
     --primary-color: #ea580c;
     --background-color: 230, 230, 230;
@@ -49,14 +66,6 @@
 
 .primary {
     background-color: var(--primary-color);
-}
-
-.background-col {
-    background-color: rgb(var(--background-color));
-}
-
-.content-col {
-    background-color: rgb(var(--content-panel-color));
 }
 
 .hint-col {

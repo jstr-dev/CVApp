@@ -9,7 +9,7 @@ interface NavItemProps extends React.HTMLAttributes<HTMLDivElement> {
     href: string;
 }
 
-function NavItem({ name, icon, href, className,onClick }: NavItemProps) {
+function NavItem({ name, icon, href, className, onClick }: NavItemProps) {
     const { expanded } = getNavContext();
     const navigate = useNavigate();
     const isActive: boolean = href === window.location.pathname;
@@ -107,7 +107,7 @@ export default function Navbar() {
                     <NavLogo />
                 </div>
 
-                <NavItem name="Search" className="mb-6" icon="fa-magnifying-glass" href='' onClick={() => modalpopup()}/>
+                <NavItem name="Search" className="mb-5 md:background-col" icon="fa-magnifying-glass" href='' hasBg onClick={() => modalpopup()}/>
 
                 <div className="flex flex-col gap-1">
                     <NavSection title="General">

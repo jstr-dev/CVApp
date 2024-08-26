@@ -8,7 +8,7 @@ import React from 'react';
 function Applications()
 {
     return (
-        <MainLayout>
+        <>
             <Heading title="Applications" />
 
             <PanelCol>
@@ -21,7 +21,7 @@ function Applications()
                     bad things
                 </Panel>
             </PanelCol>
-        </MainLayout>
+        </>
     )
 }
 

@@ -6,14 +6,10 @@ import Panel from '@/components/Panel';
 import Heading from '@/components/Heading';
 
 function Main() {
-    const { user } = getUserContext();
-
-    return (
-        <MainLayout>
-            <Heading title='Dashboard'/>
-            <Panel>this is a panel</Panel>
-        </MainLayout>
-    );
+    return (<>
+        <Heading title='Dashboard'/>
+        <Panel>this is a panel</Panel>
+    </>);
 }
 
 export default Main;

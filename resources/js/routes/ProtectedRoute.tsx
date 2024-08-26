@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { getUserContext } from '../contexts/UserContext';
+import MainLayout from '@/layouts/MainLayout';
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({noLayout} : {noLayout?: boolean}) => {
     const { user } = getUserContext();
     const location = useLocation();
 
@@ -14,7 +15,11 @@ const ProtectedRoute = () => {
         return <Navigate to="/onboarding" />
     }
 
-    return <Outlet />;
+    if (noLayout) {
+        return <Outlet />;
+    }
+
+    return <MainLayout><Outlet /></MainLayout>;
 };
 
 export default ProtectedRoute;
