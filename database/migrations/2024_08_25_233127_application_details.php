@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('applications', function (Blueprint $table) {
-            $table->string('job_description')->nullable();
-            $table->string('job_title');
-            $table->string('company_name')->nullable();
-            $table->string('company_description')->nullable();
-            $table->string('platform');
-            $table->string('url');
+            $table->string('job_description')->nullable()->after('status');
+            $table->string('job_title')->after('job_description');
+            $table->string('company_name')->nullable()->after('job_title');
+            $table->string('company_description')->nullable()->after('company_name');
+            $table->string('platform')->after('company_description');
+            $table->string('url')->after('platform');
             $table->bigInteger('cover_id')->nullable()->change();
         });
     }
@@ -27,7 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('your_table_name', function (Blueprint $table) {
+        Schema::table('applications', function (Blueprint $table) {
             $table->dropColumn('job_description');
             $table->dropColumn('job_title');
             $table->dropColumn('company_name');

@@ -33,7 +33,7 @@ return new class extends Migration {
 
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('mobile_country_code');
-            $table->foreign('mobile_extension_id')->references('id')->on('mobile_extensions');
+            $table->foreignId('mobile_extension_id');
         });
     }
 };

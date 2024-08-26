@@ -48,11 +48,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('addresses');
-        Schema::dropIfExists('mobile_extensions');
-
         Schema::table('users', function (Blueprint $table) {
             $table->string('name')->after('id');
+            $table->dropForeign('users_address_id_foreign');
+            $table->dropForeign('users_mobile_extension_id_foreign');
             $table->dropColumn([
                 'first_name',
                 'last_name',
@@ -62,5 +61,8 @@ return new class extends Migration
                 'socials',
             ]);
         });
+
+        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('mobile_extensions');
     }
 };
