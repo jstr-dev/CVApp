@@ -11,14 +11,17 @@ const styles = {
     secondary: 'text-gray-900 content-col border border-gray-300 hover:bg-gray-200 focus:ring-0.5 focus:ring-gray-100 floatbox'
 }
 
-export default function Button({ loading, className, children, buttonStyle = 'default', ...defaultProps }: ButtonProps) {
+export default function Button({ loading, className, children, buttonStyle = 'default', style, ...defaultProps }: ButtonProps) {
     let ButtonStyles =
         styles[buttonStyle] +
         " transition focus:outline-none focus:ring-0.5 " +
         "font-medium rounded-lg text-sm py-3 flex flex-row justify-center items-center px-4";
 
+    let propStyle = style ?? {};
+    propStyle.position = 'relative';
+
     return (
-        <button {...defaultProps} className={ButtonStyles + " " + (className ?? '')} style={{position: 'relative'}}>
+        <button {...defaultProps} className={ButtonStyles + " " + (className ?? '')} style={propStyle}>
             {loading &&
                 <div className="absolute right-3">
                     <Loader />

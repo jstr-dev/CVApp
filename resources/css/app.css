@@ -110,7 +110,7 @@ html,
 }
 
 .floatbox {
-    box-shadow: 0px 10px 10px 0.5px #DBDBDB;
+    box-shadow: 0px 1px 1px 0.1px #DBDBDB;
 }
 
 .nav {
