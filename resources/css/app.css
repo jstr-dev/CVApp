@@ -118,6 +118,7 @@ html,
     white-space: nowrap;
     padding-left: 15px;
     padding-right: 15px;
+    position: fixed;
 }
 
 .nav-icon {
