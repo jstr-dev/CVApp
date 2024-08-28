@@ -15,12 +15,14 @@ export default function Button({ loading, className, children, buttonStyle = 'de
     let ButtonStyles =
         styles[buttonStyle] +
         " transition focus:outline-none focus:ring-0.5 " +
-        "font-medium rounded-lg text-sm py-2.5 flex flex-row justify-center items-center px-4";
+        "font-medium rounded-lg text-sm py-3 flex flex-row justify-center items-center px-4";
 
     return (
-        <button {...defaultProps} className={ButtonStyles + " " + (className ?? '')}>
+        <button {...defaultProps} className={ButtonStyles + " " + (className ?? '')} style={{position: 'relative'}}>
             {loading &&
-                <Loader />
+                <div className="absolute right-3">
+                    <Loader />
+                </div>
             }
 
             {children}
