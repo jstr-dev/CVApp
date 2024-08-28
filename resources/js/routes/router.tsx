@@ -23,6 +23,11 @@ const router = createBrowserRouter([
                 path: 'applications',
                 element: <Applications />
             },
+
+            {
+                path: "templates",
+                element: <p>Coming Soon</p>
+            }
         ],
     },
 
@@ -34,7 +39,7 @@ const router = createBrowserRouter([
                 path: 'onboarding',
                 element: <Onboarding />
             },
-        
+
             {
                 path: "logout",
                 element: <Logout />

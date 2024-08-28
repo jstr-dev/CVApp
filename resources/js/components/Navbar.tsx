@@ -44,10 +44,10 @@ function NavSection({ title, children }: { title: string, children: React.ReactN
     const { expanded } = getNavContext();
 
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col gap-3">
             <div className={'flex flex-col w-full'}>
                 <span className={`line ${expanded && 'hide'}`}></span>
-                <div className={`text-xs text-gray-500 font-bold mb-2 nav-title ${!expanded && 'hide'}`}>{title}</div>
+                <div className={`text-xs text-gray-500 font-bold nav-title ${!expanded && 'hide'}`}>{title}</div>
             </div>
 
             <div className="flex flex-col gap-1">{children}</div>
