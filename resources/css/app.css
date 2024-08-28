@@ -21,7 +21,7 @@
 
 * {
     --primary-color: #ea580c;
-    --background-color: rgb(230, 230, 230);
+    --background-color: rgb(240, 240, 240);
     --content-panel-color: rgb(250, 250, 250);
 }
 
@@ -106,7 +106,7 @@ html,
 .ContentPanel {
     background-color: var(--content-panel-color);
     padding: 10px;
-    box-shadow: 0px 10px 10px 0.5px #DBDBDB;
+    box-shadow: 0px 8px 8px 0.5px #DBDBDB;
 }
 
 .floatbox {
@@ -114,7 +114,7 @@ html,
 }
 
 .nav {
-    box-shadow: 10px 0px 10px 0.5px #DBDBDB;
+    box-shadow: 8px 0px 8px 0.5px #DBDBDB;
     height: 100%;
     z-index: 1;
     transition: 0.5s;
