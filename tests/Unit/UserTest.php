@@ -6,7 +6,7 @@ use App\Http\Controllers\api\AuthController;
 use App\Models\User;
 use Auth;
 use Hash;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use Request;
 
 class UserTest extends TestCase
