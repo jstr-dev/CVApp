@@ -58,7 +58,7 @@ function NavSection({ title, children }: { title: string, children: React.ReactN
 function NavLogo()
 {
     return (
-        <div className="mb-6 nav-icon">
+        <div className="mb-5 nav-icon">
             <Logo />
         </div>
     );
