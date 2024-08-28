@@ -10,23 +10,23 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
     return (
         <div className="flex w-full h-full">
             <div className="flex flex-col gap-10 py-8 max-lg:hidden w-2/5 justify-between">
-                <div className='flex flex-col px-20 gap-20'>
+                <div className='flex flex-col px-20 gap-32'>
                     <Logo />
 
                     <StepperContainer>
-                        <StepperItem 
-                            title="Provide your details" 
-                            description="Enter your address" 
+                        <StepperItem
+                            title="Provide your details"
+                            description="Enter your address"
                             icon="fa-address-book"
-                            active={user?.onboarding_stage === 'address'} 
+                            active={user?.onboarding_stage === 'address'}
                             hasChild={true}
                         />
 
                         {/* TODO: This is temporary will merge in to the previous step */}
-                        <StepperItem 
-                            title="Enter your phone number" 
-                            description="Temporary text" 
-                            active={user?.onboarding_stage === 'mobile'} 
+                        <StepperItem
+                            title="Enter your phone number"
+                            description="Temporary text"
+                            active={user?.onboarding_stage === 'mobile'}
                             hasParent={true}
                             icon="fa-phone"
                         />

@@ -50,7 +50,7 @@ function Signup() {
 
     return (
         <LoginLayout>
-            <div className="w-3/4 sm:min-w-[400px] flex flex-col">
+            <div className="max-w-[500px] w-3/4 flex flex-col">
                 <span className='max-sm:text-xl mb-8 text-2xl font-semibold'>Kickstart your career with us</span>
 
                 <form className='signupForm flex flex-col center' onSubmit={postSignup}>
@@ -61,14 +61,6 @@ function Signup() {
                         error={errors?.first_name}
                         required={true}
                     />
-
-                    {/* <Input type='text'
-                        id='middle_name'
-                        label='Middle Names'
-                        className='mb-3'
-                        error={errors?.middle_name}
-                        required={true}
-                    /> */}
 
                     <Input type='text'
                         id='last_name'

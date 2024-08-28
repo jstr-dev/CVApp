@@ -21,8 +21,8 @@
 
 * {
     --primary-color: #ea580c;
-    --background-color: rgb(220, 220, 220);
-    --content-panel-color: rgb(240, 240, 240);
+    --background-color: rgb(230, 230, 230);
+    --content-panel-color: rgb(250, 250, 250);
 }
 
 .nav-size {
@@ -107,6 +107,10 @@ html,
     background-color: var(--content-panel-color);
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 0.3px;
+}
+
+.floatbox {
+    box-shadow: rgba(0, 0, 0, 0.05) 0.3px, 0, 0, 0;
 }
 
 .nav {

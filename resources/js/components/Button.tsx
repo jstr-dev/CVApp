@@ -8,7 +8,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const styles = {
     default: 'text-white bg-black hover:bg-neutral-950 focus:ring-gray-300 focus:ring-0.5',
-    secondary: 'text-gray-900 content-col border border-gray-300 hover:bg-gray-100 focus:ring-0.5 focus:ring-gray-100'
+    secondary: 'text-gray-900 content-col border border-gray-300 hover:bg-gray-200 focus:ring-0.5 focus:ring-gray-100 floatbox'
 }
 
 export default function Button({ loading, className, children, buttonStyle = 'default', ...defaultProps }: ButtonProps) {
