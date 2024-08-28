@@ -122,7 +122,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            <div className="w-full flex flex-col gap-1">
+            <div className="w-full flex flex-col gap-1 mt-5">
                 <NavItem name="Notifications" icon="fa-bell" href="/notifications" />
                 <NavItem name="Settings" icon="fa-gear" href="/settings" />
                 <NavItem name="Logout" icon="fa-right-from-bracket" href="/logout" />
