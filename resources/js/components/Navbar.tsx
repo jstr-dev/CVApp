@@ -109,7 +109,7 @@ export default function Navbar() {
                 {/* md:background-col */}
                 <NavItem name="Search" className="mb-5" icon="fa-magnifying-glass" onClick={() => modalpopup()} />
 
-                <div className="flex flex-col gap-5 w-full">
+                <div className="flex flex-col gap-3 w-full">
                     <NavSection title="General">
                         <NavItem name="Dashboard" icon="fa-house" href="/" />
                         <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" />
