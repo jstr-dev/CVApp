@@ -5,11 +5,11 @@
 @layer utilities
 {
     .background-col {
-        background-color: rgb(var(--background-color));
+        background-color: var(--background-color);
     }
-    
+
     .content-col {
-        background-color: rgb(var(--content-panel-color));
+        background-color: var(--content-panel-color);
     }
 }
 
@@ -21,16 +21,32 @@
 
 * {
     --primary-color: #ea580c;
-    --background-color: 230, 230, 230;
-    --content-panel-color: 248, 246, 246;
+    --background-color: rgb(220, 220, 220);
+    --content-panel-color: rgb(240, 240, 240);
 }
 
 .nav-size {
-    transition: width 0.5s ease-in-out;
+    transition: width 0.3s ease-in-out;
 }
 
 .nav-grad {
-    transition: opacity 0.5s ease-in-out 0.2s;
+    transition: opacity 0.3s ease-in-out 0s;
+}
+
+.line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 20px;
+    border-radius: 25px;
+    background: #aaa;
+    transition: all 0.3s ease;
+}
+
+.nav-title {
+    transition: all 0.3s ease;
+    margin-left: 15px;
 }
 
 .nav-grad.hide {
@@ -79,7 +95,7 @@
 body,
 html,
 #app {
-    background-color: rgb(var(--background-color));
+    background-color: var(--background-color);
     width: 100%;
     height: 100%;
 }
@@ -89,13 +105,24 @@ html,
 }
 
 .ContentPanel {
-    background-color: rgb(var(--content-panel-color));
+    background-color: var(--content-panel-color);
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 0.3px;
 }
 
 .nav {
     box-shadow: rgba(0, 0, 0, 0.05) 0.3px, 0, 0, 0;
+    height: 100%;
+    z-index: 1;
+    transition: 0.5s;
+    overflow-x: hidden;
+    white-space: nowrap;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.nav-icon {
+     min-width: 50px;
 }
 
 input:-webkit-autofill,

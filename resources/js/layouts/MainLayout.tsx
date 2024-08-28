@@ -6,7 +6,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <div className="w-full h-full flex">
             <Navbar />
 
-            <div className='content p-6 w-full max-md:ml-[60px]'>
+            <div className='content p-6 w-full max-lg:ml-[80px] container mx-auto'>
                 {children}
             </div>
         </div>

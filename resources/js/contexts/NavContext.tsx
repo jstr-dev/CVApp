@@ -9,7 +9,7 @@ interface Expandable {
 const NavbarContext = React.createContext<Expandable | undefined>(undefined);
 
 const NavbarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [expanded, setExpanded] = React.useState(window.innerWidth > TAILWIND_BP.md);
+    const [expanded, setExpanded] = React.useState(window.innerWidth > TAILWIND_BP.lg);
 
     return (
         <NavbarContext.Provider value={{ expanded, setExpanded }}>
