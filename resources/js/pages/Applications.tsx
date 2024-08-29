@@ -13,10 +13,10 @@ function Applications()
             <Heading title="Applications" />
 
             <PanelCol>
-                <PanelGrid>
+                {/* <PanelGrid>
                     <ApplicationList status={['pending']} />
                     <ApplicationList status={['active']} />
-                </PanelGrid>
+                </PanelGrid> */}
 
                 <ApplicationList status={['rejected', 'accepted']} label="Finished Applications" />
             </PanelCol>
