@@ -68,7 +68,7 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, has
 
 function Pagination({ loading }: { loading?: boolean }) {
     return (
-        <div className="flex flex-row-reverse items-center justify-between mt-4">
+        <div className="flex flex-row-reverse items-center justify-between">
             <div className="flex flex-row gap-2">
                 <Button buttonStyle="secondary" size="small">Previous</Button>
                 <Button buttonStyle="secondary" size="small">Next</Button>
