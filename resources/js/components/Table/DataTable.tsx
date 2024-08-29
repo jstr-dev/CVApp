@@ -75,7 +75,7 @@ function Pagination({ loading }: { loading?: boolean }) {
             </div>
 
             {loading ? <SkeletonLine style={{ width: '12rem' }} /> :
-                <div className="text-sm justify-center text-gray-800">Showing <b>1</b> out of <b>1</b> entries</div>
+                <div className="text-sm justify-center">Showing <b>1</b> out of <b>1</b> entries</div>
             }
         </div>
     )
