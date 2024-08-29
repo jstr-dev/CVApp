@@ -8,7 +8,7 @@ interface ApplicationListProps extends React.AllHTMLAttributes<HTMLDivElement> {
 }
 
 const tableHeaders: TableHeader<Application>[] = [
-    { header: 'Job Title', model: (app: Application) => app.job.title, flex: 4 },
+    { header: 'Job Title', model: (app: Application) => <div className="text-red-500">{app.job.title}</div>, flex: 4 },
     { header: 'Company', model: (app: Application) => app.job.company, flex: 2 },
     { header: 'Salary', model: (app: Application) => app.job.salary.toString(), flex: 2 },
     { header: 'Date', model: 'created_at', flex: 2 },

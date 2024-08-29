@@ -22,7 +22,7 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params }: DataTablePro
 
         axiosInstance.get(url).then((response) => {
             setTableData(response.data);
-        });
+        })
     }, [uri, params])
 
     return (

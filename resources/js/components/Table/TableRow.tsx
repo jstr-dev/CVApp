@@ -5,17 +5,28 @@ interface TableRowProps<T> extends React.AllHTMLAttributes<HTMLDivElement> {
     model: T;
 }
 
-// TableRow component
 function TableRow<T>({ model, tableHeaders }: TableRowProps<T>) {
     return (
         <div className="flex flex-row w-full">
-            {tableHeaders.map((header, index) => (
-                <div key={index} style={{ flex: header.flex ?? 1 }} className="text-sm text-gray-800">
-                    {typeof header.model === 'function'
-                        ? header.model(model)
-                        : String(model[header.model])}
-                </div>
-            ))}
+            {tableHeaders.map((header, index) => {
+                let cellContent: React.ReactNode;
+
+                try {
+                    if (typeof header.model === 'function') {
+                        cellContent = header.model(model);
+                    } else {
+                        cellContent = String(model[header.model]);
+                    }
+                } catch (error) {
+                    cellContent = "-";
+                }
+
+                return (
+                    <div key={index} style={{ flex: header.flex ?? 1 }} className="text-sm text-gray-800">
+                        {cellContent}
+                    </div>
+                );
+            })}
         </div>
     );
 }

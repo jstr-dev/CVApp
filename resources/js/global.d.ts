@@ -41,7 +41,7 @@ interface MobileErrors {
 interface TableHeader<T> {
     header: string;
     flex?: number;
-    model: keyof T | ((model: T) => string);
+    model: keyof T | ((model: T) => React.ReactNode);
 }
 
 interface Job {
