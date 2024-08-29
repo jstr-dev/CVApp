@@ -30,11 +30,11 @@ function NavItem({ name, icon, href, className, onClick }: NavItemProps) {
             className={`nav-item w-full h-10 nav-item flex flex-row items-center rounded-md cursor-pointer ${isActive && 'nav-active'} ${className ?? ''}`}
             onClick={onClick ?? navClick}
         >
-            <div className={"flex flex-shrink-0 justify-center items-center nav-icon"}>
-                <i className={`text-lg text-gray-800 fa-solid ${icon}`}></i>
+            <div className={"flex flex-shrink-0 justify-center items-center nav-icon text-inherit"}>
+                <i className={`text-lg text-gray-800 fa-solid ${icon} text-inherit`}></i>
             </div>
 
-            <div className={`nav-grad flex-shrink-0 text-sm font-semibold text-black leading-3 mb-[2px] ${!expanded && 'hide'}`}>{name}</div>
+            <div className={`flex-shrink-0 text-sm font-semibold leading-3 mb-[2px] ${!expanded && 'hide'}`}>{name}</div>
         </div>
     )
 }
@@ -106,7 +106,6 @@ export default function Navbar() {
             <div className="w-full">
                 <NavLogo />
 
-                {/* md:background-col */}
                 <NavItem name="Search" className="mb-5" icon="fa-magnifying-glass" onClick={() => modalpopup()} />
 
                 <div className="flex flex-col gap-3 w-full">
