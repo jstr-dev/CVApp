@@ -24,7 +24,7 @@ export default function Button({ loading, className, children, buttonStyle = 'de
     let ButtonStyles =
         styles[buttonStyle] + ' ' + sizes[size] +
         " transition focus:outline-none focus:ring-0.5 " +
-        "font-medium rounded-lg flex flex-row justify-center items-center";
+        "font-semibold rounded-lg flex flex-row justify-center items-center";
 
     let propStyle = style ?? {};
     propStyle.position = 'relative';
