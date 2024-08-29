@@ -91,6 +91,25 @@
     color: theme('colors.blue.600')
 }
 
+@keyframes skeleton-loading {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+
+  .skeleton-line {
+    background-color: theme('colors.gray.200');
+    background-image: linear-gradient(90deg, theme('colors.gray.200'), #f8fafc, theme('colors.gray.200'));
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    line-height: 1;
+    animation: skeleton-loading 1.5s infinite;
+  }
+
 body,
 html,
 #app {

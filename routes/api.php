@@ -29,6 +29,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::get('/applications/get', function () {
+        sleep(2); // simulate slow network
+
         return response()->json([collect([
             'created_at' => 'Today',
             'job' => collect([
