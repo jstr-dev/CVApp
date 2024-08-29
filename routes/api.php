@@ -19,10 +19,24 @@ Route::middleware(['web'])->controller(UserController::class)->group(function ()
     Route::post('signup', 'signup');
 });
 
-Route::middleware('auth:sanctum')->controller(OnboardingController::class)->prefix('/onboarding')->group(function () {
-    Route::post('/back', 'postBack');
-    Route::post('/skip', 'postSkip');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::controller(OnboardingController::class)->prefix('/onboarding')->group(function () {
+        Route::post('/back', 'postBack');
+        Route::post('/skip', 'postSkip');
 
-    Route::post('/address', 'postAddress')->middleware('verify.onboarding:address');
-    Route::post('/mobile', 'postMobile')->middleware('verify.onboarding:mobile');
+        Route::post('/address', 'postAddress')->middleware('verify.onboarding:address');
+        Route::post('/mobile', 'postMobile')->middleware('verify.onboarding:mobile');
+    });
+
+    Route::get('/applications/get', function () {
+        return response()->json([collect([
+            'created_at' => 'Today',
+            'job' => collect([
+                'company' => 'Google',
+                'salary' => '$100,000',
+                'title' => 'Full Stack Developer',
+            ])
+        ])]);
+    });
 });
+

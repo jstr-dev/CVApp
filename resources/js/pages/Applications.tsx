@@ -4,6 +4,7 @@ import PanelCol from '@/components/PanelCol';
 import PanelGrid from '@/components/PanelGrid';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
+import ApplicationList from './partials/applications/ApplicationList';
 
 function Applications()
 {
@@ -13,13 +14,11 @@ function Applications()
 
             <PanelCol>
                 <PanelGrid>
-                    <Panel className='min-h-[200px]' loading>test</Panel>
-                    <Panel>test</Panel>
+                    <ApplicationList status={['pending']} />
+                    <ApplicationList status={['active']} />
                 </PanelGrid>
 
-                <Panel>
-                    bad things
-                </Panel>
+                <ApplicationList status={['rejected', 'accepted']} label="Finished Applications" />
             </PanelCol>
         </>
     )

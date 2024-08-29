@@ -22,6 +22,7 @@ interface Address {
 
 type FormError = string | undefined | Array<string>;
 type OnboardingStage = 'address' | 'mobile' | 'finished';
+type ApplicationStatus = 'accepted' | 'rejected' | 'pending' | 'active';
 
 interface AddressErrors {
     first_line?: FormError,
@@ -35,4 +36,23 @@ interface AddressErrors {
 interface MobileErrors {
     mobile_number?: FormError
     mobile_country_code?: FormError
+}
+
+interface TableHeader<T> {
+    header: string;
+    flex?: number;
+    model: keyof T | ((model: T) => string);
+}
+
+interface Job {
+    id: number;
+    title: string;
+    salary: number;
+    company: string;
+}
+
+interface Application {
+    id: number;
+    job: Job;
+    created_at: Date;
 }
