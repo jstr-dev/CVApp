@@ -41,7 +41,7 @@ export default function Button({ loading, className, children, buttonStyle = 'de
                 <i className={'mr-2 fa-solid ' + icon} />
             }
 
-            <div className={'translate-y-[-0.5px]'}>{children}</div>
+            <div className={''}>{children}</div>
         </button>
     );
 }
