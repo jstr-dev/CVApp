@@ -5,7 +5,7 @@ interface TableContentProps extends React.AllHTMLAttributes<HTMLDivElement> {
 
 function TableContent({ children }: TableContentProps) {
     return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col">
             {children}
         </div>
     )

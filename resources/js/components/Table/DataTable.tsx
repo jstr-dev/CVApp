@@ -85,10 +85,10 @@ function ContentSkeleton({ tableHeaders, count }: { tableHeaders: TableHeader<an
     return (
         <TableContent>
             {Array(count).fill(0).map((_, index) => (
-                <div className="flex flex-row w-full" key={index}>
+                <div className="flex flex-row w-full table-content-padding table-item" key={index}>
                     {tableHeaders.map((header, index) => {
                         return (
-                            <div key={index} style={{ flex: header.flex ?? 1 }} className="text-sm text-gray-800">
+                            <div key={index} style={{ flex: header.flex ?? 1 }}>
                                 <SkeletonLine style={{ width: '80%' }} />
                             </div>
                         );

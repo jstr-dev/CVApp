@@ -7,7 +7,7 @@ interface TableRowProps<T> extends React.AllHTMLAttributes<HTMLDivElement> {
 
 function TableRow<T>({ model, tableHeaders }: TableRowProps<T>) {
     return (
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row w-full table-content-padding table-item">
             {tableHeaders.map((header, index) => {
                 let cellContent: React.ReactNode;
 
