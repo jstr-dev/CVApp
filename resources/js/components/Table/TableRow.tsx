@@ -22,7 +22,7 @@ function TableRow<T>({ model, tableHeaders }: TableRowProps<T>) {
                 }
 
                 return (
-                    <div key={index} style={{ flex: header.flex ?? 1 }} className="text-sm text-gray-800">
+                    <div key={index} style={{ flex: header.flex ?? 1 }} className="text-sm">
                         {cellContent}
                     </div>
                 );

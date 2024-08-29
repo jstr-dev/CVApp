@@ -1,6 +1,7 @@
 import React from 'react';
 import DataTable from '@/components/Table/DataTable';
 import Panel from '@/components/Panel';
+import Button from '@/components/Button';
 
 interface ApplicationListProps extends React.AllHTMLAttributes<HTMLDivElement> {
     status?: Array<ApplicationStatus>
@@ -14,8 +15,16 @@ const tableHeaders: TableHeader<Application>[] = [
     { header: 'Date', model: 'created_at', flex: 2 },
 ];
 
+function AddApplication()
+{
+    return (
+        <div className="w-auto gap-2 flex flex-row items-center">
+            <Button className="w-full" size="regular" buttonStyle="default" icon="fa-plus">Add</Button>
+        </div>
+    )
+}
+
 function ApplicationList({ status, label, ...props }: ApplicationListProps) {
-    const statusName = status ? status.map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ') : 'All';
     const uri = "applications/get";
     const params = new URLSearchParams();
 
@@ -25,11 +34,17 @@ function ApplicationList({ status, label, ...props }: ApplicationListProps) {
 
     return (
         <Panel {...props}>
-            <div className="text-md font-semibold mb-4">{label ?? statusName + " Applications"}</div>
-
-            <DataTable<Application> className={''} hasPagination tableHeaders={tableHeaders} uri={uri} params={params}>
-
-            </DataTable>
+            <DataTable<Application>
+                className={''}
+                hasPagination
+                tableHeaders={tableHeaders}
+                uri={uri}
+                params={params}
+                hasSearch
+                hasFilters
+                header={label}
+                headerElement={<AddApplication/>}
+            />
         </Panel>
     );
 }

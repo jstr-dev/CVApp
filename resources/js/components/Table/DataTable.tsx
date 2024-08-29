@@ -7,16 +7,21 @@ import TableRow from '@/components/Table/TableRow';
 import Button from '../Button';
 import axiosInstance from '@/services/AxiosInstance';
 import SkeletonLine from '../SkeletonLine';
+import Search from '../Search';
 
 interface DataTableProps<T> extends React.AllHTMLAttributes<HTMLDivElement> {
     hasPagination?: boolean
-    tableHeaders: Array<TableHeader<T>>
+    tableHeaders: TableHeader<T>[]
     uri: string
     params: URLSearchParams
+    hasSearch?: boolean
+    hasFilters?: boolean
+    header?: string
+    headerElement?: React.ReactNode
 }
 
-function DataTable<T>({ hasPagination, tableHeaders, uri, params, ...props }: DataTableProps<T>) {
-    const [tableData, setTableData] = React.useState<Array<T>>([]);
+function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, hasFilters, ...props }: DataTableProps<T>) {
+    const [tableData, setTableData] = React.useState<T[]>([]);
     const [loading, setLoading] = React.useState(true);
 
     useEffect(() => {
@@ -30,6 +35,20 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params, ...props }: Da
 
     return (
         <Table>
+            <div className="mb-6 flex flex-row w-full justify-between items-center">
+                {props.header &&
+                    <div className="flex flex-row gap-2">
+                        <div className="text-md font-semibold">{props.header}</div>
+                        {/* <div className="text-md font-bold text-gray-400" >{tableData.length}</div> */}
+                    </div>
+                }
+
+                <div className="flex flex-row flex-grow justify-end gap-2">
+                    <TableControls hasSearch={hasSearch} hasFilters={hasFilters} />
+                    {props.headerElement}
+                </div>
+            </div>
+
             <TableHead tableHeaders={tableHeaders} />
 
             {loading ? <ContentSkeleton tableHeaders={tableHeaders} count={5} /> :
@@ -49,7 +68,7 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params, ...props }: Da
 
 function Pagination({ loading }: { loading?: boolean }) {
     return (
-        <div className="flex flex-row-reverse items-center justify-between">
+        <div className="flex flex-row-reverse items-center justify-between mt-4">
             <div className="flex flex-row gap-2">
                 <Button buttonStyle="secondary" size="small">Previous</Button>
                 <Button buttonStyle="secondary" size="small">Next</Button>
@@ -77,6 +96,31 @@ function ContentSkeleton({ tableHeaders, count }: { tableHeaders: TableHeader<an
                 </div>
             ))}
         </TableContent>
+    )
+}
+
+function TableSearch() {
+    return (
+        <div className="max-w-[25rem] max-xl:max-w-[15rem] w-full">
+            <Search />
+        </div>
+    )
+}
+
+function Filters() {
+    return (
+        <div className="w-auto">
+            <Button buttonStyle="secondary" size="regular" icon="fa-bars">Filters</Button>
+        </div>
+    )
+}
+
+function TableControls({ hasSearch, hasFilters }: { hasSearch?: boolean, hasFilters?: boolean }) {
+    return (
+        <>
+            {hasSearch && <TableSearch />}
+            {hasFilters && <Filters />}
+        </>
     )
 }
 

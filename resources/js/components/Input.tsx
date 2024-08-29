@@ -9,7 +9,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export default function Input(props: InputProps) {
     let inputStyles =
-        "block px-2.5 pb-3 pt-3 w-full text-sm " +
+        "block px-2.5 pb-2.5 pt-2.5 w-full text-sm " +
         "text-gray-900 bg-transparent border-gray-300 focus:border-blue-600 " +
         "rounded-lg border border-1 appearance-none focus:outline-none focus:ring-0 peer";
 

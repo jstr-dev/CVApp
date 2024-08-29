@@ -10,15 +10,10 @@ function Applications()
 {
     return (
         <>
-            <Heading title="Applications" />
+            <Heading title="Your Applications" />
 
             <PanelCol>
-                {/* <PanelGrid>
-                    <ApplicationList status={['pending']} />
-                    <ApplicationList status={['active']} />
-                </PanelGrid> */}
-
-                <ApplicationList status={['rejected', 'accepted']} label="Finished Applications" />
+                <ApplicationList label="All Applications" />
             </PanelCol>
         </>
     )
