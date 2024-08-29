@@ -23,7 +23,7 @@
 }
 
 * {
-    --primary-color: theme('colors.blue.400');
+    --primary-color: theme('colors.blue.600');
     --background-color: rgb(240, 240, 240);
     --content-panel-color: rgb(250, 250, 250);
 }
