@@ -35,7 +35,7 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, has
 
     return (
         <Table>
-            <div className="mb-6 flex flex-row w-full justify-between items-center">
+            <div className="mb-6 flex flex-row w-full justify-between items-center max-md:flex-col gap-4 max-md:items-start">
                 {props.header &&
                     <div className="flex flex-row gap-2">
                         <div className="text-md font-semibold">{props.header}</div>
@@ -43,21 +43,23 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, has
                     </div>
                 }
 
-                <div className="flex flex-row flex-grow justify-end gap-2">
+                <div className="flex flex-row flex-grow justify-end gap-2 max-md:w-full">
                     <TableControls hasSearch={hasSearch} hasFilters={hasFilters} />
                     {props.headerElement}
                 </div>
             </div>
 
-            <TableHead tableHeaders={tableHeaders} />
+            <div className="overflow-x-scroll w-full">
+                <TableHead tableHeaders={tableHeaders} />
 
-            {loading ? <ContentSkeleton tableHeaders={tableHeaders} count={5} /> :
-                <TableContent>
-                    {tableData.map((data, index) => (
-                        <TableRow key={index} model={data} tableHeaders={tableHeaders} />
-                    ))}
-                </TableContent>
-            }
+                {loading ? <ContentSkeleton tableHeaders={tableHeaders} count={5} /> :
+                    <TableContent>
+                        {tableData.map((data, index) => (
+                            <TableRow key={index} model={data} tableHeaders={tableHeaders} />
+                        ))}
+                    </TableContent>
+                }
+            </div>
 
             <TableFooter>
                 {hasPagination && <Pagination loading={loading} />}
@@ -101,7 +103,7 @@ function ContentSkeleton({ tableHeaders, count }: { tableHeaders: TableHeader<an
 
 function TableSearch() {
     return (
-        <div className="max-w-[25rem] max-xl:max-w-[15rem] w-full">
+        <div className="w-full md:max-w-[20rem]">
             <Search />
         </div>
     )
