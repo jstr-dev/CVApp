@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Hash;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 use App\Models\User;
 
@@ -34,9 +35,7 @@ class UserTest extends TestCase
         $this->assertAuthenticatedAs($this->user);
     }
 
-    /**
-    * @dataProvider login_invalid_credentials_provider
-    */
+    #[DataProvider('login_invalid_credentials_provider')]
     public function test_login_invalid_credentials($email, $password, $statusCode)
     {
         $response = $this->post('/api/login', [
@@ -76,9 +75,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /**
-    * @dataProvider signup_invalid_credentials_provider
-    */
+    #[DataProvider('signup_invalid_credentials_provider')]
     public function test_signup_invalid_credentials($email, $password, $password_confirmation, $first_name, $last_name)
     {
         $response = $this->post('/api/signup', [

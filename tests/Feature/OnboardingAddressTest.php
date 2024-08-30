@@ -8,6 +8,7 @@ use App\Services\UserService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class OnboardingAddressTest extends TestCase
 {
@@ -31,9 +32,7 @@ class OnboardingAddressTest extends TestCase
         ]);
     }
 
-    /**
-     * @dataProvider address_valid_credentials_provider
-     */
+    #[DataProvider('address_valid_credentials_provider')]
     public function test_address_success($first_line, $second_line, $code, $city, $county, $country)
     {
         $response = $this->post("/api/onboarding/address", [
@@ -68,9 +67,7 @@ class OnboardingAddressTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider address_invalid_credentials_provider
-     */
+    #[DataProvider('address_invalid_credentials_provider')]
     public function test_address_invalid_credentials($first_line, $second_line, $code, $city, $county, $country)
     {
         $response = $this->post("/api/onboarding/address", [

@@ -8,6 +8,7 @@ use App\Services\UserService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class OnboardingMobileTest extends TestCase
 {
@@ -51,9 +52,7 @@ class OnboardingMobileTest extends TestCase
         ]);
     }
 
-    /**
-     * @dataProvider mobile_number_invalid_credentials_provider
-     */
+    #[DataProvider('mobile_number_invalid_credentials_provider')]
     public function test_mobile_number_invalid_credentials($mobile_number, $mobile_country_code)
     {
         $response = $this->post("/api/onboarding/mobile", [
