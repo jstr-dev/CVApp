@@ -171,6 +171,19 @@ html,
     position: fixed;
 }
 
+.navtop {
+    top: 0;
+    box-shadow: 0px 0px 4px 0.5px #DBDBDB;
+    transition: 0.5s;
+    white-space: nowrap;
+}
+
+.barmenu {
+    box-shadow: 7px 4px 4px 0.5px #DBDBDB;
+    transition: 0.5s;
+    background-color: white;
+}
+
 .rule {
     height: 1px;
     width: 100%;
