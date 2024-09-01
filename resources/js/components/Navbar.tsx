@@ -79,7 +79,7 @@ function NavbarTop() {
     }
 
     return (
-        <div className="navtop w-full flexjustify-center">
+        <div className="nav-top w-full flexjustify-center">
             <div className="w-full flex flex-row justify-between mt-5">
                 <NavLogo />
 
@@ -91,18 +91,23 @@ function NavbarTop() {
                         {isOpen &&
                         <div className={`absolute z-50 right-2 barmenu rounded-md shadow-md${isOpen ? 'block' : 'hide'}`}>
                             <ul className="py-3 pl-2 pr-2 flex flex-col">
+                                <NavSection title="General">
                                 <li>
                                     <NavItem name="Dashboard" icon="fa-house" href="/" isOpen={isOpen} />
                                 </li>
                                 <li>
                                     <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" isOpen={isOpen} />  
                                 </li>
+                                </NavSection>
+                                <NavSection title="Customise">
                                 <li>
                                     <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" isOpen={isOpen} />
                                 </li>
                                 <li>
                                     <NavItem name="Cover Letter Templates" icon="fa-envelope" href="/cover-letters" isOpen={isOpen} />
                                 </li>
+                                </NavSection>
+                                <span className="nav-top-line"></span>
                                 <li>
                                     <NavItem name="Settings" icon="fa-gear" href="/settings" isOpen={isOpen} />
                                 </li>                                    

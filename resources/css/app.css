@@ -42,6 +42,13 @@
     margin-left: 15px;
 }
 
+.nav-top-line {
+    height: 1px;
+    border-radius: 25px;
+    background: theme('colors.gray.300');
+    width: 100%;
+}
+
 .nav-title {
     transition: all 0.3s ease;
     margin-left: 15px;
@@ -171,7 +178,7 @@ html,
     position: fixed;
 }
 
-.navtop {
+.nav-top {
     top: 0;
     box-shadow: 0px 0px 4px 0.5px #DBDBDB;
     transition: 0.5s;
