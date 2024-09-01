@@ -88,33 +88,33 @@ function NavbarTop() {
 
     return (
         <div className="nav-top w-full flex justify-center content-col">
-            <div className="w-full flex flex-row justify-between mt-2 z-10">
+            <div className="w-full flex flex-row justify-between z-10 items-center px-2 py-2">
                 <NavLogo />
 
-                <div className="flex flex-row pr-2">
-                    <NavItem name="" icon="fa-magnifying-glass" onClick={() => modalpopup()} />                           
+                <div className="flex flex-row">
+                    <NavItem name="" icon="fa-magnifying-glass" onClick={() => modalpopup()} />
                     <NavItem name="" icon="fa-bell" href="/notifications" />
                     <div className="relative">
                         <NavItem name = "" icon="fa-bars" onClick={toggleMenu}/>
                         {isOpen &&
                         <div className={`absolute z-50 right-2 barmenu rounded-md shadow-md ${isOpen ? 'block' : 'hide'}`}>
-                            <ul className="py-3 pl-2 pr-2 flex flex-col">
+                            <ul className="py-3 pl-2 pr-2 flex flex-col gap-1">
                                 <li>
                                     <NavItem name="Dashboard" icon="fa-house" href="/" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <li>
-                                    <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" isOpen={isOpen} onClick={closeMenu}/>  
+                                    <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <li>
-                                    <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" isOpen={isOpen} onClick={closeMenu}/>
+                                    <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" isOpen={isOpen} onClick={closeMenu} className="pr-5"/>
                                 </li>
                                 <li>
-                                    <NavItem name="Cover Letter Templates" icon="fa-envelope" href="/cover-letters" isOpen={isOpen} onClick={closeMenu}/>
+                                    <NavItem name="Cover Templates" icon="fa-envelope" href="/cover-letters" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
-                                <span className="nav-top-line mt-2 mb-2"></span>
+                                <span className="nav-top-line"></span>
                                 <li>
                                     <NavItem name="Settings" icon="fa-gear" href="/settings" isOpen={isOpen} onClick={closeMenu}/>
-                                </li>                                    
+                                </li>
                                 <li>
                                     <NavItem name="Logout" icon="fa-right-from-bracket" href="/logout" isOpen={isOpen} />
                                 </li>
@@ -180,7 +180,7 @@ function NavbarSide() {
 
                     <NavSection title="Customise">
                         <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" />
-                        <NavItem name="Cover Letter Templates" icon="fa-envelope" href="/cover-letters" />
+                        <NavItem name="Cover Templates" icon="fa-envelope" href="/cover-letters" />
                     </NavSection>
                 </div>
             </div>
