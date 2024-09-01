@@ -62,10 +62,10 @@ function NavSection({ title, children }: { title: string, children: React.ReactN
     )
 }
 
-function NavLogo()
+function NavLogo({className} : {className?: string})
 {
     return (
-        <div className={`${window.innerWidth < TAILWIND_BP.sm ? '' : 'mb-5'} nav-icon`}>
+        <div className={`${window.innerWidth < TAILWIND_BP.sm ? '' : 'mb-5'} nav-icon ` + className}>
             <Logo />
         </div>
     );
@@ -168,7 +168,7 @@ function NavbarSide() {
         <div className={`nav nav-size flex-shrink-0 flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[80px]'} content-col py-4 items-center`}
             onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} /*onTouchStart={mouseEnter} onTouchEnd={mouseLeave}*/>
             <div className="w-full">
-                <NavLogo />
+                <NavLogo className="ml-1" />
 
                 <NavItem name="Search" className="mb-5" icon="fa-magnifying-glass" onClick={() => modalpopup()} />
 
