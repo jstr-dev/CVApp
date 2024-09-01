@@ -6,6 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     buttonStyle?: 'default' | 'secondary' | 'primary';
     size?: 'base' | 'small' | 'regular';
     icon?: string;
+    hideChildrenOnViewport?: string;
 }
 
 const styles = {
@@ -15,16 +16,16 @@ const styles = {
 }
 
 const sizes = {
-    base: 'text-sm py-3 px-4',
-    regular: 'text-sm py-2 px-4 leading-5',
-    small: 'text-xs py-1.5 px-2'
+    base: 'text-sm px-4 h-10',
+    regular: 'text-sm px-4 leading-5 h-9',
+    small: 'text-xs px-2 h-7'
 }
 
-export default function Button({ loading, className, children, buttonStyle = 'default', style, size = 'base', icon, ...defaultProps }: ButtonProps) {
+export default function Button({ loading, className, children, buttonStyle = 'default', style, size = 'base', icon, hideChildrenOnViewport, ...defaultProps }: ButtonProps) {
     let ButtonStyles =
         styles[buttonStyle] + ' ' + sizes[size] +
         " transition focus:outline-none focus:ring-0.5 " +
-        "font-semibold rounded-lg flex flex-row justify-center items-center";
+        "font-semibold rounded-lg flex flex-row justify-center items-center flex gap-2";
 
     let propStyle = style ?? {};
     propStyle.position = 'relative';
@@ -38,10 +39,10 @@ export default function Button({ loading, className, children, buttonStyle = 'de
             }
 
             {icon &&
-                <i className={'mr-2 fa-solid ' + icon} />
+                <i className={'fa-solid ' + icon} />
             }
 
-            <div className={''}>{children}</div>
+            <div className={hideChildrenOnViewport && `max-${hideChildrenOnViewport}:hidden`}>{children}</div>
         </button>
     );
 }

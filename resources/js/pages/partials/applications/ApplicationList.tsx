@@ -19,7 +19,7 @@ function AddApplication()
 {
     return (
         <div className="w-auto gap-2 flex flex-row items-center">
-            <Button className="w-full" size="regular" buttonStyle="default" icon="fa-plus">Add</Button>
+            <Button className="w-full" size="regular" buttonStyle="default" icon="fa-plus" hideChildrenOnViewport='sm'>New</Button>
         </div>
     )
 }
