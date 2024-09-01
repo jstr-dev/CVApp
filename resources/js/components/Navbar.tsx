@@ -87,7 +87,7 @@ function NavbarTop() {
     }
 
     return (
-        <div className="nav-top w-full flexjustify-center">
+        <div className="nav-top w-full flex justify-center content-col">
             <div className="w-full flex flex-row justify-between mt-2">
                 <NavLogo />
 
