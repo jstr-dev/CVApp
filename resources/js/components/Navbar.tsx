@@ -88,7 +88,7 @@ function NavbarTop() {
 
     return (
         <div className="nav-top w-full flex justify-center content-col">
-            <div className="w-full flex flex-row justify-between mt-2">
+            <div className="w-full flex flex-row justify-between mt-2 z-10">
                 <NavLogo />
 
                 <div className="flex flex-row">
@@ -97,7 +97,7 @@ function NavbarTop() {
                     <div className="relative">
                         <NavItem name = "" icon="fa-bars" onClick={toggleMenu}/>
                         {isOpen &&
-                        <div className={`absolute z-50 right-2 barmenu rounded-md shadow-md${isOpen ? 'block' : 'hide'}`}>
+                        <div className={`absolute z-50 right-2 barmenu rounded-md shadow-md ${isOpen ? 'block' : 'hide'}`}>
                             <ul className="py-3 pl-2 pr-2 flex flex-col">
                                 <li>
                                     <NavItem name="Dashboard" icon="fa-house" href="/" isOpen={isOpen} onClick={closeMenu}/>
@@ -111,7 +111,7 @@ function NavbarTop() {
                                 <li>
                                     <NavItem name="Cover Letter Templates" icon="fa-envelope" href="/cover-letters" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
-                                <span className="nav-top-line"></span>
+                                <span className="nav-top-line mt-3"></span>
                                 <li>
                                     <NavItem name="Settings" icon="fa-gear" href="/settings" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>                                    
