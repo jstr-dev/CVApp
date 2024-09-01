@@ -183,6 +183,7 @@ html,
     box-shadow: 0px 0px 4px 0.5px #DBDBDB;
     transition: 0.5s;
     white-space: nowrap;
+    z-index: 1;
 }
 
 .barmenu {
