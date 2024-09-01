@@ -22,7 +22,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             {
                 isMobile ? <NavbarTop /> : <NavbarSide />
             }
-            <div className={`content w-full ${isMobile ? 'pl-2' : 'max-lg:pl-[80px] pl-[250px]'}`}>
+            <div className={`content w-full ${isMobile ? '' : 'max-lg:pl-[80px] pl-[250px]'}`}>
                 <div className="w-full h-full container p-6 mx-auto">
                     {children}
                 </div>
