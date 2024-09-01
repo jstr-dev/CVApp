@@ -18,7 +18,7 @@ function NavItem({ name, icon, href, className, onClick, isOpen }: NavItemProps)
     const navigate = useNavigate();
     const isActive: boolean = href === window.location.pathname;
 
-    const navClick: () => void = () =>{
+    const navClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (isActive) {
             return;
         }
@@ -26,12 +26,16 @@ function NavItem({ name, icon, href, className, onClick, isOpen }: NavItemProps)
         if (href) {
             navigate(href);
         }
-    }
+
+        if (onClick) {
+            onClick(event);
+        }
+    };
 
     return (
         <div
             className={`nav-item w-full h-10 nav-item flex flex-row items-center rounded-md cursor-pointer ${isActive && 'nav-active'} ${className ?? ''}`}
-            onClick={onClick ?? navClick}
+            onClick={navClick}
         >
             <div className={"flex flex-shrink-0 justify-center items-center nav-icon text-inherit"}>
                 <i className={`text-lg text-gray-800 fa-solid ${icon} text-inherit`}></i>
@@ -74,6 +78,10 @@ function NavbarTop() {
         setIsOpen(!isOpen);
     }
 
+    const closeMenu = () => {
+        setIsOpen(false);
+    }
+
     const modalpopup = () => {
         alert('Coming Soon!')
     }
@@ -92,20 +100,20 @@ function NavbarTop() {
                         <div className={`absolute z-50 right-2 barmenu rounded-md shadow-md${isOpen ? 'block' : 'hide'}`}>
                             <ul className="py-3 pl-2 pr-2 flex flex-col">
                                 <li>
-                                    <NavItem name="Dashboard" icon="fa-house" href="/" isOpen={isOpen} />
+                                    <NavItem name="Dashboard" icon="fa-house" href="/" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <li>
-                                    <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" isOpen={isOpen} />  
+                                    <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" isOpen={isOpen} onClick={closeMenu}/>  
                                 </li>
                                 <li>
-                                    <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" isOpen={isOpen} />
+                                    <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <li>
-                                    <NavItem name="Cover Letter Templates" icon="fa-envelope" href="/cover-letters" isOpen={isOpen} />
+                                    <NavItem name="Cover Letter Templates" icon="fa-envelope" href="/cover-letters" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <span className="nav-top-line"></span>
                                 <li>
-                                    <NavItem name="Settings" icon="fa-gear" href="/settings" isOpen={isOpen} />
+                                    <NavItem name="Settings" icon="fa-gear" href="/settings" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>                                    
                                 <li>
                                     <NavItem name="Logout" icon="fa-right-from-bracket" href="/logout" isOpen={isOpen} />
