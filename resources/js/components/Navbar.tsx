@@ -91,7 +91,7 @@ function NavbarTop() {
             <div className="w-full flex flex-row justify-between mt-2 z-10">
                 <NavLogo />
 
-                <div className="flex flex-row">
+                <div className="flex flex-row pr-2">
                     <NavItem name="" icon="fa-magnifying-glass" onClick={() => modalpopup()} />                           
                     <NavItem name="" icon="fa-bell" href="/notifications" />
                     <div className="relative">
@@ -111,7 +111,7 @@ function NavbarTop() {
                                 <li>
                                     <NavItem name="Cover Letter Templates" icon="fa-envelope" href="/cover-letters" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
-                                <span className="nav-top-line mt-3"></span>
+                                <span className="nav-top-line mt-2 mb-2"></span>
                                 <li>
                                     <NavItem name="Settings" icon="fa-gear" href="/settings" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>                                    
