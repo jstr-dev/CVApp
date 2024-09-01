@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Loader from './Loader';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -6,7 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     buttonStyle?: 'default' | 'secondary' | 'primary';
     size?: 'base' | 'small' | 'regular';
     icon?: string;
-    hideChildrenOnViewport?: string;
+    textClass?: string;
 }
 
 const styles = {
@@ -21,7 +21,7 @@ const sizes = {
     small: 'text-xs px-2 h-7'
 }
 
-export default function Button({ loading, className, children, buttonStyle = 'default', style, size = 'base', icon, hideChildrenOnViewport, ...defaultProps }: ButtonProps) {
+export default function Button({ loading, className, children, buttonStyle = 'default', style, size = 'base', icon, textClass, ...defaultProps }: ButtonProps) {
     let ButtonStyles =
         styles[buttonStyle] + ' ' + sizes[size] +
         " transition focus:outline-none focus:ring-0.5 " +
@@ -42,7 +42,7 @@ export default function Button({ loading, className, children, buttonStyle = 'de
                 <i className={'fa-solid ' + icon} />
             }
 
-            <div className={hideChildrenOnViewport && `max-${hideChildrenOnViewport}:hidden`}>{children}</div>
+            <div className={textClass}>{children}</div>
         </button>
     );
 }

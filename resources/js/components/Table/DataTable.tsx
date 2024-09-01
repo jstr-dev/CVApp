@@ -112,7 +112,7 @@ function TableSearch() {
 function Filters() {
     return (
         <div className="w-auto">
-            <Button buttonStyle="secondary" size="regular" icon="fa-bars" hideChildrenOnViewport='sm'>Filters</Button>
+            <Button buttonStyle="secondary" size="regular" icon="fa-bars" textClass='max-sm:hidden'>Filters</Button>
         </div>
     )
 }
