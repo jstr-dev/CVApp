@@ -65,7 +65,7 @@ function NavSection({ title, children }: { title: string, children: React.ReactN
 function NavLogo()
 {
     return (
-        <div className={`${window.innerWidth < TAILWIND_BP.sm ? 'mb-3' : 'mb-5'} nav-icon`}>
+        <div className={`${window.innerWidth < TAILWIND_BP.sm ? 'mb-1' : 'mb-5'} nav-icon`}>
             <Logo />
         </div>
     );
@@ -88,11 +88,11 @@ function NavbarTop() {
 
     return (
         <div className="nav-top w-full flexjustify-center">
-            <div className="w-full flex flex-row justify-between mt-5">
+            <div className="w-full flex flex-row justify-between mt-2">
                 <NavLogo />
 
-                <div className="flex flex-row gap-1">
-                    <NavItem name="" className="mb-5" icon="fa-magnifying-glass" onClick={() => modalpopup()} />                           
+                <div className="flex flex-row">
+                    <NavItem name="" icon="fa-magnifying-glass" onClick={() => modalpopup()} />                           
                     <NavItem name="" icon="fa-bell" href="/notifications" />
                     <div className="relative">
                         <NavItem name = "" icon="fa-bars" onClick={toggleMenu}/>
