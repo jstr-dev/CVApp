@@ -65,7 +65,7 @@ function NavSection({ title, children }: { title: string, children: React.ReactN
 function NavLogo()
 {
     return (
-        <div className={`${window.innerWidth < TAILWIND_BP.sm ? 'mb-1' : 'mb-5'} nav-icon`}>
+        <div className={`${window.innerWidth < TAILWIND_BP.sm ? '' : 'mb-5'} nav-icon`}>
             <Logo />
         </div>
     );
