@@ -49,7 +49,7 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, has
                 </div>
             </div>
 
-            <div className="overflow-x-scroll w-full">
+            <div className="overflow-x-auto w-full">
                 <TableHead tableHeaders={tableHeaders} />
 
                 {loading ? <ContentSkeleton tableHeaders={tableHeaders} count={5} /> :
