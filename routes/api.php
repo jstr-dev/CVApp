@@ -33,7 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
         return response()->json(collect([
             [
-                'created_at' => 'Today',
+                'created_at' => now()->format('Y-m-d'),
+                'status' => 'pending',
                 'job' => collect([
                     'company' => 'Google',
                     'salary' => '$100,000',
@@ -41,7 +42,8 @@ Route::middleware('auth:sanctum')->group(function () {
                 ])
             ],
             [
-                'created_at' => 'Yesterday',
+                'created_at' => now()->subDay()->format('Y-m-d'),
+                'status' => 'declined',
                 'job' => collect([
                     'company' => 'Microsoft',
                     'salary' => '$90,000',
@@ -49,7 +51,8 @@ Route::middleware('auth:sanctum')->group(function () {
                 ])
             ],
             [
-                'created_at' => '2 days ago',
+                'created_at' => now()->subDays(2)->format('Y-m-d'),
+                'status' => 'success',
                 'job' => collect([
                     'company' => 'Amazon',
                     'salary' => '$80,000',
@@ -57,7 +60,8 @@ Route::middleware('auth:sanctum')->group(function () {
                 ])
             ],
             [
-                'created_at' => '3 days ago',
+                'created_at' => now()->subDays(3)->format('Y-m-d'),
+                'status' => 'acknowledged',
                 'job' => collect([
                     'company' => 'Facebook',
                     'salary' => '$70,000',
@@ -65,7 +69,8 @@ Route::middleware('auth:sanctum')->group(function () {
                 ])
             ],
             [
-                'created_at' => '4 days ago',
+                'created_at' => now()->subDays(4)->format('Y-m-d'),
+                'status' => 'pending',
                 'job' => collect([
                     'company' => 'Twitter',
                     'salary' => '$60,000',
@@ -73,7 +78,8 @@ Route::middleware('auth:sanctum')->group(function () {
                 ])
             ],
             [
-                'created_at' => '5 days ago',
+                'created_at' => now()->subDays(5)->format('Y-m-d'),
+                'status' => 'declined',
                 'job' => collect([
                     'company' => 'Apple',
                     'salary' => '$50,000',

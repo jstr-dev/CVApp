@@ -22,7 +22,7 @@ interface Address {
 
 type FormError = string | undefined | Array<string>;
 type OnboardingStage = 'address' | 'mobile' | 'finished';
-type ApplicationStatus = 'accepted' | 'rejected' | 'pending' | 'active';
+type ApplicationStatus = 'acknowledged' | 'declined' | 'pending' | 'success'; //TODO: adjust backend to fit this
 
 interface AddressErrors {
     first_line?: FormError,
@@ -55,4 +55,5 @@ interface Application {
     id: number;
     job: Job;
     created_at: Date;
+    status: ApplicationStatus;
 }
