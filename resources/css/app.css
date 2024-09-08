@@ -163,7 +163,7 @@ html,
 }
 
 .floatbox {
-    box-shadow: 0px 1px 1px 0.1px #DBDBDB;
+    box-shadow: 1px 2px 4px 0.1px #DBDBDB;
 }
 
 .nav {

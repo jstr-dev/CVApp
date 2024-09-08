@@ -8,6 +8,7 @@ import Button from '../Button';
 import axiosInstance from '@/services/AxiosInstance';
 import SkeletonLine from '../SkeletonLine';
 import Search from '../Search';
+import Filters, { FilterList, CheckFilter } from '../Filters';
 
 interface DataTableProps<T> extends React.AllHTMLAttributes<HTMLDivElement> {
     hasPagination?: boolean
@@ -15,12 +16,12 @@ interface DataTableProps<T> extends React.AllHTMLAttributes<HTMLDivElement> {
     uri: string
     params: URLSearchParams
     hasSearch?: boolean
-    hasFilters?: boolean
+    filters?: React.ReactNode
     header?: string
     headerElement?: React.ReactNode
 }
 
-function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, hasFilters, ...props }: DataTableProps<T>) {
+function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, filters, ...props }: DataTableProps<T>) {
     const [tableData, setTableData] = React.useState<T[]>([]);
     const [loading, setLoading] = React.useState(true);
 
@@ -39,12 +40,11 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, has
                 {props.header &&
                     <div className="flex flex-row gap-2">
                         <div className="text-md font-semibold">{props.header}</div>
-                        {/* <div className="text-md font-bold text-gray-400" >{tableData.length}</div> */}
                     </div>
                 }
 
                 <div className="flex flex-row flex-grow justify-end gap-2 max-md:w-full">
-                    <TableControls hasSearch={hasSearch} hasFilters={hasFilters} />
+                    <TableControls hasSearch={hasSearch} filters={filters} />
                     {props.headerElement}
                 </div>
             </div>
@@ -109,19 +109,11 @@ function TableSearch() {
     )
 }
 
-function Filters() {
-    return (
-        <div className="w-auto">
-            <Button buttonStyle="secondary" size="regular" icon="fa-bars" textClass='max-sm:hidden'>Filters</Button>
-        </div>
-    )
-}
-
-function TableControls({ hasSearch, hasFilters }: { hasSearch?: boolean, hasFilters?: boolean }) {
+function TableControls({ hasSearch, filters }: { hasSearch?: boolean, filters?: React.ReactNode }) {
     return (
         <>
             {hasSearch && <TableSearch />}
-            {hasFilters && <Filters />}
+            {filters}
         </>
     )
 }

@@ -3,6 +3,7 @@ import DataTable from '@/components/Table/DataTable';
 import Panel from '@/components/Panel';
 import Button from '@/components/Button';
 import Badge, { BadgeProps } from '@/components/Badge';
+import Filters, { CheckFilter, FilterList } from '@/components/Filters';
 
 interface ApplicationListProps extends React.AllHTMLAttributes<HTMLDivElement> {
     status?: Array<ApplicationStatus>
@@ -23,6 +24,15 @@ const tableHeaders: TableHeader<Application>[] = [
     { header: 'Status', model: (app: Application) => <Badge styleName={statusMap[app.status]}>{app.status.charAt(0).toUpperCase() + app.status.slice(1)}</Badge>, flex: 1 },
     { header: 'Date', model: 'created_at', flex: 1 },
 ];
+
+const filters = <Filters>
+    <FilterList title="Status">
+        <CheckFilter key="acknowledged">Acknowledged</CheckFilter>
+        <CheckFilter key="pending">Pending Response</CheckFilter>
+        <CheckFilter key="declined">Declined</CheckFilter>
+        <CheckFilter key="success">Offer</CheckFilter>
+    </FilterList>
+</Filters>
 
 function AddApplication()
 {
@@ -50,7 +60,7 @@ function ApplicationList({ status, label, ...props }: ApplicationListProps) {
                 uri={uri}
                 params={params}
                 hasSearch
-                hasFilters
+                filters={filters}
                 header={label}
                 headerElement={<AddApplication/>}
             />
