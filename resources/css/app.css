@@ -49,6 +49,13 @@
     width: 100%;
 }
 
+.modal-line {
+    height: 2px;
+    border-radius: 45px;
+    background: theme('colors.gray.300');
+    width: 98%;
+}
+
 .nav-title {
     transition: all 0.3s ease;
     margin-left: 15px;
@@ -144,6 +151,15 @@ html,
     background-color: var(--background-color);
     width: 100%;
     height: 100%;
+}
+
+.Modal {
+    box-shadow: 0px 2px 2px 0.3px #DBDBDB;
+    width: 50%;
+    align-items: center;
+    top: 5%;
+    position: fixed;
+    background-color: var(--content-panel-color);
 }
 
 .PanelGrid .ContentPanel {
