@@ -25,6 +25,16 @@ function MyTemplates()
 {
     const fakeBlocks : Block[] = [
         { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: ''},
     ]
     return (
         <BlockList blocks={fakeBlocks} />
