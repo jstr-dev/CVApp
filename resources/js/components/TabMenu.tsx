@@ -10,13 +10,14 @@ function TabMenu({ tabs }: { tabs: Tab[] }) {
 
     return (
         <div className="flex flex-col gap-6">
-            <div className="flex flex-row gap-6">
+            <div className="flex flex-row gap-4">
                 {tabs.map((tab, index) => (
                     <div
                         key={index}
-                        className={`tab ${currentTab === index ? 'active' : ''}`}
+                        className={`relative text-sm font-semibold cursor-pointer px-1 ${currentTab === index ? 'text-blue-500' : 'text-gray-800'}`}
                         onClick={() => setCurrentTab(index)}
                     >
+                        <div className={`${currentTab !== index && 'opacity-0'} absolute bottom-[-10px] left-0 right-0 h-0.5 bg-blue-500 rounded-sm`}></div>
                         {tab.name}
                     </div>
                 ))}
