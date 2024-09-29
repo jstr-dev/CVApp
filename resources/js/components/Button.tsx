@@ -42,7 +42,7 @@ export default function Button({ loading, className, children, buttonStyle = 'de
                 <i className={'fa-solid ' + icon} />
             }
 
-            <div className={textClass}>{children}</div>
+            <div className={textClass + (children === undefined ? ' hidden' : '')}>{children}</div>
         </button>
     );
 }

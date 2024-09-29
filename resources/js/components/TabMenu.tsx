@@ -5,11 +5,15 @@ interface Tab {
     content: ReactNode;
 }
 
-function TabMenu({ tabs }: { tabs: Tab[] }) {
+interface TabMenuProps extends React.HTMLAttributes<HTMLDivElement> {
+    tabs: Tab[]
+}
+
+function TabMenu({ tabs, ...props }: TabMenuProps) {
     const [currentTab, setCurrentTab] = useState<number>(0);
 
     return (
-        <div className="flex flex-col gap-6">
+        <div {...props} className={"flex flex-col gap-6 " + props.className}>
             <div className="flex flex-row gap-4">
                 {tabs.map((tab, index) => (
                     <div
@@ -22,7 +26,7 @@ function TabMenu({ tabs }: { tabs: Tab[] }) {
                     </div>
                 ))}
             </div>
-            <div>{tabs[currentTab].content}</div>
+            <div className={'mt-2'}>{tabs[currentTab].content}</div>
         </div>
     );
 }
