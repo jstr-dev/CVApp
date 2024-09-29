@@ -8,7 +8,6 @@ interface FilterProps {
 
 interface FilterItemProps extends React.AllHTMLAttributes<HTMLDivElement> {
     key: string
-    name: string
 }
 
 export default function Filters({ children }: FilterProps) {
