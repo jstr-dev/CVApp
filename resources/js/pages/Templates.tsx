@@ -30,17 +30,17 @@ function MyTemplates()
     }
 
     const fakeBlocks : Block[] = [
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
-        { name: 'Important Dog', img: ''},
+        { name: 'Important Dog', img: 'a'},
+        { name: 'Important Dog', img: 'b'},
+        { name: 'Important Dog', img: 'c'},
+        { name: 'Important Dog', img: 'd'},
+        { name: 'Important Dog', img: 'e'},
+        { name: 'Important Dog', img: 'f'},
+        { name: 'Important Dog', img: 'g'},
+        { name: 'Important Dog', img: 'h'},
+        { name: 'Important Dog', img: 'i'},
+        { name: 'Important Dog', img: 'j'},
+        { name: 'Important Dog', img: 'k'},
     ]
 
     return (
@@ -55,18 +55,28 @@ function AllTemplates()
 
     useEffect(() => {
         const fetchTemplates = async () => {
-            const response = await axiosInstance.get('/templates/defaults'); 
-            console.log('thedata', response);
+            const response = await axiosInstance.get('/templates/defaults')
+                .then((res) => res.data.data);
+            let _templates = [] as Block[];
+
+            for (const template of response) {
+                _templates.push({ name: template.name, img: '', view: template.view, dateLastUsed: new Date() });
+            }
+
+            console.log(_templates);
+
+            setTemplates(_templates);
+            setLoading(false);
         }
 
         fetchTemplates();
-        setLoading(false);
     }, []);
 
-    if (!loading) {
+    if (loading) {
        return <div>Loading...</div> 
     }
 
+    console.log('rendering', templates);
     return (
         <BlockList blocks={templates} />
     )

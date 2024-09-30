@@ -3,13 +3,14 @@
 namespace App\Services;
 use App\Exceptions\TemplateNotFoundException;
 use App\Models\CVTemplate;
-use Illuminate\Support\Collection;
 use Nette\NotImplementedException;
 use View;
 
 class TemplateService {
     private const DEFAULT_TEMPLATES = [
-        'default'
+        'default' => [
+            'name' => 'Default'
+        ]
     ];
 
     public function render(string | CVTemplate $template): string 
@@ -36,14 +37,14 @@ class TemplateService {
         return $template;
     }
 
-    public function getDefaults(): Collection 
+    public function getDefaults(): array 
     {
-        $templates = collect(self::DEFAULT_TEMPLATES)->map(function($template) {
-            return [
+        $templates = array_map(function($template, $data) {
+            return array_merge([
                 'id' => $template,
                 'view' => $this->render($template)
-            ];
-        });
+            ], $data);
+        }, array_keys(self::DEFAULT_TEMPLATES), self::DEFAULT_TEMPLATES);
 
         return $templates;
     }

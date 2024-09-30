@@ -14,15 +14,18 @@ export interface Block
 {
     name: string;
     img?: string;
+    view?: string;
     dateLastUsed?: Date;
 }
 
-export function Block({name, img, dateLastUsed}: Block)
+export function Block({name, img, view, dateLastUsed}: Block)
 {
     return (
         <div className={'flex flex-col p-2 w-full gap-2 ContentPanel rounded-lg'}>
-            <img src={IMPORTANT_DOG_IMAGE} className={'w-full h-auto rounded-sm'} />
-            <div className={'text-sm font-semibold'}>{name}</div>
+            {img ? <img src={IMPORTANT_DOG_IMAGE} className={'w-full h-auto rounded-lg'} /> : null}
+            {view ? <iframe srcDoc={view}></iframe> : null}
+
+            <div className={'text-sm font-semibold mt-2'}>{name}</div>
             
             <div className='flex flex-row mt-6 justify-between items-center'>
                 <div className="relative group inline-block">
@@ -44,7 +47,7 @@ export default function BlockList({blocks}: BlockListProps)
     return (
         <div className='grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-5'>
             {blocks.map((block, index) => (
-                <Block key={index} name={block.name} img={block.img} />
+                <Block key={index} {...block} />
             ))}
         </div>
     )
