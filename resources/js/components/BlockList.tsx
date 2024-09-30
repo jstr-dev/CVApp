@@ -23,7 +23,7 @@ export function Block({name, img, view, dateLastUsed}: Block)
     return (
         <div className={'flex flex-col p-2 w-full gap-2 ContentPanel rounded-lg'}>
             {img ? <img src={IMPORTANT_DOG_IMAGE} className={'w-full h-auto rounded-lg'} /> : null}
-            {view ? <iframe srcDoc={view}></iframe> : null}
+            {view ? <iframe className="border-2 rounded-lg" srcDoc={view}></iframe> : null}
 
             <div className={'text-sm font-semibold mt-2'}>{name}</div>
             
@@ -32,6 +32,7 @@ export function Block({name, img, view, dateLastUsed}: Block)
                     <button className={'text-xxs text-gray-700'} type="button">Last Used: {FAKE_LAST_USED?.toLocaleDateString()}</button>
                     <Tooltip text={'Last Used: ' + FAKE_LAST_USED?.toLocaleDateString()}/>
                 </div>
+                
                 {/* Action Buttons */}
                 <div className={'flex flex-row-reverse gap-2'}>
                     <Button icon='fa-pen-to-square' buttonStyle='secondary' size='small' />
@@ -45,7 +46,7 @@ export function Block({name, img, view, dateLastUsed}: Block)
 export default function BlockList({blocks}: BlockListProps)
 {
     return (
-        <div className='grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-5'>
+        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
             {blocks.map((block, index) => (
                 <Block key={index} {...block} />
             ))}
