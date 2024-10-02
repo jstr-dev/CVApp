@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './Button';
 import Tooltip from './Tooltip';
+import SkeletonBlock from './SkeletonBlock';
 
 const IMPORTANT_DOG_IMAGE = 'https://i.pinimg.com/564x/7f/26/e7/7f26e71b2c84e6b16d4f6d3fd8a58bca.jpg';
 const FAKE_LAST_USED = new Date(2022, 1, 1);
@@ -8,6 +9,7 @@ const FAKE_LAST_USED = new Date(2022, 1, 1);
 interface BlockListProps extends React.AllHTMLAttributes<HTMLDivElement>
 {
     blocks: Block[];
+    loading?: boolean;
 }
 
 export interface Block
@@ -43,13 +45,15 @@ export function Block({name, img, view, dateLastUsed}: Block)
     )
 }
 
-export default function BlockList({blocks}: BlockListProps)
+export default function BlockList({blocks, loading}: BlockListProps)
 {
     return (
-        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
-            {blocks.map((block, index) => (
-                <Block key={index} {...block} />
-            ))}
-        </div>
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {loading ? (
+                [...Array(blocks.length ? blocks.length : 4)].map((_, index) => <SkeletonBlock key={index} />)
+            ) : (
+                 blocks.map((block, index) => <Block key={index} {...block} />)
+            )}
+    </div>
     )
 }

@@ -1,6 +1,7 @@
 import BlockList, { Block } from '@/components/BlockList';
 import Heading from '@/components/Heading';
 import Panel from '@/components/Panel';
+import SkeletonBlock from '@/components/SkeletonBlock';
 import TabMenu, { Tab } from '@/components/TabMenu';
 import axiosInstance from '@/services/AxiosInstance';
 import React, { useEffect, useState } from 'react';
@@ -25,6 +26,8 @@ export default function Templates() {
 
 function MyTemplates()
 {
+    const [loading, setLoading] = useState(true);
+
     const getTemplates = async () => {
         // const response = await axiosInstance.get('/templates'); 
     }
@@ -44,7 +47,7 @@ function MyTemplates()
     ]
 
     return (
-        <BlockList blocks={fakeBlocks} />
+        <BlockList blocks={fakeBlocks} loading={loading}/>
     )
 }
 
@@ -72,12 +75,11 @@ function AllTemplates()
         fetchTemplates();
     }, []);
 
-    if (loading) {
-       return <div>Loading...</div> 
-    }
+    //if (loading) {
+        //return <div>Loading...</div>
+    //}
 
-    console.log('rendering', templates);
     return (
-        <BlockList blocks={templates} />
+        <BlockList blocks={templates} loading={loading}/>
     )
 }
