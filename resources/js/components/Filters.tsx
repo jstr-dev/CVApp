@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "./Button";
 import PopupBox from "./PopupBox";
+import Checkbox from "./Checkbox";
 
 interface FilterProps {
     children: React.ReactNode
 }
 
 interface FilterItemProps extends React.AllHTMLAttributes<HTMLDivElement> {
-    key: string
+    filterKey: string
 }
 
 export default function Filters({ children }: FilterProps) {
     const [visible, setVisible] = React.useState(false);
+    const ref = React.useRef<HTMLDivElement>(null);
+
+    // Invisible when they click off it
+    useEffect(() => {
+        const handleClick = (event: MouseEvent) => {
+            if (ref.current && !ref.current.contains(event.target as Node)) {
+                setVisible(false);
+            }
+        }
+
+        document.addEventListener('click', handleClick);
+        return () => {
+            document.removeEventListener('click', handleClick);
+        }
+    })
 
     return (
-        <div className="w-auto relative">
+        <div className="w-auto relative" ref={ref}>
             <Button buttonStyle="secondary" size="regular" icon="fa-bars" textClass='max-sm:hidden' onClick={() => setVisible(!visible)}>Filters</Button>
 
             <PopupBox maxHeight={400} minWidth={200} align='right' visible={visible}>
@@ -24,11 +40,11 @@ export default function Filters({ children }: FilterProps) {
     )
 }
 
-export function CheckFilter({ key, children }: FilterItemProps) {
+export function CheckFilter({ filterKey, children }: FilterItemProps) {
     return (
         <div className="flex flex-row gap-2 items-center">
-            <input type="checkbox" id={key} />
-            <label htmlFor={key} className="text-xs">{children}</label>
+            <Checkbox type="checkbox" id={filterKey} />
+            <label htmlFor={filterKey} className="text-xs">{children}</label>
         </div>
     )
 }

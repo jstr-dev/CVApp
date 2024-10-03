@@ -27,10 +27,10 @@ const tableHeaders: TableHeader<Application>[] = [
 
 const filters = <Filters>
     <FilterList title="Status">
-        <CheckFilter key="acknowledged">Acknowledged</CheckFilter>
-        <CheckFilter key="pending">Pending Response</CheckFilter>
-        <CheckFilter key="declined">Declined</CheckFilter>
-        <CheckFilter key="success">Offer</CheckFilter>
+        <CheckFilter filterKey="acknowledged">Acknowledged</CheckFilter>
+        <CheckFilter filterKey="pending">Pending Response</CheckFilter>
+        <CheckFilter filterKey="declined">Declined</CheckFilter>
+        <CheckFilter filterKey="success">Offer</CheckFilter>
     </FilterList>
 </Filters>
 
