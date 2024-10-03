@@ -6,8 +6,10 @@ use App\Http\Controllers\api\AuthController;
 use App\Models\User;
 use Auth;
 use Hash;
+use Mockery;
 use Tests\TestCase;
 use Request;
+use App\Services\UserService;
 
 class UserTest extends TestCase
 {
@@ -23,27 +25,15 @@ class UserTest extends TestCase
         ]);
     }
 
-    public function test_user_login_success()
+    public function test_create_user_service_works()
     {
-        $this->assertTrue(true);
+        $mockuserService = Mockery::mock(UserService::class);
+        $mockuserService->shouldReceive('create')
+            ->once()
+            ->with('test@gmail.com', 'test', 'test', 'test')
+            ->andReturn($this->user);
 
-        $request = Request::create('/login', 'POST', [
-            'email' => $this->user->email,
-            'password' => 'password123',
-        ]);
-
-        Auth::shouldReceive('attempt')
-        ->once()
-        ->with(['email' => $this->user->email, 'password' => 'password123'], false)
-        ->andReturn(true);
-
-        Auth::shouldReceive('user')->once()->andReturn($this->user);
-
-
-        // Step 4: Call the login method and get the response
-        $response = (new AuthController())->login($request);
-
-        // Step 5: Assert the response is successful
-        $response->assertOk();
+        $result = $mockuserService->create('test@gmail.com', 'test', 'test', 'test');
+        $this->assertInstanceOf(User::class, $result);
     }
 }

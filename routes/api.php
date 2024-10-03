@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\OnboardingController;
+use App\Http\Controllers\Api\TemplateController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::post('/address', 'postAddress')->middleware('verify.onboarding:address');
         Route::post('/mobile', 'postMobile')->middleware('verify.onboarding:mobile');
+    });
+
+    Route::controller(TemplateController::class)->prefix('/templates')->group(function () {
+        Route::get('/render/{template}', 'render');
+        Route::get('/defaults', 'getDefaults');
     });
 
     Route::get('/applications/get', function () {

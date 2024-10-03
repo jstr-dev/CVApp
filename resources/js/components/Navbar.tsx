@@ -5,6 +5,7 @@ import { TAILWIND_BP } from '@/constants';
 import Logo from "./Logo";
 import Search from "./Search";
 import Button from "./Button";
+import Modal from "./Modal";
 
 interface NavItemProps extends React.HTMLAttributes<HTMLDivElement> {
     name: string;
@@ -130,6 +131,7 @@ function NavbarTop() {
 
 function NavbarSide() {
     const { expanded, setExpanded } = getNavContext();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleResize = () => {
         if (window.innerWidth < TAILWIND_BP.lg) {
@@ -160,9 +162,13 @@ function NavbarSide() {
         }
     }
 
-    const modalpopup = () => {
-        alert('Coming Soon!')
-    }
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
     return (
         <div className={`nav nav-size flex-shrink-0 flex flex-col justify-between h-full ${expanded ? 'w-[250px]' : 'w-[80px]'} content-col py-4 items-center`}
@@ -170,7 +176,11 @@ function NavbarSide() {
             <div className="w-full">
                 <NavLogo className="ml-1" />
 
-                <NavItem name="Search" className="mb-5" icon="fa-magnifying-glass" onClick={() => modalpopup()} />
+                <NavItem name="Search" className="mb-5" icon="fa-magnifying-glass" onClick={openModal} />
+                {isModalOpen && (
+                    <Modal title="Search" onClose={closeModal}>
+                    </Modal>
+                )}
 
                 <div className="flex flex-col gap-3 w-full">
                     <NavSection title="General">
