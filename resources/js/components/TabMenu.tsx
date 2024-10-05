@@ -13,7 +13,8 @@ function TabMenu({ tabs, ...props }: TabMenuProps) {
     const [currentTab, setCurrentTab] = useState<number>(0);
 
     return (
-        <div {...props} className={"flex flex-col gap-6 " + props.className}>
+        <div {...props} className={"flex relative flex-col gap-6 " + props.className}>
+            <div className={`absolute top-[28px] left-0 right-0 h-0.5 rounded-sm bg-gray-200 w-full`}></div>
             <div className="flex flex-row gap-4">
                 {tabs.map((tab, index) => (
                     <div
