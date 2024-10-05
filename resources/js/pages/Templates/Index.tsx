@@ -93,6 +93,6 @@ function AllTemplates() {
     }
 
     return (
-        <BlockList blocks={templates} loading={isLoading} />
+        <BlockList blocks={templates} loading={isLoading} isDefault={true} />
     );
 }
