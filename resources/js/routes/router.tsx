@@ -8,7 +8,7 @@ import Onboarding from '../pages/Onboarding';
 import PublicRoute from './PublicRoute';
 import Logout from '../pages/Logout';
 import Applications from '@/pages/Applications';
-import Templates from '@/pages/Templates';
+import Templates from '@/pages/Templates/Index';
 
 const router = createBrowserRouter([
     {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
 
             {
                 path: "templates",
-                element: <Templates /> 
+                element: <Templates />
             }
         ],
     },

@@ -1,4 +1,4 @@
-import BlockList, { Block } from '@/components/BlockList';
+import BlockList, { Block } from './components/BlockList';
 import Heading from '@/components/Heading';
 import Panel from '@/components/Panel';
 import TabMenu, { Tab } from '@/components/TabMenu';
@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import Button from '@/components/Button';
 
 
-const Tabs : Tab[] = [
+const Tabs: Tab[] = [
     { name: 'My Templates', content: <MyTemplates /> },
     { name: 'All Templates', content: <AllTemplates /> },
 ]
@@ -29,30 +29,24 @@ export default function Templates() {
     )
 }
 
-function MyTemplates()
-{
-    const [loading, setLoading] = useState(true);
+function MyTemplates() {
+    const [loading, setLoading] = useState(false);
+    const templates = [];
 
     const getTemplates = async () => {
-        // const response = await axiosInstance.get('/templates');
     }
 
-    const fakeBlocks : Block[] = [
-        { name: 'Important Dog', img: 'a'},
-        { name: 'Important Dog', img: 'b'},
-        { name: 'Important Dog', img: 'c'},
-        { name: 'Important Dog', img: 'd'},
-        { name: 'Important Dog', img: 'e'},
-        { name: 'Important Dog', img: 'f'},
-        { name: 'Important Dog', img: 'g'},
-        { name: 'Important Dog', img: 'h'},
-        { name: 'Important Dog', img: 'i'},
-        { name: 'Important Dog', img: 'j'},
-        { name: 'Important Dog', img: 'k'},
-    ]
+    if (!loading && templates.length === 0) {
+        return (
+            <div className="gap-4 flex flex-col w-full h-36 justify-center items-center">
+                <div className="text-lg font-medium">You don't have any templates yet.</div>
+                <Button size="regular" buttonStyle="secondary" textClass='max-sm:hidden'>New Template</Button>
+            </div>
+        )
+    }
 
     return (
-        <BlockList blocks={fakeBlocks} loading={loading}/>
+        <BlockList blocks={[]} loading={loading} />
     )
 }
 
