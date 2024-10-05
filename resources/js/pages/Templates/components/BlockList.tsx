@@ -40,7 +40,7 @@ export function Block({ name, img, dateLastUsed, isDefault }: Block) {
                 </div>
                 :
                 <div className='flex flex-row mt-4'>
-                    <Button className="w-full" buttonStyle='default'>Copy this template</Button>
+                    <Button className="w-full" buttonStyle='default'  size='small'>Copy this template</Button>
                 </div>
             }
         </div>
