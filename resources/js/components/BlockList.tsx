@@ -16,25 +16,23 @@ export interface Block
 {
     name: string;
     img?: string;
-    view?: string;
     dateLastUsed?: Date;
 }
 
-export function Block({name, img, view, dateLastUsed}: Block)
+export function Block({ name, img, dateLastUsed }: Block)
 {
     return (
         <div className={'flex flex-col p-2 w-full gap-2 ContentPanel rounded-lg'}>
-            {img ? <img src={IMPORTANT_DOG_IMAGE} className={'w-full h-auto rounded-lg'} /> : null}
-            {view ? <iframe className="border-2 rounded-lg" srcDoc={view}></iframe> : null}
+            {img ? <img src={img} className={'w-full h-auto rounded-lg border-2'} /> : null}
 
             <div className={'text-sm font-semibold mt-2'}>{name}</div>
-            
+
             <div className='flex flex-row mt-6 justify-between items-center'>
                 <div className="relative group inline-block">
                     <button className={'text-xxs text-gray-700'} type="button">Last Used: {FAKE_LAST_USED?.toLocaleDateString()}</button>
                     <Tooltip text={'Last Used: ' + FAKE_LAST_USED?.toLocaleDateString()}/>
                 </div>
-                
+
                 {/* Action Buttons */}
                 <div className={'flex flex-row-reverse gap-2'}>
                     <Button icon='fa-pen-to-square' buttonStyle='secondary' size='small' />

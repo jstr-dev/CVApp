@@ -1,11 +1,11 @@
 import BlockList, { Block } from '@/components/BlockList';
 import Heading from '@/components/Heading';
 import Panel from '@/components/Panel';
-import SkeletonBlock from '@/components/SkeletonBlock';
 import TabMenu, { Tab } from '@/components/TabMenu';
 import axiosInstance from '@/services/AxiosInstance';
 import React, { useEffect, useState } from 'react';
-import { l } from 'vite/dist/node/types.d-aGj9QkWt';
+import { toPng } from 'html-to-image';
+
 
 const Tabs : Tab[] = [
     { name: 'My Templates', content: <MyTemplates /> },
@@ -15,8 +15,8 @@ const Tabs : Tab[] = [
 export default function Templates() {
     return (
         <div>
-            <Heading title="Templates" /> 
-            
+            <Heading title="Templates" />
+
             <Panel>
                 <TabMenu tabs={Tabs} />
             </Panel>
@@ -29,7 +29,7 @@ function MyTemplates()
     const [loading, setLoading] = useState(true);
 
     const getTemplates = async () => {
-        // const response = await axiosInstance.get('/templates'); 
+        // const response = await axiosInstance.get('/templates');
     }
 
     const fakeBlocks : Block[] = [
@@ -63,10 +63,18 @@ function AllTemplates()
             let _templates = [] as Block[];
 
             for (const template of response) {
-                _templates.push({ name: template.name, img: '', view: template.view, dateLastUsed: new Date() });
-            }
+                let img = undefined;
 
-            console.log(_templates);
+                if (template.view) {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = template.view;
+                    document.body.appendChild(tempDiv);
+                    img = await toPng(tempDiv, { quality: 1, width: 200, height: 200, fontEmbedCSS: '' });
+                    tempDiv.remove();
+                }
+
+                _templates.push({ name: template.name, img: img, dateLastUsed: new Date() });
+            }
 
             setTemplates(_templates);
             setLoading(false);
@@ -74,10 +82,6 @@ function AllTemplates()
 
         fetchTemplates();
     }, []);
-
-    //if (loading) {
-        //return <div>Loading...</div>
-    //}
 
     return (
         <BlockList blocks={templates} loading={loading}/>
