@@ -6,6 +6,7 @@ import axiosInstance from '@/services/AxiosInstance';
 import React, { useEffect, useState } from 'react';
 import { toPng } from 'html-to-image';
 import { useQuery } from '@tanstack/react-query';
+import Button from '@/components/Button';
 
 
 const Tabs : Tab[] = [
@@ -16,7 +17,10 @@ const Tabs : Tab[] = [
 export default function Templates() {
     return (
         <div>
-            <Heading title="Templates" />
+            <div className='flex flex-row justify-between'>
+                <Heading title="Templates" />
+                <Button size="regular" buttonStyle="primary" icon="fa-plus" textClass='max-sm:hidden'>New</Button>
+            </div>
 
             <Panel>
                 <TabMenu tabs={Tabs} />
