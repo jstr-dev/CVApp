@@ -7,22 +7,16 @@ use Nette\NotImplementedException;
 use View;
 
 class TemplateService {
-    private const DEFAULT_TEMPLATES = [
-        'default' => [
-            'name' => 'Default'
-        ]
-    ];
-
-    public function render(string | CVTemplate $template): string 
+    public function render(string|CVTemplate $template): string
     {
         if (is_string($template)) {
             if (!View::exists("templates.{$template}")) {
                 throw new TemplateNotFoundException($template);
-            } 
+            }
 
-            return View::make("templates.{$template}", [
-                'sanem' => 'booty'
-            ])->render();
+            $templateData = config("templates.$template");
+
+            return View::make("templates.{$template}", $templateData)->render();
         }
 
         throw new NotImplementedException();
@@ -37,14 +31,16 @@ class TemplateService {
         return $template;
     }
 
-    public function getDefaults(): array 
+    public function getDefaults(): array
     {
+        $defaults = config('templates');
+
         $templates = array_map(function($template, $data) {
             return array_merge([
                 'id' => $template,
                 'view' => $this->render($template)
             ], $data);
-        }, array_keys(self::DEFAULT_TEMPLATES), self::DEFAULT_TEMPLATES);
+        }, array_keys($defaults), $defaults);
 
         return $templates;
     }

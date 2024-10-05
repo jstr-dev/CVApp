@@ -1,3 +1,2 @@
-<h1>HELLLLLLIOOOOOOOO</h1>
-<p>{{$sanem}}</p>
-<p>hjasdjasjdsadiasjda</p>
+<h1>{{$name}} Template</h1>
+<p>Name: {{$person['first_name']}}</p>
