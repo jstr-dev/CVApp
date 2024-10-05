@@ -5,6 +5,7 @@ import TabMenu, { Tab } from '@/components/TabMenu';
 import axiosInstance from '@/services/AxiosInstance';
 import React, { useEffect, useState } from 'react';
 import { toPng } from 'html-to-image';
+import { useQuery } from '@tanstack/react-query';
 
 
 const Tabs : Tab[] = [
@@ -51,39 +52,49 @@ function MyTemplates()
     )
 }
 
-function AllTemplates()
-{
-    const [templates, setTemplates] = useState([] as Block[]);
-    const [loading, setLoading] = useState(true);
+function AllTemplates() {
+    const fetchTemplates = async () => {
+        const response = await axiosInstance.get('/templates/defaults')
+            .then((res) => res.data.data);
 
-    useEffect(() => {
-        const fetchTemplates = async () => {
-            const response = await axiosInstance.get('/templates/defaults')
-                .then((res) => res.data.data);
-            let _templates = [] as Block[];
+        let _templates = [] as Block[];
 
-            for (const template of response) {
-                let img = undefined;
+        // Process each template and generate images
+        for (const template of response) {
+            let img = undefined;
 
-                if (template.view) {
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = template.view;
-                    document.body.appendChild(tempDiv);
-                    img = await toPng(tempDiv, { quality: 1, width: 200, height: 200, fontEmbedCSS: '' });
-                    tempDiv.remove();
-                }
+            if (template.view) {
+                // Create a temporary div to render HTML and capture as image
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = template.view;
+                document.body.appendChild(tempDiv);
 
-                _templates.push({ name: template.name, img: img, dateLastUsed: new Date() });
+                // Capture image using toPng and remove the temporary div
+                img = await toPng(tempDiv, { quality: 1, width: 200, height: 200, fontEmbedCSS: '' });
+                tempDiv.remove();
             }
 
-            setTemplates(_templates);
-            setLoading(false);
+            _templates.push({
+                name: template.name,
+                img: img,
+                dateLastUsed: new Date()
+            });
         }
 
-        fetchTemplates();
-    }, []);
+        return _templates; // Return the processed templates array
+    };
+
+    const { data: templates = [], isLoading, isError } = useQuery({
+        queryKey: ['templates'],
+        queryFn: fetchTemplates,
+        staleTime: 1000 * 60 * 5,
+    });
+
+    if (isError) {
+        return <div>Error loading templates</div>;
+    }
 
     return (
-        <BlockList blocks={templates} loading={loading}/>
-    )
+        <BlockList blocks={templates} loading={isLoading} />
+    );
 }

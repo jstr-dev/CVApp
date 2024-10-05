@@ -6,12 +6,15 @@ import { UserProvider } from './contexts/UserContext';
 import axiosInstance from './services/AxiosInstance';
 import router from './routes/router';
 import NavbarProvider from './contexts/NavContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const rootElement = document.getElementById('app') as HTMLElement;
 
 if (!rootElement) {
 	throw new Error('Could not find root element');
 }
+
+const queryClient = new QueryClient();
 
 const App = () => {
     // Request new XSRF Cookie every 5 minutes
@@ -24,11 +27,13 @@ const App = () => {
     }, []);
 
 	return (
-        <NavbarProvider>
+        <QueryClientProvider client={queryClient}>
             <UserProvider>
-                <RouterProvider router={router} />
+                <NavbarProvider>
+                    <RouterProvider router={router} />
+                </NavbarProvider>
             </UserProvider>
-        </NavbarProvider>
+        </QueryClientProvider>
 	);
 }
 
