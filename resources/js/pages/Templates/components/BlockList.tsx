@@ -49,7 +49,7 @@ export function Block({ name, img, dateLastUsed, isDefault }: Block) {
 
 export default function BlockList({ blocks, loading, isDefault }: BlockListProps) {
     return (
-        <div className="grid sm:grid-cols-2 md:grid-cols-[repeat(3,_minmax(25px,_1fr))] lg:grid-cols-[repeat(4,_minmax(25px,_1fr))] xl:grid-cols-[repeat(5,_minmax(25px,_1fr))] gap-5">
+        <div className="grid sm:grid-cols-2 md:grid-cols-[repeat(3,_minmax(100px,_1fr))] lg:grid-cols-[repeat(4,_minmax(150px,_1fr))] xl:grid-cols-[repeat(5,_minmax(155px,_1fr))] gap-5">
             {loading ? (
                 [...Array(blocks.length ? blocks.length : 4)].map((_, index) => <SkeletonBlock key={index} isDefault={isDefault} />)
             ) : (
