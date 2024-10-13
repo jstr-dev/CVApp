@@ -39,10 +39,10 @@ function NavItem({ name, icon, href, className, onClick, isOpen }: NavItemProps)
             onClick={navClick}
         >
             <div className={"flex flex-shrink-0 justify-center items-center nav-icon text-inherit"}>
-                <i className={`text-lg text-gray-800 fa-solid ${icon} text-inherit`}></i>
+                <i className={`text-lg fa-solid ${icon} text-inherit`}></i>
             </div>
 
-            <div className={`flex-shrink-0 text-sm font-semibold leading-3 mb-[2px] ${expanded || !isOpen && 'hide'}`}>{name}</div>
+            <div className={`flex-shrink-0 text-sm leading-3 mb-[2px] ${expanded || !isOpen && 'hide'}`}>{name}</div>
         </div>
     )
 }
@@ -55,7 +55,7 @@ function NavSection({ title, children }: { title: string, children: React.ReactN
         <div className="w-full flex flex-col gap-3">
             <div className={'flex flex-col w-full'}>
                 <span className={`line ${expanded && 'hide'}`}></span>
-                <div className={`text-xs text-gray-500 font-bold nav-title ${!expanded && 'hide'}`}>{title}</div>
+                <div className={`text-xs text-white font-medium nav-title ${!expanded && 'hide'}`}>{title}</div>
             </div>
 
             <div className="flex flex-col gap-1">{children}</div>
@@ -175,12 +175,12 @@ function NavbarSide() {
             onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} /*onTouchStart={mouseEnter} onTouchEnd={mouseLeave}*/>
             <div className="w-full">
                 <NavLogo className="ml-1" />
-
+{/* 
                 <NavItem name="Search" className="mb-5" icon="fa-magnifying-glass" onClick={openModal} />
                 {isModalOpen && (
                     <Modal title="Search" onClose={closeModal}>
                     </Modal>
-                )}
+                )} */}
 
                 <div className="flex flex-col gap-3 w-full">
                     <NavSection title="General">
