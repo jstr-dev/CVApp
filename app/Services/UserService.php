@@ -86,8 +86,6 @@ class UserService
 
         $user->onboarding_stage = self::ONBOARDING_STAGES[$currentStageIndex + 1];
         $user->save();
-
-        return;
     }
 
     public function decreaseOnboardingStage(User $user): void
