@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import Search from "./Search";
 import Button from "./Button";
 import Modal from "./Modal";
+import Icon from "@/icons/Icon";
 
 interface NavItemProps extends React.HTMLAttributes<HTMLDivElement> {
     name: string;
@@ -39,7 +40,7 @@ function NavItem({ name, icon, href, className, onClick, isOpen }: NavItemProps)
             onClick={navClick}
         >
             <div className={"flex flex-shrink-0 justify-center items-center nav-icon text-inherit"}>
-                <i className={`text-lg fa-solid ${icon} text-inherit`}></i>
+                <Icon name={icon} />
             </div>
 
             <div className={`flex-shrink-0 text-sm leading-3 mb-[2px] ${expanded || !isOpen && 'hide'}`}>{name}</div>
@@ -66,8 +67,8 @@ function NavSection({ title, children }: { title: string, children: React.ReactN
 function NavLogo({className} : {className?: string})
 {
     return (
-        <div className={`${window.innerWidth < TAILWIND_BP.sm ? '' : 'mb-5'} nav-icon ` + className}>
-            <Logo />
+        <div className={`${window.innerWidth < TAILWIND_BP.sm ? '' : 'mb-5'} nav-icon` + className}>
+            {/* <Logo/> */}
         </div>
     );
 }
@@ -184,13 +185,13 @@ function NavbarSide() {
 
                 <div className="flex flex-col gap-3 w-full">
                     <NavSection title="General">
-                        <NavItem name="Dashboard" icon="fa-house" href="/" />
-                        <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" />
+                        <NavItem name="Dashboard" icon="Dashboard" href="/" />
+                        <NavItem name="Applications" icon="Application" href="/applications" />
                     </NavSection>
 
                     <NavSection title="Customise">
-                        <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" />
-                        <NavItem name="Cover Templates" icon="fa-envelope" href="/cover-letters" />
+                        <NavItem name="Resume Templates" icon="ResumeTemplate" href="/templates" />
+                        <NavItem name="Cover Templates" icon="CoverTemplate" href="/cover-letters" />
                     </NavSection>
                 </div>
             </div>
