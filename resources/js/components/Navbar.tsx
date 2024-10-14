@@ -2,10 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getNavContext } from "../contexts/NavContext";
 import { TAILWIND_BP } from '@/constants';
-import Logo from "./Logo";
-import Search from "./Search";
-import Button from "./Button";
-import Modal from "./Modal";
 import Icon from "@/icons/Icon";
 
 interface NavItemProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -47,23 +43,6 @@ function NavItem({ name, icon, href, className, onClick, isOpen }: NavItemProps)
         </div>
     )
 }
-
-function NavSection({ title, children }: { title: string, children: React.ReactNode })
-{
-    const { expanded } = getNavContext();
-
-    return (
-        <div className="w-full flex flex-col gap-3">
-            <div className={'flex flex-col w-full'}>
-                <span className={`line ${expanded && 'hide'}`}></span>
-                <div className={`text-xs text-white font-medium nav-title ${!expanded && 'hide'}`}>{title}</div>
-            </div>
-
-            <div className="flex flex-col gap-1">{children}</div>
-        </div>
-    )
-}
-
 function NavLogo({className} : {className?: string})
 {
     return (
@@ -184,22 +163,17 @@ function NavbarSide() {
                 )} */}
 
                 <div className="flex flex-col gap-3 w-full">
-                    <NavSection title="General">
-                        <NavItem name="Dashboard" icon="Dashboard" href="/" />
-                        <NavItem name="Applications" icon="Application" href="/applications" />
-                    </NavSection>
-
-                    <NavSection title="Customise">
-                        <NavItem name="Resume Templates" icon="ResumeTemplate" href="/templates" />
-                        <NavItem name="Cover Templates" icon="CoverTemplate" href="/cover-letters" />
-                    </NavSection>
+                    <NavItem name="Dashboard" icon="Dashboard" href="/" />
+                    <NavItem name="Applications" icon="Application" href="/applications" />
+                    <NavItem name="Resume Templates" icon="ResumeTemplate" href="/templates" />
+                    <NavItem name="Cover Templates" icon="CoverTemplate" href="/cover-letters" />
                 </div>
             </div>
 
             <div className="w-full flex flex-col gap-1 mt-5">
-                <NavItem name="Notifications" icon="fa-bell" href="/notifications" />
-                <NavItem name="Settings" icon="fa-gear" href="/settings" />
-                <NavItem name="Logout" icon="fa-right-from-bracket" href="/logout" />
+                <NavItem name="Notifications" icon="Bel" href="/notifications" />
+                <NavItem name="Settings" icon="Cog" href="/settings" />
+                <NavItem name="Logout" icon="Logout" href="/logout" />
             </div>
         </div>
     )
