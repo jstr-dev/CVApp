@@ -28,6 +28,11 @@ const router = createBrowserRouter([
             {
                 path: "templates",
                 element: <Templates />
+            },
+
+            {
+                path: "cover-templates",
+                element: <h1>hello</h1>
             }
         ],
     },

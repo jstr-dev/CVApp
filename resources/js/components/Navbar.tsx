@@ -92,7 +92,7 @@ function NavbarTop() {
                                     <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" isOpen={isOpen} onClick={closeMenu} className="pr-5"/>
                                 </li>
                                 <li>
-                                    <NavItem name="Cover Templates" icon="fa-envelope" href="/cover-letters" isOpen={isOpen} onClick={closeMenu}/>
+                                    <NavItem name="Cover Templates" icon="fa-envelope" href="/cover-templates" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <span className="nav-top-line"></span>
                                 <li>
@@ -162,13 +162,13 @@ function NavbarSide() {
                 {isModalOpen && (
                     <Modal title="Search" onClose={closeModal}>
                     </Modal>
-                )} 
+                )}
 
                 <div className="flex flex-col gap-1 w-full">
                     <NavItem name="Dashboard" icon="Dashboard" href="/" />
                     <NavItem name="Applications" icon="Application" href="/applications" />
                     <NavItem name="Resume Templates" icon="ResumeTemplate" href="/templates" />
-                    <NavItem name="Cover Templates" icon="CoverTemplate" href="/cover-letters" />
+                    <NavItem name="Cover Templates" icon="CoverTemplate" href="/cover-templates" />
                 </div>
             </div>
 
