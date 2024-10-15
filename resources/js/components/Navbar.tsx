@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { getNavContext } from "../contexts/NavContext";
 import { TAILWIND_BP } from '@/constants';
 import Icon from "@/icons/Icon";
+import Modal from "./Modal";
+import Logo from "./Logo";
 
 interface NavItemProps extends React.HTMLAttributes<HTMLDivElement> {
     name: string;
@@ -47,7 +49,7 @@ function NavLogo({className} : {className?: string})
 {
     return (
         <div className={`${window.innerWidth < TAILWIND_BP.sm ? '' : 'mb-5'} nav-icon` + className}>
-            {/* <Logo/> */}
+            {/* <Lgo/> */}
         </div>
     );
 }
@@ -155,14 +157,14 @@ function NavbarSide() {
             onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} /*onTouchStart={mouseEnter} onTouchEnd={mouseLeave}*/>
             <div className="w-full">
                 <NavLogo className="ml-1" />
-{/* 
-                <NavItem name="Search" className="mb-5" icon="fa-magnifying-glass" onClick={openModal} />
+
+                <NavItem name="Search" className="mb-5 primary-search-col" icon="Search" onClick={openModal} />
                 {isModalOpen && (
                     <Modal title="Search" onClose={closeModal}>
                     </Modal>
-                )} */}
+                )} 
 
-                <div className="flex flex-col gap-3 w-full">
+                <div className="flex flex-col gap-1 w-full">
                     <NavItem name="Dashboard" icon="Dashboard" href="/" />
                     <NavItem name="Applications" icon="Application" href="/applications" />
                     <NavItem name="Resume Templates" icon="ResumeTemplate" href="/templates" />
@@ -171,7 +173,7 @@ function NavbarSide() {
             </div>
 
             <div className="w-full flex flex-col gap-1 mt-5">
-                <NavItem name="Notifications" icon="Bel" href="/notifications" />
+                <NavItem name="Notifications" icon="Bell" href="/notifications" />
                 <NavItem name="Settings" icon="Cog" href="/settings" />
                 <NavItem name="Logout" icon="Logout" href="/logout" />
             </div>
