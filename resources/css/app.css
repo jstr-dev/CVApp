@@ -28,7 +28,7 @@
     --primary-color-hov: #325097;
     --primary-search-col: #1f386b;
     --background-color: rgb(252, 252, 252);
-    --content-panel-color: color-white;
+    --content-panel-color: rgb(255, 255, 255);
 }
 
 .primary-button:hover {
