@@ -75,31 +75,31 @@ function NavbarTop() {
                 <NavLogo />
 
                 <div className="flex flex-row">
-                    <NavItem name="" icon="fa-magnifying-glass" onClick={() => modalpopup()} />
-                    <NavItem name="" icon="fa-bell" href="/notifications" />
+                    <NavItem name="" icon="Search" onClick={() => modalpopup()} />
+                    <NavItem name="" icon="Bell" href="/notifications" />
                     <div className="relative">
-                        <NavItem name = "" icon="fa-bars" onClick={toggleMenu}/>
+                        <NavItem name = "" icon="Bars" onClick={toggleMenu}/>
                         {isOpen &&
                         <div className={`absolute z-50 right-2 barmenu rounded-md shadow-md ${isOpen ? 'block' : 'hide'}`}>
                             <ul className="py-3 pl-2 pr-2 flex flex-col gap-1">
                                 <li>
-                                    <NavItem name="Dashboard" icon="fa-house" href="/" isOpen={isOpen} onClick={closeMenu}/>
+                                    <NavItem name="Dashboard" icon="Dashboard" href="/" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <li>
-                                    <NavItem name="Applications" icon="fa-check-to-slot" href="/applications" isOpen={isOpen} onClick={closeMenu}/>
+                                    <NavItem name="Applications" icon="Application" href="/applications" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <li>
-                                    <NavItem name="Resume Templates" icon="fa-file-alt" href="/templates" isOpen={isOpen} onClick={closeMenu} className="pr-5"/>
+                                    <NavItem name="Resume Templates" icon="ResumeTemplate" href="/templates" isOpen={isOpen} onClick={closeMenu} className="pr-5"/>
                                 </li>
                                 <li>
-                                    <NavItem name="Cover Templates" icon="fa-envelope" href="/cover-templates" isOpen={isOpen} onClick={closeMenu}/>
+                                    <NavItem name="Cover Templates" icon="CoverTemplate" href="/cover-templates" isOpen={isOpen} onClick={closeMenu}/> 
                                 </li>
                                 <span className="nav-top-line"></span>
                                 <li>
-                                    <NavItem name="Settings" icon="fa-gear" href="/settings" isOpen={isOpen} onClick={closeMenu}/>
+                                    <NavItem name="Settings" icon="Cog" href="/settings" isOpen={isOpen} onClick={closeMenu}/>
                                 </li>
                                 <li>
-                                    <NavItem name="Logout" icon="fa-right-from-bracket" href="/logout" isOpen={isOpen} />
+                                    <NavItem name="Logout" icon="Logout" href="/logout" isOpen={isOpen} />
                                 </li>
                             </ul>
                         </div>
