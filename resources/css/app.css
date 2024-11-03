@@ -56,7 +56,7 @@
 .nav-top-line {
     height: 1px;
     border-radius: 25px;
-    background: theme('colors.gray.300');
+    background: rgba(255, 255, 255, 0.05);
     width: 100%;
 }
 
@@ -134,7 +134,7 @@
 }
 
 .link-col {
-    color: theme('colors.blue.600')
+    color: theme('colors.blue.600');
 }
 
 @keyframes skeleton-loading {
@@ -204,7 +204,7 @@ html,
     padding-left: 15px;
     padding-right: 15px;
     position: fixed;
-    background-color: #233d72;
+    background-color: var(--primary-color);
 }
 
 .nav-top {
@@ -213,12 +213,13 @@ html,
     transition: 0.5s;
     white-space: nowrap;
     z-index: 1;
+    background-color: var(--primary-color);
 }
 
 .barmenu {
-    box-shadow: 7px 4px 4px 0.5px #DBDBDB;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.05);
     transition: 0.5s;
-    background-color: white;
+    background-color: var(--primary-color);
 }
 
 .rule {
