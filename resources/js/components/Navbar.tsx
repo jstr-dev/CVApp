@@ -80,7 +80,7 @@ function NavbarTop() {
                     <div className="relative">
                         <NavItem name = "" icon="Bars" onClick={toggleMenu}/>
                         {isOpen &&
-                        <div className={`absolute z-50 right-2 barmenu rounded-md shadow-md ${isOpen ? 'block' : 'hide'}`}>
+                        <div className={`absolute z-50 right-0 barmenu rounded-md shadow-md ${isOpen ? 'block' : 'hide'}`}>
                             <ul className="py-3 pl-2 pr-2 flex flex-col gap-1">
                                 <li>
                                     <NavItem name="Dashboard" icon="Dashboard" href="/" isOpen={isOpen} onClick={closeMenu}/>
