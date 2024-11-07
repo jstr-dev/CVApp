@@ -235,6 +235,29 @@ html,
     min-width: 50px;
 }
 
+.checkbox {
+    appearance: none;
+    background-color: white;
+    position: relative;
+    cursor: pointer;
+    transition: var(--background-color) 0.2s, border-color 0.2s;
+}
+
+.checkbox:checked {
+    background-color: var(--primary-color-hov);
+    border-color: transparent;
+}
+
+.checkbox:checked::before {
+    content: '🗸';
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
