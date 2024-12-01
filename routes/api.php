@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApplicationController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\OnboardingController;
 use App\Http\Controllers\Api\TemplateController;
@@ -34,65 +35,70 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/defaults', 'getDefaults');
     });
 
-    Route::get('/applications/get', function () {
-        sleep(2); // simulate slow network
-
-        return response()->json(collect([
-            [
-                'created_at' => now()->format('Y-m-d'),
-                'status' => 'pending',
-                'job' => collect([
-                    'company' => 'Google',
-                    'salary' => '$100,000',
-                    'title' => 'Full Stack Developer',
-                ])
-            ],
-            [
-                'created_at' => now()->subDay()->format('Y-m-d'),
-                'status' => 'declined',
-                'job' => collect([
-                    'company' => 'Microsoft',
-                    'salary' => '$90,000',
-                    'title' => 'Frontend Developer',
-                ])
-            ],
-            [
-                'created_at' => now()->subDays(2)->format('Y-m-d'),
-                'status' => 'success',
-                'job' => collect([
-                    'company' => 'Amazon',
-                    'salary' => '$80,000',
-                    'title' => 'Backend Developer',
-                ])
-            ],
-            [
-                'created_at' => now()->subDays(3)->format('Y-m-d'),
-                'status' => 'acknowledged',
-                'job' => collect([
-                    'company' => 'Facebook',
-                    'salary' => '$70,000',
-                    'title' => 'Full Stack Developer',
-                ])
-            ],
-            [
-                'created_at' => now()->subDays(4)->format('Y-m-d'),
-                'status' => 'pending',
-                'job' => collect([
-                    'company' => 'Twitter',
-                    'salary' => '$60,000',
-                    'title' => 'Frontend Developer',
-                ])
-            ],
-            [
-                'created_at' => now()->subDays(5)->format('Y-m-d'),
-                'status' => 'declined',
-                'job' => collect([
-                    'company' => 'Apple',
-                    'salary' => '$50,000',
-                    'title' => 'Backend Developer',
-                ])
-            ],
-        ]));
+    Route::controller(ApplicationController::class)->prefix('/applications')->group(function () {
+        // Route::post('/create', 'create');
+        Route::get('/get', 'get');
     });
+    
+    // Route::get('/applications/get', function () {
+    //     sleep(2); // simulate slow network
+
+    //     return response()->json(collect([
+    //         [
+    //             'created_at' => now()->format('Y-m-d'),
+    //             'status' => 'pending',
+    //             'job' => collect([
+    //                 'company' => 'Google',
+    //                 'salary' => '$100,000',
+    //                 'title' => 'Full Stack Developer',
+    //             ])
+    //         ],
+    //         [
+    //             'created_at' => now()->subDay()->format('Y-m-d'),
+    //             'status' => 'declined',
+    //             'job' => collect([
+    //                 'company' => 'Microsoft',
+    //                 'salary' => '$90,000',
+    //                 'title' => 'Frontend Developer',
+    //             ])
+    //         ],
+    //         [
+    //             'created_at' => now()->subDays(2)->format('Y-m-d'),
+    //             'status' => 'success',
+    //             'job' => collect([
+    //                 'company' => 'Amazon',
+    //                 'salary' => '$80,000',
+    //                 'title' => 'Backend Developer',
+    //             ])
+    //         ],
+    //         [
+    //             'created_at' => now()->subDays(3)->format('Y-m-d'),
+    //             'status' => 'acknowledged',
+    //             'job' => collect([
+    //                 'company' => 'Facebook',
+    //                 'salary' => '$70,000',
+    //                 'title' => 'Full Stack Developer',
+    //             ])
+    //         ],
+    //         [
+    //             'created_at' => now()->subDays(4)->format('Y-m-d'),
+    //             'status' => 'pending',
+    //             'job' => collect([
+    //                 'company' => 'Twitter',
+    //                 'salary' => '$60,000',
+    //                 'title' => 'Frontend Developer',
+    //             ])
+    //         ],
+    //         [
+    //             'created_at' => now()->subDays(5)->format('Y-m-d'),
+    //             'status' => 'declined',
+    //             'job' => collect([
+    //                 'company' => 'Apple',
+    //                 'salary' => '$50,000',
+    //                 'title' => 'Backend Developer',
+    //             ])
+    //         ],
+    //     ]));
+    // });
 });
 

@@ -38,4 +38,10 @@ abstract class Controller
     {
         return self::response(403, false, $data, $message);
     }
+
+    public static function paginationResponse(object $response)
+    {
+        $response->pagination = true;
+        return self::response(200, true, $response);
+    }
 }

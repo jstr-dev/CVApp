@@ -8,7 +8,6 @@ use App\Models\CV;
 use App\Models\User;
 use App\Models\Application;
 use Exception;
-use Illuminate\Support\Collection;
 
 class ApplicationService 
 {
@@ -48,14 +47,20 @@ class ApplicationService
         $this->createStatusEvent($application, self::STATUS_MAP[$status] ?? $status);
     }
 
-    public function getByUser(User $user, ?array $statuses): Collection
+    public function getApplicationsForUser(User $user, ?array $filters, ?int $pageLimit = 20, ?int $page = 1): object
     {
-        return Application::query()
-            ->where('user_id', '=', $user->id)
-            ->when($statuses, function ($query) use ($statuses) {
-                return $query->whereIn('status', $statuses);
-            })
-            ->get();
+        $query = Application::query()
+            ->where('user_id', '=', $user->id);
+        
+        if (isset($filters)) {
+            $query = FilterService::applyFiltersToQuery($query, $filters);
+        }
+
+        $count = $query->count();
+        $query = $query->skip(($page - 1) * $pageLimit)->take($pageLimit);
+        $data = $query->get();
+
+        return (object) ['count' => $count, 'results' => $data, 'page' => $page];
     }
 
     private function createStatusEvent(Application $application, string $status): void

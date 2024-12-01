@@ -24,12 +24,17 @@ interface DataTableProps<T> extends React.AllHTMLAttributes<HTMLDivElement> {
 function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, filters, ...props }: DataTableProps<T>) {
     const [tableData, setTableData] = React.useState<T[]>([]);
     const [loading, setLoading] = React.useState(true);
+    const [page, setPage] = React.useState(1);
 
     useEffect(() => {
         const url = uri + '?' + params.toString();
 
         axiosInstance.get(url).then((response) => {
-            setTableData(response.data);
+            let data = response.data.data;
+            if (data.pagination) {
+                data = data.results;
+            }
+            setTableData(data);
             setLoading(false);
         })
     }, [uri, params])
