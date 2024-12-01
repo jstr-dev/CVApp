@@ -19,6 +19,7 @@ interface DataTableProps<T> extends React.AllHTMLAttributes<HTMLDivElement> {
     filters?: React.ReactNode
     header?: string
     headerElement?: React.ReactNode
+    onEmptyComponent?: React.ReactNode
 }
 
 function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, filters, ...props }: DataTableProps<T>) {
@@ -62,6 +63,8 @@ function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, fil
                         {tableData.map((data, index) => (
                             <TableRow key={index} model={data} tableHeaders={tableHeaders} />
                         ))}
+
+                        {tableData.length === 0 && <div className="mt-6">{props.onEmptyComponent}</div>}
                     </TableContent>
                 }
             </div>

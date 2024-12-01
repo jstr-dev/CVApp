@@ -56,11 +56,7 @@ class ApplicationService
             $query = FilterService::applyFiltersToQuery($query, $filters);
         }
 
-        $count = $query->count();
-        $query = $query->skip(($page - 1) * $pageLimit)->take($pageLimit);
-        $data = $query->get();
-
-        return (object) ['count' => $count, 'results' => $data, 'page' => $page];
+        return FilterService::paginationResponse($query, $page, $pageLimit);
     }
 
     private function createStatusEvent(Application $application, string $status): void

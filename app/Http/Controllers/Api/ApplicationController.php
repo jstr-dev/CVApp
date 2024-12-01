@@ -12,11 +12,12 @@ class ApplicationController extends Controller
 {
     public function get(Request $request, ApplicationService $applicationService): JsonResponse 
     {
+        [$page, $pageLimit] = FilterService::getPaginationParameters(20, $request);
         $filters = FilterService::createFiltersFromRequest([
-            'statuses' => ['field' => 'status', 'operator' => '='],
+            'status' => [],
         ], $request);
 
-        $response = $applicationService->getApplicationsForUser($request->user(), $filters);
+        $response = $applicationService->getApplicationsForUser($request->user(), $filters, $page, $pageLimit);
 
         return self::paginationResponse($response);
     }

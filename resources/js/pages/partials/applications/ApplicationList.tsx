@@ -54,6 +54,7 @@ function ApplicationList({ status, label, ...props }: ApplicationListProps) {
                 hasSearch
                 filters={filters}
                 header={label}
+                onEmptyComponent={<div className="text-center">No applications found</div>}
             />
         </Panel>
     );
