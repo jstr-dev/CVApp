@@ -22,21 +22,38 @@ interface DataTableProps<T> extends React.AllHTMLAttributes<HTMLDivElement> {
     onEmptyComponent?: React.ReactNode
 }
 
+interface PaginationData
+{
+    currentPage: number
+    resultsCount: number
+    pageLimit: number
+}
+
 function DataTable<T>({ hasPagination, tableHeaders, uri, params, hasSearch, filters, ...props }: DataTableProps<T>) {
     const [tableData, setTableData] = React.useState<T[]>([]);
     const [loading, setLoading] = React.useState(true);
-    const [page, setPage] = React.useState(1);
+    const [paginationData, setPaginationData] = React.useState({} as PaginationData);
 
     useEffect(() => {
         const url = uri + '?' + params.toString();
 
         axiosInstance.get(url).then((response) => {
             let data = response.data.data;
+
             if (data.pagination) {
+                let paginationInfo = {
+                    currentPage: data.page,
+                    resultsCount: data.count,
+                    pageLimit: data.pageLimit,
+                } as PaginationData;
+
+                setPaginationData(paginationInfo);
                 data = data.results;
-            }
+            } 
+
             setTableData(data);
             setLoading(false);
+            
         })
     }, [uri, params])
 

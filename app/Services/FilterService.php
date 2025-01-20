@@ -65,6 +65,6 @@ class FilterService
         $query = $query->skip(($page - 1) * $pageLimit)->take($pageLimit);
         $data = $query->get();
 
-        return (object) ['count' => $count, 'results' => $data, 'page' => $page];
+        return (object) ['count' => $count, 'results' => $data, 'page' => $page, 'pageLimit' => $pageLimit];
     }
 }

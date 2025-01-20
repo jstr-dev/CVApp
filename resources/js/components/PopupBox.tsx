@@ -8,9 +8,10 @@ interface PopupBoxProps {
     maxWidth?: number
     align?: 'left' | 'right'
     visible?: boolean
+    zIndex?: number
 }
 
-export default function PopupBox({ children, maxHeight, minHeight, maxWidth, minWidth, align, visible }: PopupBoxProps) {
+export default function PopupBox({ children, maxHeight, minHeight, maxWidth, minWidth, align, visible, zIndex }: PopupBoxProps) {
     const style: React.CSSProperties = {
         maxHeight: maxHeight ? `${maxHeight}px` : undefined,
         minHeight: minHeight ? `${minHeight}px` : undefined,
@@ -19,6 +20,7 @@ export default function PopupBox({ children, maxHeight, minHeight, maxWidth, min
         left: align === 'left' ? '0' : undefined,
         right: align === 'right' ? '0' : undefined,
         display: visible ? 'block' : 'none',
+        zIndex: zIndex ? zIndex : 200
     };
 
     return (

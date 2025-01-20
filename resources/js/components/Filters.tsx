@@ -35,6 +35,10 @@ export default function Filters({ children }: FilterProps) {
 
             <PopupBox maxHeight={400} minWidth={200} align='right' visible={visible}>
                 {children}
+
+                <div className="flex flex-row-reverse">
+                    <Button buttonStyle="secondary" size="small">Reset</Button>
+                </div>
             </PopupBox>
         </div>
     )

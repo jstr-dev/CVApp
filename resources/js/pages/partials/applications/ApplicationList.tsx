@@ -26,7 +26,7 @@ const tableHeaders: TableHeader<Application>[] = [
 ];
 
 const filters = <Filters>
-    <FilterList title="Status">
+    <FilterList title="Status" key='status'>
         <CheckFilter filterKey="acknowledged">Acknowledged</CheckFilter>
         <CheckFilter filterKey="pending">Pending Response</CheckFilter>
         <CheckFilter filterKey="declined">Declined</CheckFilter>
