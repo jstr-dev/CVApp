@@ -5,6 +5,7 @@ import { login } from '../services/UserService';
 import { getUserContext } from '../contexts/UserContext';
 import LoginLayout from '../layouts/LoginLayout';
 import Input from '../components/Input';
+import Checkbox from '@/components/Checkbox';
 
 interface LoginError {
     email?: string;
@@ -21,9 +22,10 @@ function Login() {
 
         const email = event.target.email.value;
         const password = event.target.password.value;
+        const rememberMe = event.target['remember-me'].checked;
 
         try {
-            const user = await login(email, password);
+            const user = await login(email, password, rememberMe);
             setUser(user);
             navigate('/');
         } catch (error: any) {
@@ -61,9 +63,18 @@ function Login() {
                     <Input type='password'
                         label='Password'
                         id='password'
-                        className='mb-8'
+                        className='mb-3'
                         error={errors.password}
                         required={true} />
+
+                    <div className="flex flex-row justify-between mb-8">
+                        <div className="flex flex-row items-center">
+                            <Checkbox type="checkbox" id="remember-me" />
+                            <label htmlFor="remember-me" className='ml-1.5 mt-0 text-sm'>Remember me</label>
+                        </div>
+
+                        <Link className='link-col text-sm' to='/forgot-password'>Forgot password</Link>
+                    </div>
 
                     <Button type='submit' loading={loading}>
                         {loading ? 'Logging in...' : 'Login'}

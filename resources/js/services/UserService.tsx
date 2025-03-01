@@ -2,9 +2,9 @@ import { getUserContext } from '../contexts/UserContext';
 import axiosInstance from './AxiosInstance';
 import Cookies from 'js-cookie';
 
-export const login = async (email: string, password: string): Promise<User> => {
+export const login = async (email: string, password: string, rememberMe: boolean): Promise<User> => {
     await axiosInstance.get('/sanctum/csrf-cookie');
-    const response = await axiosInstance.post('/login', { email, password });
+    const response = await axiosInstance.post('/login', { email, password, rememberMe });
     return response.data.data;
 };
 

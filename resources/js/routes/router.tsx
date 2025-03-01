@@ -33,6 +33,11 @@ const router = createBrowserRouter([
             {
                 path: "cover-templates",
                 element: <h1>hello</h1>
+            },
+
+            {
+                path: 'settings',
+                element: <h1>hello</h1>
             }
         ],
     },

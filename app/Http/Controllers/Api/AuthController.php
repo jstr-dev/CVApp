@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-        $rememberMe = $request->input('remember', false);
+        $rememberMe = $request->input('rememberMe', false);
         $user = User::query()
             ->where('email', '=', $email)
             ->first();
