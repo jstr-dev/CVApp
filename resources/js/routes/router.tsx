@@ -10,6 +10,7 @@ import Logout from '../pages/Logout';
 import ForgotPassword from '../pages/ForgotPassword';
 import Applications from '@/pages/Applications';
 import Templates from '@/pages/Templates/Index';
+import Settings from '@/pages/Settings';
 
 const router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
 
             {
                 path: 'settings',
-                element: <h1>hello</h1>
+                element: <Settings />
             }
         ],
     },
