@@ -7,6 +7,7 @@ import Signup from '../pages/Signup';
 import Onboarding from '../pages/Onboarding';
 import PublicRoute from './PublicRoute';
 import Logout from '../pages/Logout';
+import ForgotPassword from '../pages/ForgotPassword';
 import Applications from '@/pages/Applications';
 import Templates from '@/pages/Templates/Index';
 
@@ -71,6 +72,11 @@ const router = createBrowserRouter([
                 path: 'signup',
                 element: <Signup />
             },
+
+            {
+                path: 'forgot-password',
+                element: <ForgotPassword />
+            }
         ],
     },
 ])

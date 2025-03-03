@@ -1,4 +1,3 @@
-import { getUserContext } from '../contexts/UserContext';
 import axiosInstance from './AxiosInstance';
 import Cookies from 'js-cookie';
 
@@ -29,3 +28,10 @@ export const getCurrentUser = async (): Promise<User | null> => {
         return null;
     }
 };
+
+export const forgotPassword = async (email: string): Promise<boolean> => {
+    await axiosInstance.get('/sanctum/csrf-cookie');
+    return axiosInstance.post('/request-reset-link', { email })
+        .then(() => true)
+        .catch(() => false);
+}

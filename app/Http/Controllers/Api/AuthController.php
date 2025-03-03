@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
+use Password;
 
 class AuthController extends Controller
 {
@@ -33,6 +34,21 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
+        return self::success();
+    }
+
+    public function requestResetLink(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        $user = User::where('email', $request->get('email'))->first();
+
+        if (!$user) {
+            // Return success even if no user was found, prevents leaks.
+            return self::success();
+        }
+
+        $status = Password::sendResetLink($request->only('email'));
+
         return self::success();
     }
 }

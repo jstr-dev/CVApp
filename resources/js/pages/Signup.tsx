@@ -34,7 +34,7 @@ function Signup() {
             const user = await signup(email, password, passwordConfirmation, firstName, lastName);
             setUser(user);
             navigate('/');
-        } catch (error) {
+        } catch (error: any) {
             if (error.response && error.response.data && error.response.data.data) {
                 setErrors(error.response.data.data);
             } else {

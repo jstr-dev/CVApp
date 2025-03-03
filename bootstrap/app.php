@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'verify.onboarding' => VerifyOnboardingStage::class,
         ]);
+        $middleware->trustHosts(['localhost', '127.0.0.1', 'cvapp.ddev.site']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
