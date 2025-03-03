@@ -16,6 +16,8 @@ Route::middleware(['web'])->controller(AuthController::class)->group(function ()
     Route::post('login', 'login')->middleware('guest:sanctum');
     Route::post('logout', 'logout')->middleware('auth:sanctum');
     Route::post('request-reset-link', 'requestResetLink')->middleware('guest:sanctum');
+    Route::get('reset-password', 'getResetPasswordToken')->middleware('guest:sanctum');
+    ROute::post('reset-password', 'resetPassword')->middleware('guest:sanctum');
 });
 
 Route::middleware(['web'])->controller(UserController::class)->group(function () {
