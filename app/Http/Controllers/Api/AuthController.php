@@ -10,6 +10,11 @@ use Password;
 
 class AuthController extends Controller
 {
+    public function getCurrentUser(Request $request)
+    {
+        return $request->user();
+    }
+
     public function login(Request $request)
     {
         $email = $request->input('email');
