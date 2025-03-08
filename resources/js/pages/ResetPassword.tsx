@@ -55,8 +55,8 @@ function ResetPassword() {
             });
             window.location.href = '/login';
         } catch (error: any) {
-            if (error.response && error.response.data && error.response.data.data) {
-                setErrors(error.response.data.data);
+            if (error.response && error.response.data && error.response.data.errors) {
+                setErrors(error.response.data.errors);
             } else {
                 setErrors({ password_confirmation: 'An error occurred. Please try again.', password: '' });
             }
