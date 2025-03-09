@@ -4,9 +4,7 @@ import Heading from '@/components/Heading';
 import { getUserContext } from '@/contexts/UserContext';
 import TabMenu, { Tab } from '@/components/TabMenu';
 import Heading2 from '@/components/Heading2';
-import Icon from '@/icons/Icon';
 import Button from '@/components/Button';
-import Input from '@/components/Input';
 import DetailItem from '@/components/DetailItem';
 
 const Tabs: Tab[] = [
