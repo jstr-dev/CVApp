@@ -37,12 +37,7 @@ function SectionHeader({ title, toggleEdit, isPanelOpen, togglePanel } : { title
     return (
         <div className="flex flex-row justify-between">
             <Heading2 title={title} />
-            <div className='flex flex-row gap-1'>
-                {isPanelOpen &&
-                    <Button icon="fa-pen" buttonStyle="secondary" size="small" onClick={toggleEdit}>Edit</Button>
-                }
-                <Button icon={isPanelOpen ? "fa-chevron-up" : "fa-chevron-down"} buttonStyle="accordion" size="small" onClick={togglePanel} />
-            </div>
+            <Button icon="fa-pen" buttonStyle="secondary" size="small" onClick={toggleEdit}>Edit</Button>
         </div>
     );
 }
