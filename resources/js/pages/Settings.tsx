@@ -33,7 +33,7 @@ function SettingsDetails() {
     );
 }
 
-function SectionHeader({ title, toggleEdit, isPanelOpen, togglePanel } : { title: string, toggleEdit: () => void, isPanelOpen: boolean, togglePanel: () => void }) {
+function SectionHeader({ title, toggleEdit } : { title: string, toggleEdit: () => void }) {
     return (
         <div className="flex flex-row justify-between">
             <Heading2 title={title} />
@@ -55,18 +55,14 @@ function EditButtons({toggleEdit}: {toggleEdit: () => void}) {
 function AccountPanels() {
     const { user, setUserProperty } = getUserContext();
     const [ isEditing, setIsEditing ] = useState(false);
-    const [isPanelOpen, setIsPanelOpen] = useState(true);
- 
+
     return (
         <>
             <Panel className='w-full h-full mx-auto max-md:w-full mb-6'>
                 <SectionHeader 
                     title="Your information" 
                     toggleEdit={() => setIsEditing(!isEditing)} 
-                    isPanelOpen={isPanelOpen}
-                    togglePanel={() => setIsPanelOpen(!isPanelOpen)}
                 />
-                {isPanelOpen &&
                     <div className="flex flex-wrap">
                       <div className="w-1/2 ml-0">
                         <div className='flex flex-col justify-between'>
@@ -119,8 +115,7 @@ function AccountPanels() {
                         </div>
                       </div>
                     </div>
-                }
-                {!isEditing || isPanelOpen &&
+                {isEditing &&
                     <EditButtons toggleEdit={() => setIsEditing(!isEditing)} />
                 }
             </Panel>
