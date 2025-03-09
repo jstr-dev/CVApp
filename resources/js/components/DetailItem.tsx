@@ -23,7 +23,7 @@ export default function DetailItem({ label, value, isEditing, type, id }: Detail
             <Input type={type}
                 id={id}
                 label={label}
-                className= 'mb-3 w-1/2'
+                className= 'mb-3 mr-1'
                 value={value || ''}
                 required={true}
             />

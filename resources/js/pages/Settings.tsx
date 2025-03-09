@@ -6,6 +6,7 @@ import TabMenu, { Tab } from '@/components/TabMenu';
 import Heading2 from '@/components/Heading2';
 import Button from '@/components/Button';
 import DetailItem from '@/components/DetailItem';
+import { updateUser } from '@/services/UserService';
 
 const Tabs: Tab[] = [
     { 
@@ -54,6 +55,11 @@ function AccountPanels() {
     const { user, setUserProperty } = getUserContext();
     const [ isEditing, setIsEditing ] = useState(false);
 
+    const [email, setEmail] = useState(user?.email || "");
+    const [mobileNumber, setMobileNumber] = useState(user?.mobile_number || "");
+    const [firstName, setFirstName] = useState(user?.first_name || "");
+    const [lastName, setLastName] = useState(user?.last_name || "");
+
     return (
         <>
             <Panel className='w-full h-full mx-auto max-md:w-full mb-6'>
@@ -66,21 +72,21 @@ function AccountPanels() {
                         <div className='flex flex-col justify-between'>
                             <DetailItem 
                                 label="First Name" 
-                                value={user?.first_name} 
+                                value={firstName} 
                                 isEditing={isEditing} 
                                 type='text' 
-                                id='first_name' 
+                                id='first_name'
                             />
                             <DetailItem 
                                 label="Email" 
-                                value={user?.email} 
+                                value={email} 
                                 isEditing={isEditing} 
                                 type='email' 
-                                id='email' 
+                                id='email'
                             />
                             <DetailItem 
                                 label="Mobile number" 
-                                value={user?.mobile_number} 
+                                value={mobileNumber} 
                                 isEditing={isEditing} 
                                 type='number' 
                                 id='mobile_number' 
@@ -91,7 +97,7 @@ function AccountPanels() {
                         <div className='flex flex-col justify-between'>
                             <DetailItem 
                                 label="Last Name" 
-                                value={user?.last_name} 
+                                value={lastName} 
                                 isEditing={isEditing} 
                                 type='text' 
                                 id='last_name' 

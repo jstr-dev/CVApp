@@ -51,3 +51,8 @@ export const forgotPassword = async (email: string): Promise<boolean> => {
         .then(() => true)
         .catch(() => false);
 };
+
+export const updateUser = async (user: User): Promise<User> => {
+    const response = await axiosInstance.post("/user", user);
+    return response.data.data;
+};
