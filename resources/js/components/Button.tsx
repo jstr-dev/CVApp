@@ -3,7 +3,7 @@ import Loader from './Loader';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     loading?: boolean;
-    buttonStyle?: 'default' | 'secondary' | 'primary';
+    buttonStyle?: 'default' | 'secondary' | 'primary' | 'accordion';
     size?: 'base' | 'small' | 'regular';
     icon?: string;
     textClass?: string;
@@ -12,7 +12,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const styles = {
     primary: 'text-white primary-col primary-button focus:ring-blue-300 focus:ring-0.5',
     default: 'text-white bg-black hover:bg-neutral-950 focus:ring-gray-300 focus:ring-0.5',
-    secondary: 'text-gray-900 content-col border border-gray-300 hover:bg-neutral-100 focus:ring-0.5 focus:ring-gray-100 disabled:text-gray-400 disabled:bg-gray-100'
+    secondary: 'text-gray-900 content-col border border-gray-300 hover:bg-neutral-100 focus:ring-0.5 focus:ring-gray-100 disabled:text-gray-400 disabled:bg-gray-100',
+    accordion: 'text-gray-900 content-col hover:text-gray-500 focus:ring-0.5 focus:ring-gray-100 disabled:text-gray-400 disabled:bg-gray-100'
 }
 
 const sizes = {

@@ -7,6 +7,7 @@ import Heading2 from '@/components/Heading2';
 import Icon from '@/icons/Icon';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
+import DetailItem from '@/components/DetailItem';
 
 const Tabs: Tab[] = [
     { 
@@ -32,11 +33,16 @@ function SettingsDetails() {
     );
 }
 
-function SectionHeader({ title, toggleEdit } : { title: string, toggleEdit: () => void }) {
+function SectionHeader({ title, toggleEdit, isPanelOpen, togglePanel } : { title: string, toggleEdit: () => void, isPanelOpen: boolean, togglePanel: () => void }) {
     return (
         <div className="flex flex-row justify-between">
             <Heading2 title={title} />
-            <Button icon="fa-pen" buttonStyle="secondary" size="small" onClick={toggleEdit}>Edit</Button>
+            <div className='flex flex-row gap-1'>
+                {isPanelOpen &&
+                    <Button icon="fa-pen" buttonStyle="secondary" size="small" onClick={toggleEdit}>Edit</Button>
+                }
+                <Button icon={isPanelOpen ? "fa-chevron-up" : "fa-chevron-down"} buttonStyle="accordion" size="small" onClick={togglePanel} />
+            </div>
         </div>
     );
 }
@@ -54,60 +60,77 @@ function EditButtons({toggleEdit}: {toggleEdit: () => void}) {
 function AccountPanels() {
     const { user, setUserProperty } = getUserContext();
     const [ isEditing, setIsEditing ] = useState(false);
+    const [isPanelOpen, setIsPanelOpen] = useState(true);
  
     return (
         <>
             <Panel className='w-full h-full mx-auto max-md:w-full mb-6'>
-                <SectionHeader title="Your information" toggleEdit={() => setIsEditing(!isEditing)} />
-                {!isEditing ?                 
+                <SectionHeader 
+                    title="Your information" 
+                    toggleEdit={() => setIsEditing(!isEditing)} 
+                    isPanelOpen={isPanelOpen}
+                    togglePanel={() => setIsPanelOpen(!isPanelOpen)}
+                />
+                {isPanelOpen &&
                     <div className="flex flex-wrap">
                       <div className="w-1/2 ml-0">
                         <div className='flex flex-col justify-between'>
-                            
+                            <DetailItem 
+                                label="First Name" 
+                                value={user?.first_name} 
+                                isEditing={isEditing} 
+                                type='text' 
+                                id='first_name' 
+                            />
+                            <DetailItem 
+                                label="Email" 
+                                value={user?.email} 
+                                isEditing={isEditing} 
+                                type='email' 
+                                id='email' 
+                            />
+                            <DetailItem 
+                                label="Mobile number" 
+                                value={user?.mobile_number} 
+                                isEditing={isEditing} 
+                                type='number' 
+                                id='mobile_number' 
+                            />
                         </div>
                       </div>
                       <div className="w-1/2 mr-auto">
+                        <div className='flex flex-col justify-between'>
+                            <DetailItem 
+                                label="Last Name" 
+                                value={user?.last_name} 
+                                isEditing={isEditing} 
+                                type='text' 
+                                id='last_name' 
+                            />
+                            <DetailItem 
+                                label="Middle Name" 
+                                value={user?.middle_name ?? undefined} 
+                                isEditing={isEditing} 
+                                type='text' 
+                                id='middle_name' 
+                            />
+                            <DetailItem 
+                                label="Mobile country code" 
+                                value={user?.mobile_country_code} 
+                                isEditing={isEditing} 
+                                type='number' 
+                                id='mobile_country_code' 
+                            />
+                        </div>
                       </div>
                     </div>
-                :
-                    <div className='flex flex-col justify-between'>
-                        <Input type='email'
-                            id='email'
-                            label='Email'
-                            className= 'mb-3 w-1/2'
-                            value={user?.email}
-                            required={true}
-                        />
-                        <Input type='text'
-                            id='first_name'
-                            label='First name'
-                            className= 'mb-3 w-1/2'
-                            value={user?.first_name}
-                            required={true}
-                        />
-                        {user?.middle_name && 
-                            <Input type='text'
-                            id='middle_name'
-                            label='Middle name'
-                            className= 'mb-3 w-1/2'
-                            value={user?.middle_name}
-                            required={true}
-                            />
-                        }
-                        <Input type='text'
-                            id='last_name'
-                            label='Last name'
-                            className= 'mb-3 w-1/2'
-                            value={user?.last_name}
-                            required={true}
-                        />
-                        
-                        <EditButtons toggleEdit={() => setIsEditing(!isEditing)} />
-                    </div> 
+                }
+                {!isEditing || isPanelOpen &&
+                    <EditButtons toggleEdit={() => setIsEditing(!isEditing)} />
                 }
             </Panel>
             <Panel className='w-full h-full mx-auto max-md:w-full mb-6'>
-                <SectionHeader title="Your information" toggleEdit={() => setIsEditing(!isEditing)} />
+
             </Panel>
         </>
     );
