@@ -14,14 +14,14 @@ class OnboardingController extends Controller
 
     public function postBack(Request $request, UserService $userService)
     {
-        $userService->decreaseOnboardingStage($request->user('sanctum'));
-        return self::success(['previous_stage' => $request->user('sanctum')->onboarding_stage]);
+        $userService->decreaseOnboardingStage($request->user());
+        return self::success(['previous_stage' => $request->user()->onboarding_stage]);
     }
 
     public function postSkip(Request $request, UserService $userService)
     {
-        $userService->iterateOnboardingStage($request->user('sanctum'));
-        return self::success(['next_stage' => $request->user('sanctum')->onboarding_stage]);
+        $userService->iterateOnboardingStage($request->user());
+        return self::success(['next_stage' => $request->user()->onboarding_stage]);
     }
 
     public function postAddress(Request $request, AddressService $addressService, UserService $userService)
@@ -31,7 +31,7 @@ class OnboardingController extends Controller
         }
 
         $addressService->create(
-            user: $request->user('sanctum'),
+            user: $request->user(),
             first_line: $request->first_line,
             second_line: $request->second_line,
             code: $request->code,
@@ -40,9 +40,9 @@ class OnboardingController extends Controller
             country: $request->country
         );
 
-        $userService->iterateOnboardingStage($request->user('sanctum'));
+        $userService->iterateOnboardingStage($request->user());
 
-        return self::success(['next_stage' => $request->user('sanctum')->onboarding_stage]);
+        return self::success(['next_stage' => $request->user()->onboarding_stage]);
     }
 
     public function postMobile(Request $request, UserService $userService)
@@ -52,13 +52,13 @@ class OnboardingController extends Controller
         }
 
         $userService->setMobileNumber(
-            user: $request->user('sanctum'),
+            user: $request->user(),
             countryCode: $request->mobile_country_code,
             number: $request->mobile_number
         );
 
-        $userService->iterateOnboardingStage($request->user('sanctum'));
+        $userService->iterateOnboardingStage($request->user());
 
-        return self::success(['next_stage' => $request->user('sanctum')->onboarding_stage]);
+        return self::success(['next_stage' => $request->user()->onboarding_stage]);
     }
 }

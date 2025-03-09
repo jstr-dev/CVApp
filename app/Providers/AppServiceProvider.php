@@ -5,8 +5,6 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Sanctum\PersonalAccessToken;
-use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         ResetPassword::createUrlUsing(function (User $user, string $token) {
-            return url('/reset-password?token=' . $token);
+            return url('/reset-password?token=' . $token . '&email=' . $user->email);
         });
     }
 }

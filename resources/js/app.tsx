@@ -17,16 +17,7 @@ if (!rootElement) {
 const queryClient = new QueryClient();
 
 const App = () => {
-    // Request new XSRF Cookie every 5 minutes
-    React.useEffect(() => {
-        let interval = setInterval(() => {
-            axiosInstance.get('/sanctum/csrf-cookie');
-        }, 300000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-	return (
+    return (
         <QueryClientProvider client={queryClient}>
             <UserProvider>
                 <NavbarProvider>
@@ -34,7 +25,7 @@ const App = () => {
                 </NavbarProvider>
             </UserProvider>
         </QueryClientProvider>
-	);
-}
+    );
+};
 
 ReactDOM.createRoot(rootElement).render(<App/>)

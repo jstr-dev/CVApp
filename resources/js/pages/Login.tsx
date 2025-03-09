@@ -63,7 +63,7 @@ function Login() {
                     <Input type='password'
                         label='Password'
                         id='password'
-                        className='mb-3'
+                        className='mb-4'
                         error={errors.password}
                         required={true} />
 

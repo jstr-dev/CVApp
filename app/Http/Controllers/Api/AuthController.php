@@ -10,6 +10,11 @@ use Password;
 
 class AuthController extends Controller
 {
+    public function getCurrentUser(Request $request)
+    {
+        return $request->user();
+    }
+
     public function login(Request $request)
     {
         $email = $request->input('email');
@@ -50,5 +55,43 @@ class AuthController extends Controller
         $status = Password::sendResetLink($request->only('email'));
 
         return self::success();
+    }
+
+    public function getResetPasswordToken(Request $request)
+    {
+        $request->validate(['token' => 'required', 'email' => 'required|email']);
+        $token = $request->get('token');
+        $email = $request->get('email');
+        $user = Password::getUser(['email' => $email, 'token' => $token]);
+
+        if (!$user) {
+            return self::unauthorised(data: ['token' => 'Invalid token.']);
+        }
+
+        return self::success(['email' => $user->email]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password),
+                ])->save();
+            }
+        );
+
+        if ($status === Password::PASSWORD_RESET) {
+            return self::success();
+        }
+
+        return self::badRequest();
     }
 }

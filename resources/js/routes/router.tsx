@@ -11,30 +11,32 @@ import ForgotPassword from '../pages/ForgotPassword';
 import Applications from '@/pages/Applications';
 import Templates from '@/pages/Templates/Index';
 import Settings from '@/pages/Settings';
+import ResetPassword from "@/pages/ResetPassword";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: "/",
         element: <ProtectedRoute />,
         children: [
             {
                 index: true,
-                element: <Main />
+                element: <Main />,
             },
 
             {
-                path: 'applications',
-                element: <Applications />
+                path: "applications",
+                element: <Applications />,
             },
 
             {
                 path: "templates",
-                element: <Templates />
+                element: <Templates />,
             },
 
             {
                 path: "cover-templates",
-                element: <h1>hello</h1>
+                element: <h1>hello</h1>,
             },
 
             {
@@ -45,41 +47,52 @@ const router = createBrowserRouter([
     },
 
     {
-        path: '/',
+        path: "/",
         element: <ProtectedRoute noLayout />,
         children: [
             {
-                path: 'onboarding',
-                element: <Onboarding />
+                path: "onboarding",
+                element: <Onboarding />,
             },
 
             {
                 path: "logout",
-                element: <Logout />
+                element: <Logout />,
             },
         ],
     },
 
     {
-        path: '/',
+        path: "/",
         element: <PublicRoute />,
+        errorElement: <Error />,
         children: [
             {
-                path: 'login',
-                element: <Login />
+                path: "login",
+                element: <Login />,
             },
 
             {
-                path: 'signup',
-                element: <Signup />
+                path: "signup",
+                element: <Signup />,
             },
 
             {
-                path: 'forgot-password',
-                element: <ForgotPassword />
-            }
+                path: "forgot-password",
+                element: <ForgotPassword />,
+            },
+
+            {
+                path: "reset-password",
+                element: <ResetPassword />,
+            },
+
+            {
+                path: "*",
+                element: <Error />,
+            },
         ],
     },
-])
+]);
 
 export default router;
