@@ -11,22 +11,22 @@ interface DetailItemProps extends React.AllHTMLAttributes<HTMLDivElement> {
 
 export default function DetailItem({ label, value, isEditing, type, id }: DetailItemProps) {
     return (
-        value && (
-            !isEditing ? (
+        !isEditing ? (
+            value && (
                 <div className="flex flex-col mb-2">
                     <span className="font-medium text-gray-500 text-xs">{label}</span>
-                    <input type="text" className="text-gray-900" value={value} />
+                    <span className="text-gray-900">{value}</span>
                 </div>
-            ):
-            (   
-                <Input type={type}
-                    id={id}
-                    label={label}
-                    className= 'mb-3 w-1/2'
-                    value={value}
-                    required={true}
-                />
             )
+        ):
+        (   
+            <Input type={type}
+                id={id}
+                label={label}
+                className= 'mb-3 w-1/2'
+                value={value || ''}
+                required={true}
+            />
         )
     );
 }
